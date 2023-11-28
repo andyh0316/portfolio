@@ -1,0 +1,174 @@
+// @import "../MaterialIcons/material-icons.scss";
+
+#resume-page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: "Open Sans Condensed", sans-serif;
+  background-color: whitesmoke;
+  font-weight: 500;
+  width: 1000px; /* fits PDF width: approximate, PDF will shrink width to fit */
+  height: 1294px; /* fits PDF height: needs to be exact, may change based on margin */
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 18px;
+  color: rgb(60, 60, 60);
+  letter-spacing: 0px;
+
+  #footer {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    bottom: 3px;
+    left: 0px;
+    font-size: 16px;
+    letter-spacing: 0px;
+  }
+
+  #header {
+    display: flex;
+    //overflow: auto;
+    padding: 10px 20px 10px 20px;
+    box-sizing: border-box;
+    background-color: rgb(65, 178, 205);
+    color: white;
+
+    .left-block {
+      width: 50%;
+      //float: left;
+    }
+
+    .right-block {
+      width: 50%;
+      //float: right;
+      text-align: right;
+      padding-top: 10px;
+    }
+
+    #name {
+      font-size: 40px;
+      font-weight: bolder;
+      line-height: 90%;
+    }
+
+    #position {
+      padding-left: 2px;
+    }
+
+    #email {
+      text-decoration: underline;
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .section {
+    margin-bottom: 8px;
+    padding: 0px 5px;
+    box-sizing: border-box;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgb(218, 218, 218);
+      padding-bottom: 5px;
+      color: #41b2cd;
+
+      .section-icon {
+        position: relative;
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        background-size: cover;
+        /*opacity: 0.7;*/
+        margin-right: 15px;
+        top: 0px;
+      }
+
+      .icon {
+        position: relative;
+        top: 1px;
+        margin-right: 12px;
+        font-size: 24px;
+      }
+
+      .title {
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 600;
+        //color: rgb(90, 90, 90);
+      }
+    }
+  }
+
+  #resume-container-content {
+    padding: 15px 30px;
+  }
+
+  .section-row {
+    margin-bottom: 15px;
+    //argin-top: 15px;
+
+    .section-row-header {
+      overflow: auto;
+      //color: #41b2cd;
+    }
+
+    .section-row-title {
+      float: left;
+      font-weight: 600;
+      font-size: 20px;
+      color: rgb(90, 90, 90);
+    }
+
+    .section-row-subtitle {
+      float: right;
+      font-size: 20px;
+    }
+
+    .section-row-content {
+      line-height: 120%;
+      text-align: justify;
+    }
+  }
+
+  .section .section-content {
+    padding: 10px 5px;
+  }
+
+  .skill-row {
+    overflow: auto;
+  }
+
+  .skill-row .skill-title {
+    float: left;
+    width: 400px;
+  }
+
+  .half {
+    width: 50%;
+  }
+
+  .float-left {
+    float: left;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  .arrow {
+    position: absolute;
+    right: 270px;
+    top: 43px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+  }
+}
