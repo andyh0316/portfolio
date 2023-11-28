@@ -1,65 +1,6 @@
 // @import "../MaterialIcons/material-icons.scss";
 
 #resume-page {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  font-family: "Open Sans Condensed", sans-serif;
-  background-color: whitesmoke;
-  font-weight: 500;
-  width: 1000px; /* fits PDF width: approximate, PDF will shrink width to fit */
-  height: 1294px; /* fits PDF height: needs to be exact, may change based on margin */
-  margin: 0 auto;
-  box-sizing: border-box;
-  font-size: 18px;
-  color: rgb(60, 60, 60);
-  letter-spacing: 0px;
-
-  #footer {
-    width: 100%;
-    position: absolute;
-    text-align: center;
-    bottom: 3px;
-    left: 0px;
-    font-size: 16px;
-    letter-spacing: 0px;
-  }
-
-  #header {
-    display: flex;
-    //overflow: auto;
-    padding: 10px 20px 10px 20px;
-    box-sizing: border-box;
-    background-color: rgb(65, 178, 205);
-    color: white;
-
-    .left-block {
-      width: 50%;
-      //float: left;
-    }
-
-    .right-block {
-      width: 50%;
-      //float: right;
-      text-align: right;
-      padding-top: 10px;
-    }
-
-    #name {
-      font-size: 40px;
-      font-weight: bolder;
-      line-height: 90%;
-    }
-
-    #position {
-      padding-left: 2px;
-    }
-
-    #email {
-      text-decoration: underline;
-    }
-  }
-
   a {
     color: inherit;
   }
@@ -103,9 +44,6 @@
     }
   }
 
-  #resume-container-content {
-    padding: 15px 30px;
-  }
 
   .section-row {
     margin-bottom: 15px;

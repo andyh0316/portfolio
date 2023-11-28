@@ -1,5 +1,7 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import "./resume.scss";
+import { ReactNode } from "react";
 
 const ResumePage = () => {
   const renderHeader = () => {
@@ -13,7 +15,7 @@ const ResumePage = () => {
         color="white"
       >
         <Stack>
-          <Typography variant="h5" lineHeight={"120%"}>
+          <Typography variant="h4" lineHeight={"120%"}>
             Haitian (Andy) Hong
           </Typography>
           <Typography variant="h6" lineHeight={"120%"}>
@@ -48,6 +50,37 @@ const ResumePage = () => {
           </div>
         </div>
       </div>
+    );
+
+    // return (
+    //   <div className="section">
+    //     <div className="section-title">
+    //       {/* <FontAwesomeIcon icon={objectiveIcon} className="icon" /> */}
+    //       <div className="title">Objective</div>
+    //     </div>
+    //     <div className="section-content">
+    //       <div className="section-row">
+    //         <div className="section-row-content">
+    //           As an experienced developer, I am seeking for a position where I can utilize my expertise to build a high
+    //           quality web application. I can cover every aspect needed for a complete product: all the way from
+    //           architectural design, frontend development, backend development to deployment (and even UI/UX design!).
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
+  };
+
+  const renderSection = (params: { title: string; body: ReactNode; icon?: any }) => {
+    return (
+      <Stack className="section">
+        <Stack direction="row" className="section-title">
+          {params.icon}
+          <Typography>{params.title}</Typography>
+          <div className="title">{params.title}</div>
+        </Stack>
+        <Box className="section-content">{params.body}</Box>
+      </Stack>
     );
   };
 
@@ -209,19 +242,50 @@ const ResumePage = () => {
   };
 
   return (
-    <div id="resume-page">
+    <Stack
+      id="resume-page"
+      sx={{
+        position: "relative",
+        fontFamily: '"Open Sans Condensed", sans-serif',
+        backgroundColor: "whitesmoke",
+        fontWeight: 500,
+        width: "1000px", // fits PDF width: approximate, PDF will shrink width to fit
+        height: "1294px", // fits PDF height: needs to be exact, may change based on margin
+        margin: "0 auto",
+        boxSizing: "border-box",
+        fontSize: "18px",
+        color: "rgb(60, 60, 60)",
+        letterSpacing: "0px",
+      }}
+    >
       {renderHeader()}
 
-      <div id="resume-container-content">
+      <Stack
+        sx={{
+          padding: "15px 30px",
+        }}
+      >
         {renderObjective()}
         {renderExpertise()}
         {renderExperience()}
         {renderEducation()}
         {renderPersonal()}
-      </div>
+      </Stack>
 
-      <div id="footer">Resume written in HTML/SCSS + ReactJS</div>
-    </div>
+      <Box
+        sx={{
+          width: "100%",
+          position: "absolute",
+          textAlign: "center",
+          bottom: "3px",
+          left: "0px",
+          fontSize: "16px",
+          letterSpacing: "0px",
+        }}
+      >
+        Resume written in HTML/SCSS + ReactJS
+      </Box>
+    </Stack>
   );
 };
 
