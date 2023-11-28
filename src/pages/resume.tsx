@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import "./resume.scss";
 
 const ResumePage = () => {
@@ -12,39 +12,22 @@ const ResumePage = () => {
         bgcolor={"rgb(65, 178, 205)"}
         color="white"
       >
-        <div className="left-block">
-          <div id="name">Haitian (Andy) Hong</div>
-          <div id="position">Full Stack Software Engineer</div>
-        </div>
+        <Stack>
+          <Typography variant="h5" lineHeight={"120%"}>
+            Haitian (Andy) Hong
+          </Typography>
+          <Typography variant="h6" lineHeight={"120%"}>
+            Full Stack Software Engineer
+          </Typography>
+        </Stack>
 
-        <div className="right-block">
-          <div>
-            <span>Email: </span>
-            <span>Andyhong0316@yahoo.com</span>
-          </div>
-          <div>
-            <span>Portfolio: </span>
-            <a href="http://haitianhong.com">HaitianHong.com</a>
-          </div>
-        </div>
+        <Stack>
+          <Typography lineHeight={"120%"}>Email: Andyhong0316@yahoo.com</Typography>
+          <Typography lineHeight={"120%"}>
+            Portfolio: <a href="http://haitianhong.com">HaitianHong.com</a>
+          </Typography>
+        </Stack>
       </Stack>
-
-      // <div id="header">
-      //   <div className="left-block">
-      //     <div id="name">Haitian (Andy) Hong</div>
-      //     <div id="position">Full Stack Software Engineer</div>
-      //   </div>
-      // <div className="right-block">
-      //   <div>
-      //     <span>Email: </span>
-      //     <span>Andyhong0316@yahoo.com</span>
-      //   </div>
-      //   <div>
-      //     <span>Portfolio: </span>
-      //     <a href="http://haitianhong.com">HaitianHong.com</a>
-      //   </div>
-      // </div>
-      // </div>
     );
   };
 
