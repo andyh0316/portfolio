@@ -1,14 +1,16 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { Stack } from "@mui/material";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <nav>
+      <Stack direction="row" spacing={1}>
         <Link href="/"></Link>
         <Link href="/resume">Resume</Link>
-      </nav>
+        <Link href="/data-structures">Data Structures</Link>
+      </Stack>
 
       {/* <div className={styles.description}>
         <p>
