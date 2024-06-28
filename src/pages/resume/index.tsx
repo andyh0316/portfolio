@@ -116,12 +116,12 @@ const ResumePage = () => {
               <div className="section-row-subtitle">2015 - Present</div>
             </div>
             <div className="section-row-content">
-              Started as a solo developer, I rebuilt the company's student management system from scratch, which
-              launched after 9 months. My responsibilies in the company includes architecture, UI/UX design, frontend
+              {`Started as a solo developer, I rebuilt the company's student management system from scratch, which
+              launched after 9 months. My responsibilities in the company include architecture, UI/UX design, frontend
               implementation, backend implementation, server, multi-tenant SQL administration. After accumulating more
               clients, we grew to a team of multiple developers who I lead to continue to improve the application. The
               tech stack I chose to build the main application is AngularJS and C# .NET, and ReactJS and .NET Core for
-              smaller projects later in the years.
+              smaller projects later in the years.`}
             </div>
           </div>
 
@@ -148,10 +148,10 @@ const ResumePage = () => {
               <div className="section-row-subtitle">2014 - 2015</div>
             </div>
             <div className="section-row-content">
-              Joined a start up company and helped develop an enterprise-scale plastic surgeon EHR software system
+              {`Joined a start up company and helped develop an enterprise-scale plastic surgeon EHR software system
               capable of managing an entire facility's process. My role as the only full stack developer in the team
               includes designing/developing frontend and developing backend, using AngularJS and .NET. The company was
-              then quickly acquired after only one year.
+              then quickly acquired after only one year.`}
             </div>
           </div>
 
@@ -161,13 +161,13 @@ const ResumePage = () => {
               <div className="section-row-subtitle">2012 - 2014</div>
             </div>
             <div className="section-row-content">
-              After graduating from college, I was offered with a position as at Humana: nLiven where I helped to
+              {`After graduating from college, I was offered with a position as at Humana: nLiven where I helped to
               develop a grand scale health-care management system for the government. I was assigned to a team of 10 of
               developers, QA, scrum master and product manager in an Agile environment. After training with my mentor
               for one month, I quickly started to develop features in C# .NET backend and was appalled at how much more
               fun and accomplished to program in real life work experience than it was in college. I proactively started
               seeking some frontend tasks and grew quickly within the company to be more full stack. In 2014, the CTO of
-              nLiven resigned to start his own company SupraMed, in which he asked me to join him in his adventure.
+              nLiven resigned to start his own company SupraMed, in which he asked me to join him in his adventure.`}
             </div>
           </div>
         </div>
@@ -204,10 +204,10 @@ const ResumePage = () => {
         </div>
         <div className="section-content">
           <div>
-            I am an easy-going person. I don't complain. I am very detail oriented yet fast paced engineer. I have a
+            {`I am an easy-going person. I don't complain. I am very detail oriented yet fast paced engineer. I have a
             pretty good sense for art and design which I apply to projects at work. I suck at creative writing (as you
             can see here where each sentence begins with I). I like to exercise daily to keep my energy level
-            consistent. Swimming and rope jumping are my favorite exercise activities. I like the color blue.
+            consistent. Swimming and rope jumping are my favorite exercise activities. I like the color blue.`}
           </div>
         </div>
       </div>
