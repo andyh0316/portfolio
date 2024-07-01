@@ -1,19 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Box, Stack } from "@mui/material";
-import { keyframes } from "@mui/system";
+import { Box, Link, Stack } from "@mui/material";
 
 export default function Home() {
   const headerBarHeight = 40;
   const footerBarHeight = 40;
-
-  const screenPanelSx = {
-    position: "relative",
-    width: "100%",
-    minHeight: "100vh",
-    padding: "0px 5%",
-    paddingTop: "20px",
-  };
 
   function renderHeaderBar() {
     const buttonSx = {
@@ -103,16 +92,28 @@ export default function Home() {
       paddingLeft: "5%",
       lineHeight: "130%",
     };
-    const codeObjectTypeSx = { color: "#4ec9b0" };
-    const codeObjectSx = { color: "#9cdcfe" };
-    const codeKeywordSx = { color: "#569cd6" };
-    const codeNormalSx = { color: "#dcdcdc" };
-    const codeStringSx = { color: "#d69d85" };
-    const codeCommentSx = { color: "#009b40", opcaity: 0.65 };
-    const codeLinkSx = { color: "rgb(0, 140, 255)" };
+
+    const codeObjectTypeSx = { color: "#2B91AF" };
+    const codeObjectSx = { color: "#001080" };
+    const codeKeywordSx = { color: "#0000FF" };
+    const codeNormalSx = { color: "#000000" };
+    const codeStringSx = { color: "#A31515" };
+    const codeCommentSx = { color: "#008000", opacity: 0.65 };
+    const codeLinkSx = { color: "#0000FF" };
+
+    // dark theme
+    // const codeObjectTypeSx = { color: "#4ec9b0" };
+    // const codeObjectSx = { color: "#9cdcfe" };
+    // const codeKeywordSx = { color: "#569cd6" };
+    // const codeNormalSx = { color: "#dcdcdc" };
+    // const codeStringSx = { color: "#d69d85" };
+    // const codeCommentSx = { color: "#009b40", opcaity: 0.65 };
+    // const codeLinkSx = { color: "rgb(0, 140, 255)" };
 
     return (
       <Box
+        height="100%"
+        bgcolor={"white"}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -120,14 +121,15 @@ export default function Home() {
             //fontSize: "12px",
           },
         }}
-        className="screen-panel"
       >
-        {/* <VideoBackground youtubeId="J2qDRJdTGow"></VideoBackground> */}
+        {/* {renderVideoBackground("l73dA-A0Si4", 0.1)} */}
+        {renderBackground()}
 
         <Box
           sx={{
             position: "relative",
             paddingRight: "5%",
+            paddingLeft: "5%",
             //paddingTop: '15%', // Commented out as per original
             fontSize: "1.6em",
             fontWeight: "bold",
@@ -139,7 +141,7 @@ export default function Home() {
             </Box>
           </Box>
           <Box sx={codeLineSx}>
-            <Box component="span" sx={codeObjectTypeSx}>
+            <Box component="span" sx={codeKeywordSx}>
               var{" "}
             </Box>
             <Box component="span" sx={codeObjectSx}>
@@ -213,7 +215,7 @@ export default function Home() {
             <Box component="span" sx={codeObjectTypeSx}>
               Resume(
               <Link href="/resume" style={codeLinkSx}>
-                Click Me to View
+                Click to View
               </Link>
               )
             </Box>
@@ -224,48 +226,127 @@ export default function Home() {
             </Box>
           </Box>
         </Box>
+      </Box>
+    );
+  }
 
-        {/* <svg className="laptop" viewBox="0 0 695 400" version="1.1">
-          <g stroke="none" stroke-width="2" fill="#FFFFFF" fill-rule="evenodd" sketchType="MSPage">
-            <g id="Laptop" sketchType="MSLayerGroup" transform="translate(1.000000, 1.000000)" stroke="#8492A5">
-              <path
-                d="M594,0 L98,0 C84.50415,0 73,11.0738184 73,24.7901127 L73,351.027995 L619,351.027985 L619,24.7901127 C618.999971,11.0728209 607.537479,0 594,0 Z"
-                id="bezel"
-                stroke-width="2"
-                fill="none"
-                sketchType="MSShapeGroup"
-              ></path>
-              <circle id="webcam" stroke-width="2" fill="none" sketchType="MSShapeGroup" cx="347" cy="19" r="4"></circle>
-              <g id="bottom" transform="translate(0.000000, 351.000000)" sketchType="MSShapeGroup">
-                <path
-                  d="M640.812,31.01 L51.288,31.01 C20.641,31.01 0,20.494 0,16.022 L0,2.428 C0,1.084 1.335,0 2.995,0 L689.104,0 C690.766,0 692.103,1.084 692.103,2.428 L692.103,16.557 C692.096,20.092 676.112,31.01 640.812,31.01 Z"
-                  id="Shape"
-                  stroke-width="2"
-                  fill="none"
-                ></path>
-                <path d="M0.5,14.5 L690.242676,14.5" id="Line" stroke-linecap="square"></path>
-              </g>
-              <rect id="screen" fill="none" sketchType="MSShapeGroup" x="95" y="39" width="501.073853" height="292.009"></rect>
-              <path
-                d="M421,352 L421,355.087 C421,357.288 416.666719,357.952714 413.386719,357.952714 L278.815286,357.952714 C275.364286,357.952714 271,357.289 271,355.087 L271,352"
-                id="touchpad"
-                fill="none"
-                sketchType="MSShapeGroup"
-              ></path>
-            </g>
-          </g>
-        </svg> */}
+  function renderVideoBackground(youtubeId: string, opacity: number = 0.2) {
+    return (
+      <Box
+        sx={{
+          background: "#000",
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          opacity: opacity,
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            "@media (max-aspect-ratio: 21/9)": {
+              width: "300%",
+              left: "-100%",
+            },
+          }}
+        >
+          <iframe
+            src={
+              "https://www.youtube.com/embed/" +
+              youtubeId +
+              "?playlist=" +
+              youtubeId +
+              "&loop=1&autoplay=1&mute=1&controls=0&showinfo=0&autohide=1"
+            }
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100vh",
+              top: "0px",
+              left: "0px",
+            }}
+            frameBorder="0"
+            allowFullScreen
+            allow="autoplay; fullscreen; encrypted-media"
+          ></iframe>
+        </Box>
+      </Box>
+    );
+  }
+
+  function renderBackground() {
+    const waveStyles = {
+      borderRadius: "1000% 1000% 0 0",
+      position: "fixed",
+      width: "200%",
+      height: "13em", // More drastic movement
+      transform: "translate3d(0, 0, 0)",
+      opacity: 0.4, // Increased opacity to make it stand out more
+      bottom: 0,
+      left: 0,
+      zIndex: -1,
+      background:
+        "linear-gradient(315deg, rgba(200, 220, 255, 0.9) 3%, rgba(180, 240, 220, 0.9) 38%, rgba(220, 255, 240, 0.9) 68%, rgba(250, 240, 220, 0.9) 98%)",
+      backgroundSize: "400% 400%",
+    };
+
+    return (
+      <Box
+        width="100%"
+        height="100%"
+        sx={{
+          position: "fixed",
+          margin: "auto",
+          fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+          overflow: "auto",
+          background: "white",
+          "@keyframes gradient": {
+            "0%": { backgroundPosition: "0% 0%" },
+            "50%": { backgroundPosition: "100% 100%" },
+            "100%": { backgroundPosition: "0% 0%" },
+          },
+          "@keyframes wave": {
+            "2%": { transform: "translateX(1)" },
+            "25%": { transform: "translateX(-25%)" },
+            "50%": { transform: "translateX(-50%)" },
+            "75%": { transform: "translateX(-25%)" },
+            "100%": { transform: "translateX(1)" },
+          },
+        }}
+      >
+        <Box sx={{ ...waveStyles, animation: "wave 16s -3s linear infinite, gradient 20s ease infinite" }} />
+        <Box
+          sx={{
+            ...waveStyles,
+            bottom: "-2em",
+            animation: "wave 21.6s linear reverse infinite, gradient 24s ease infinite",
+          }}
+        />
+        <Box
+          sx={{
+            ...waveStyles,
+            bottom: "-3em",
+            animation: "wave 24s -1s reverse infinite, gradient 27s ease infinite",
+          }}
+        />
       </Box>
     );
   }
 
   return (
-    <Box
+    <Stack
       position="relative"
-      height="100%"
+      height="100vh"
       color="white"
       fontFamily='"Jura", sans-serif'
-      minHeight="100vh"
+      //minHeight="100vh"
       fontSize="20px" // base font-size, almost all other font-size will be based on a percentage of this.
       overflow="auto"
       bgcolor="#313233"
@@ -284,11 +365,11 @@ export default function Home() {
 
       {renderHeaderBar()}
 
-      <Box paddingTop={`${headerBarHeight}px`} paddingBottom={`${footerBarHeight}px`}>
+      <Box position="relative" paddingTop={`${headerBarHeight}px`} paddingBottom={`${footerBarHeight}px`} flexGrow={1}>
         {renderIntro()}
       </Box>
 
       {renderFooterBar()}
-    </Box>
+    </Stack>
   );
 }
