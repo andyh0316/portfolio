@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Link, Stack } from "@mui/material";
 
 export default function Home() {
@@ -11,7 +13,6 @@ export default function Home() {
       backgroundColor: "#bbb",
       borderRadius: "50%",
       display: "inline-block",
-      marginRight: "4px",
     };
 
     return (
@@ -22,15 +23,16 @@ export default function Home() {
         justifyContent={"space-between"}
         position="fixed"
         height={headerBarHeight}
-        bgcolor={"black"}
+        bgcolor={"#f5f5f5"}
         zIndex={1}
         px={2}
+        borderBottom={(theme) => `1px solid rgba(0, 0, 0, 0.1)`}
       >
-        <Box flexShrink={0}>
-          <Box sx={{ ...buttonSx, backgroundColor: "red" }}></Box>
-          <Box sx={{ ...buttonSx, backgroundColor: "orange" }}></Box>
-          <Box sx={{ ...buttonSx, backgroundColor: "green" }}></Box>
-        </Box>
+        <Stack direction="row" spacing={1} flexShrink={0}>
+          <Box sx={{ ...buttonSx, backgroundColor: "#ff5f56", marginRight: "8px" }}></Box> {/* Red */}
+          <Box sx={{ ...buttonSx, backgroundColor: "#ffbd2e", marginRight: "8px" }}></Box> {/* Yellow */}
+          <Box sx={{ ...buttonSx, backgroundColor: "#27c93f" }}></Box> {/* Green */}
+        </Stack>
 
         <Box
           position="absolute"
@@ -283,12 +285,12 @@ export default function Home() {
 
   function renderBackground() {
     const waveStyles = {
-      borderRadius: "1000% 1000% 0 0",
       position: "fixed",
+      height: "25%",
+      opacity: 0.3,
+      borderRadius: "1000% 1000% 0 0",
       width: "200%",
-      height: "13em", // More drastic movement
       transform: "translate3d(0, 0, 0)",
-      opacity: 0.4, // Increased opacity to make it stand out more
       bottom: 0,
       left: 0,
       zIndex: -1,
@@ -321,18 +323,29 @@ export default function Home() {
           },
         }}
       >
-        <Box sx={{ ...waveStyles, animation: "wave 16s -3s linear infinite, gradient 20s ease infinite" }} />
         <Box
           sx={{
             ...waveStyles,
-            bottom: "-2em",
-            animation: "wave 21.6s linear reverse infinite, gradient 24s ease infinite",
+            // height: "100%",
+            // opacity: 0.1,
+            animation: "wave 15s -3s linear infinite, gradient 20s ease infinite",
           }}
         />
         <Box
           sx={{
             ...waveStyles,
             bottom: "-3em",
+            // height: "50%",
+            // opacity: 0.2,
+            animation: "wave 21.6s linear reverse infinite, gradient 24s ease infinite",
+          }}
+        />
+        <Box
+          sx={{
+            ...waveStyles,
+            bottom: "-5em",
+            // height: "20%",
+            // opacity: 0.4,
             animation: "wave 24s -1s reverse infinite, gradient 27s ease infinite",
           }}
         />
@@ -344,12 +357,12 @@ export default function Home() {
     <Stack
       position="relative"
       height="100vh"
-      color="white"
+      //color="white"
       fontFamily='"Jura", sans-serif'
       //minHeight="100vh"
       fontSize="20px" // base font-size, almost all other font-size will be based on a percentage of this.
       overflow="auto"
-      bgcolor="#313233"
+      //bgcolor="#313233"
       letterSpacing="-1px"
       padding="0rem !important"
     >
