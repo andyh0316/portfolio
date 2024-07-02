@@ -59,14 +59,14 @@ export default function Home() {
     // `;
 
     return (
-      <Box
+      <Stack
         position="fixed"
         bottom="0px"
         display="flex"
         alignItems="center"
         minHeight={footerBarHeight}
         width="100%"
-        bgcolor="black"
+        bgcolor={"#f5f5f5"}
         padding="0px 10px"
         zIndex={1}
         fontSize="14px"
@@ -84,7 +84,7 @@ export default function Home() {
           marginLeft="2px"
           //animation={`${blinkAnimation} 1s steps(2, start) infinite`}
         ></Box>
-      </Box>
+      </Stack>
     );
   }
 
@@ -115,7 +115,7 @@ export default function Home() {
     return (
       <Box
         height="100%"
-        bgcolor={"white"}
+        // bgcolor={"white"}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -124,9 +124,6 @@ export default function Home() {
           },
         }}
       >
-        {/* {renderVideoBackground("l73dA-A0Si4", 0.1)} */}
-        {renderBackground()}
-
         <Box
           sx={{
             position: "relative",
@@ -180,7 +177,7 @@ export default function Home() {
               Role ={" "}
             </Box>
             <Box component="span" sx={codeStringSx}>
-              "Full Stack Web Developer"
+              "Full Stack Software Developer"
             </Box>
             <Box component="span" sx={codeNormalSx}>
               ,
@@ -188,10 +185,10 @@ export default function Home() {
           </Box>
           <Box sx={{ ...codeLineSx, ...codeLineIndentSx }}>
             <Box component="span" sx={codeNormalSx}>
-              Graduated ={" "}
+              Credential ={" "}
             </Box>
             <Box component="span" sx={codeStringSx}>
-              "University of California: San Diego"
+              "UCSD - CS"
             </Box>
             <Box component="span" sx={codeNormalSx}>
               ,
@@ -206,6 +203,9 @@ export default function Home() {
               all the way from UI/UX development design, architectural design, front-end development, back-end
               development, SQL, to server deployment."
             </Box>
+            <Box component="span" sx={codeNormalSx}>
+              ,
+            </Box>
           </Box>
           <Box sx={{ ...codeLineSx, ...codeLineIndentSx }}>
             <Box component="span" sx={codeNormalSx}>
@@ -216,6 +216,24 @@ export default function Home() {
             </Box>
             <Box component="span" sx={codeObjectTypeSx}>
               Resume(
+              <Link href="/resume" style={codeLinkSx}>
+                Click to View
+              </Link>
+              )
+            </Box>
+            <Box component="span" sx={codeNormalSx}>
+              ,
+            </Box>
+          </Box>
+          <Box sx={{ ...codeLineSx, ...codeLineIndentSx }}>
+            <Box component="span" sx={codeNormalSx}>
+              Portfolio ={" "}
+            </Box>
+            <Box component="span" sx={codeKeywordSx}>
+              new{" "}
+            </Box>
+            <Box component="span" sx={codeObjectTypeSx}>
+              Portfolio(
               <Link href="/resume" style={codeLinkSx}>
                 Click to View
               </Link>
@@ -287,7 +305,7 @@ export default function Home() {
     const waveStyles = {
       position: "fixed",
       height: "25%",
-      opacity: 0.3,
+      opacity: 0.4,
       borderRadius: "1000% 1000% 0 0",
       width: "200%",
       transform: "translate3d(0, 0, 0)",
@@ -307,7 +325,7 @@ export default function Home() {
           position: "fixed",
           margin: "auto",
           fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
-          overflow: "auto",
+          //overflow: "auto",
           background: "white",
           "@keyframes gradient": {
             "0%": { backgroundPosition: "0% 0%" },
@@ -354,35 +372,47 @@ export default function Home() {
   }
 
   return (
-    <Stack
-      position="relative"
-      height="100vh"
-      //color="white"
-      fontFamily='"Jura", sans-serif'
-      //minHeight="100vh"
-      fontSize="20px" // base font-size, almost all other font-size will be based on a percentage of this.
-      overflow="auto"
-      //bgcolor="#313233"
-      letterSpacing="-1px"
-      padding="0rem !important"
-    >
-      {/* <Stack direction="row" spacing={1}>
+    <>
+      {renderBackground()}
+
+      <Stack
+        position="relative"
+        height="100vh"
+        //color="white"
+        fontFamily='"Jura", sans-serif'
+        //minHeight="100vh"
+        fontSize="20px" // base font-size, almost all other font-size will be based on a percentage of this.
+        overflow="auto"
+        //bgcolor="#313233"
+        letterSpacing="-1px"
+        padding="0rem !important"
+      >
+        {/* <Stack direction="row" spacing={1}>
         <Link href="/"></Link>
         <Link href="/resume">Resume</Link>
         <Link href="/data-structures">Data Structures</Link>
       </Stack> */}
 
-      {/* <div className={styles.center}>
+        {/* <div className={styles.center}>
         <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
       </div> */}
 
-      {renderHeaderBar()}
+        {renderHeaderBar()}
 
-      <Box position="relative" paddingTop={`${headerBarHeight}px`} paddingBottom={`${footerBarHeight}px`} flexGrow={1}>
-        {renderIntro()}
-      </Box>
+        {/* {renderVideoBackground("l73dA-A0Si4", 0.1)} */}
 
-      {renderFooterBar()}
-    </Stack>
+        <Box
+          position="relative"
+          paddingTop={`${headerBarHeight}px`}
+          //paddingBottom={`${footerBarHeight}px`}
+          flexGrow={1}
+          overflow="auto"
+        >
+          {renderIntro()}
+        </Box>
+
+        {/* {renderFooterBar()} */}
+      </Stack>
+    </>
   );
 }
