@@ -119,8 +119,11 @@ export default function Home() {
         sx={{
           display: "flex",
           alignItems: "center",
+          "@media (max-width: 1024px)": {
+            fontSize: "1.2em",
+          },
           "@media (max-width: 768px)": {
-            //fontSize: "12px",
+            fontSize: "0.8em",
           },
         }}
       >
