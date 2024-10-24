@@ -12,10 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <link
-        href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700&display=swap"
-        rel="stylesheet"
-      ></link>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700&display=swap"
+          rel="stylesheet"
+        ></link>
+      </head>
 
       <body className={inter.className}>{children}</body>
     </html>
