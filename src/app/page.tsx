@@ -411,6 +411,8 @@ export default function Home() {
           overflow="auto"
         >
           {renderIntro()}
+
+
         </Box>
 
         {/* {renderFooterBar()} */}

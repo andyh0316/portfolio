@@ -1,7 +1,9 @@
 "use client";
 
-import { Box, Button, Chip, Stack, TextField, Typography } from "@mui/material";
+import { Stack, Typography } from "@/components";
+// import { Box, Button, Chip, Stack, TextField } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
+// import { Typography } from "";
 
 const Resume2Page = () => {
   const renderHeader = () => {
@@ -42,11 +44,11 @@ const Resume2Page = () => {
         <Stack>
           <Typography fontSize="1.5em">Experience</Typography>
 
-          <TextField label="Experience" />
+          {/* <TextField label="Experience" />
 
           <Chip label="Experience" />
 
-          <Button>Experience</Button>
+          <Button>Experience</Button> */}
         </Stack>
       </Stack>
     );
