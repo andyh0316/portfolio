@@ -382,7 +382,7 @@ export default function Home() {
         position="relative"
         height="100vh"
         //color="white"
-        fontFamily='"Jura", sans-serif'
+        fontFamily="var(--font-jura), sans-serif"
         //minHeight="100vh"
         fontSize="20px" // base font-size, almost all other font-size will be based on a percentage of this.
         overflow="auto"
