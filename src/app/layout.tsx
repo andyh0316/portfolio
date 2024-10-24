@@ -23,7 +23,22 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-const theme = createTheme(); // Using default MUI theme
+const theme = createTheme({
+  typography: {
+    fontFamily: "inherit",
+    // Override all typography variants
+
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: "inherit",
+        },
+      },
+    },
+  },
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

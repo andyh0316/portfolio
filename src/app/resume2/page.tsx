@@ -15,18 +15,12 @@ const Resume2Page = () => {
         bgcolor="#cad8e3"
       >
         <Stack>
-          <Typography
-            variant="inherit"
-            fontSize="2em"
-            fontWeight={(theme) => theme.typography.fontWeightRegular}
-            letterSpacing="0.07em"
-          >
+          <Typography fontSize="2em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
             ANDY HONG
           </Typography>
           <Typography
-            variant="inherit"
             fontSize="0.9em"
-            lineHeight="160%"
+            lineHeight="100%"
             fontWeight={(theme) => theme.typography.fontWeightRegular}
             letterSpacing="0.14em"
           >
@@ -36,9 +30,7 @@ const Resume2Page = () => {
 
         <Stack direction="row" spacing={1} alignItems="center">
           <EmailIcon sx={{ color: "#43929c" }} />
-          <Typography variant="inherit" fontSize="0.7em" fontWeight={(theme) => theme.typography.fontWeightRegular}>
-            NoSpamPlease2222@gmail.com
-          </Typography>
+          <Typography fontSize="0.7em">NoSpamPlease2222@gmail.com</Typography>
         </Stack>
       </Stack>
     );
@@ -48,9 +40,7 @@ const Resume2Page = () => {
     return (
       <Stack direction="row">
         <Stack>
-          <Typography fontSize="1.5em" variant="inherit">
-            Experience
-          </Typography>
+          <Typography fontSize="1.5em">Experience</Typography>
 
           <TextField label="Experience" />
 
