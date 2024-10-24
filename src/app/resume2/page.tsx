@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Stack, TextField, Typography } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 
 const Resume2Page = () => {
@@ -8,7 +8,7 @@ const Resume2Page = () => {
     return (
       <Stack
         direction="row"
-        px={4}
+        px={5}
         justifyContent={"space-between"}
         alignItems={"center"}
         height="200px"
@@ -20,18 +20,13 @@ const Resume2Page = () => {
             fontSize="2em"
             fontWeight={(theme) => theme.typography.fontWeightRegular}
             letterSpacing="0.07em"
-            // sx={{
-            //   background: "linear-gradient(30deg, #9ED8DB 40%, #007B82 70%)",
-            //   backgroundClip: "text",
-            //   color: "transparent"
-            // }}
           >
             ANDY HONG
           </Typography>
           <Typography
             variant="inherit"
             fontSize="0.9em"
-            lineHeight="100%"
+            lineHeight="160%"
             fontWeight={(theme) => theme.typography.fontWeightRegular}
             letterSpacing="0.14em"
           >
@@ -49,12 +44,29 @@ const Resume2Page = () => {
     );
   };
 
+  const renderExperience = () => {
+    return (
+      <Stack direction="row">
+        <Stack>
+          <Typography fontSize="1.5em" variant="inherit">
+            Experience
+          </Typography>
+
+          <TextField label="Experience" />
+
+          <Chip label="Experience" />
+
+          <Button>Experience</Button>
+        </Stack>
+      </Stack>
+    );
+  };
+
   return (
     <Stack
       id="resume-page"
       sx={{
         position: "relative",
-        fontFamily: "var(--font-montserrat), sans-serif",
         // fontFamily:
         //   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         backgroundColor: "whitesmoke",
@@ -69,7 +81,10 @@ const Resume2Page = () => {
       }}
     >
       {renderHeader()}
-      resume 2
+
+      <Stack spacing={5} p={5}>
+        {renderExperience()}
+      </Stack>
     </Stack>
   );
 };
