@@ -219,8 +219,6 @@ const ResumePage = () => {
       id="resume-page"
       sx={{
         position: "relative",
-        fontFamily:
-          'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         backgroundColor: "whitesmoke",
         fontWeight: 500,
         width: "1000px", // fits PDF width: approximate, PDF will shrink width to fit

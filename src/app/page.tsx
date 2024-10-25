@@ -380,6 +380,9 @@ export default function Home() {
 
       <Stack
         position="relative"
+        sx={{
+          fontFamily: "var(--font-jura), sans-serif",
+        }}
         height="100vh"
         //color="white"
         //minHeight="100vh"
@@ -411,8 +414,6 @@ export default function Home() {
           overflow="auto"
         >
           {renderIntro()}
-
-
         </Box>
 
         {/* {renderFooterBar()} */}

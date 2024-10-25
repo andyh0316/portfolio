@@ -27,7 +27,6 @@ const theme = createTheme({
   typography: {
     fontFamily: "inherit",
     // Override all typography variants
-
   },
   components: {
     MuiButton: {
@@ -53,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${jura.variable} ${montserrat.variable}`}
         style={{
-          fontFamily: "var(--font-jura)",
+          //fontFamily: "var(--font-jura), sans-serif",
           margin: 0,
           padding: 0,
           boxSizing: "border-box",

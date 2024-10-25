@@ -10,16 +10,17 @@ export const CobroConsulting = () => {
       content={
         <Stack>
           <Typography variant="inherit">
-            Responsible for building a full scale application used by over 100 school districts in US. The application
-            manages over 50,000 students and over 5 million services.
+            Led the design and development of a large scape SaaS application from zero. The application is used by
+            around 100 US high school districts to store over total 50,000 students and 10,000,000 services.
           </Typography>
 
           <Stack pl={2}>
             <Typography variant="inherit">
-              - Responsibilites: UI/UX design and implementation, Backend architecture and implementation, SQL databases
-              management
+              - Design and implentation in the entire software stack: UI/UX, API, database, multi-tenancy.
             </Typography>
-            {/* <Typography fontSize="1em">- List 2</Typography> */}
+            <Typography variant="inherit">
+              - Features includes: OAuth2, Data Import, Data Export, CRUD pages, Reporting, Texting and much more.
+            </Typography>
           </Stack>
         </Stack>
       }

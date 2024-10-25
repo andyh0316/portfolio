@@ -10,6 +10,7 @@ export const Header = () => {
       alignItems={"center"}
       height="200px"
       bgcolor="#cad8e3"
+      //sx={{ fontFamily: "var(--font-jura), sans-serif" }}
     >
       <Stack>
         <Typography fontSize="2.5em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">

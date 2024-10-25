@@ -8,9 +8,9 @@ import { AyloHealth } from "./AyloHealth";
 export const Experience = () => {
   return (
     <Domain title="Experience">
-      <Stack spacing={2}>
+      <Stack spacing={3}>
         <AyloHealth />
-        
+
         <CobroConsulting />
 
         <SupraMed />
