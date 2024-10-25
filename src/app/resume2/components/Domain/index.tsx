@@ -4,7 +4,7 @@ export const Domain = (props: { title: string; children: React.ReactNode }) => {
   return (
     <Stack spacing={1}>
       <Stack>
-        <Typography fontSize="1.5em" fontWeight={(theme) => theme.typography.fontWeightMedium}>
+        <Typography fontSize="1.8em" fontWeight={(theme) => theme.typography.fontWeightBold}>
           {props.title}
         </Typography>
       </Stack>

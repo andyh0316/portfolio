@@ -8,7 +8,12 @@ export const ExperienceItem = (props: {
 }) => {
   return (
     <Stack spacing={0.5}>
-      <Stack direction={"row"} justifyContent={"space-between"} fontSize="1.2em">
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        fontSize="1.2em"
+        fontWeight={(theme) => theme.typography.fontWeightBold}
+      >
         <Typography variant="inherit">{props.title}</Typography>
 
         <Stack direction="row" spacing={1}>
@@ -19,7 +24,7 @@ export const ExperienceItem = (props: {
         </Stack>
       </Stack>
 
-      <Stack>{props.content}</Stack>
+      <Stack fontSize="1em">{props.content}</Stack>
     </Stack>
   );
 };

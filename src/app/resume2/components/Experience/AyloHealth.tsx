@@ -1,12 +1,12 @@
 import { Stack, Typography } from "@/components";
 import { ExperienceItem } from "./ExperienceItem";
 
-export const CobroConsulting = () => {
+export const AyloHealth = () => {
   return (
     <ExperienceItem
-      title="Principal Software Engineer"
-      company="Cobro Consulting"
-      startEndYear={["2016", "2021"]}
+      title="Senior Software Engineer"
+      company="Aylo Health"
+      startEndYear={["2022", "Present"]}
       content={
         <Stack>
           <Typography variant="inherit">

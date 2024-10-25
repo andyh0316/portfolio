@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { Header } from "./components/Header";
 import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
+import { Personal } from "./components/Personal";
 // import { Typography } from "";
 
 const Resume2Page = () => {
@@ -31,8 +32,10 @@ const Resume2Page = () => {
 
       <Stack spacing={5} p={5}>
         <Skills />
-        
+
         <Experience />
+
+        <Personal />
       </Stack>
     </Stack>
   );
