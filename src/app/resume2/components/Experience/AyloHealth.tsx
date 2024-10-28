@@ -10,16 +10,18 @@ export const AyloHealth = () => {
       content={
         <Stack>
           <Typography variant="inherit">
-            Responsible for building a full scale application used by over 100 school districts in US. The application
-            manages over 50,000 students and over 5 million services.
+            Full-stack developer managing multiple high-impact projects while collaborating with cross-functional teams.
           </Typography>
 
           <Stack pl={2}>
             <Typography variant="inherit">
-              - Responsibilites: UI/UX design and implementation, Backend architecture and implementation, SQL databases
-              management
+              - Developed and launched an internal application enabling real-time data analytics and custom reporting
+              for Aylo's top executives.
             </Typography>
-            {/* <Typography fontSize="1em">- List 2</Typography> */}
+            <Typography variant="inherit">
+              - Led frontend development of the admin-site, used by Aylo's engineering team to manage the flagship
+              product.
+            </Typography>
           </Stack>
         </Stack>
       }
