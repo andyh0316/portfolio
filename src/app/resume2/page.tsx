@@ -38,6 +38,8 @@ const Resume2Page = () => {
           fontSize: "13px",
           //color: "rgb(60, 60, 60)",
           //letterSpacing: "0px",
+          borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+          borderRight: "1px solid rgba(0, 0, 0, 0.1)",
         }}
       >
         <Header />
