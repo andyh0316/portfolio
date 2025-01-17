@@ -219,7 +219,7 @@ export default function Home() {
             </Box>
             <Box component="span" sx={codeObjectTypeSx}>
               Resume(
-              <Link href="/resume2" style={codeLinkSx}>
+              <Link href="/resume" style={codeLinkSx}>
                 Click to View
               </Link>
               )

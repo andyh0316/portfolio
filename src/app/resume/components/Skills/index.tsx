@@ -100,14 +100,6 @@ export const Skills = () => {
       afterTitle={
         <>
           <Stack direction="row" spacing={1} alignItems="center" width="100%" justifyContent={"flex-end"}>
-            {/* <IconButton onClick={() => setViewMode("simple")} size="small">
-              1
-            </IconButton> */}
-
-            {/* <IconButton onClick={() => setViewMode("detailed")} size="medium" color="primary">
-              <ListViewIcon />
-            </IconButton> */}
-
             <FormControlLabel
               control={
                 <Switch
@@ -118,21 +110,6 @@ export const Skills = () => {
               label={<Typography variant="caption">List View</Typography>}
             />
           </Stack>
-
-          {/* <ToggleButtonGroup
-            size="small"
-            // value={alignment}
-            // exclusive
-            // onChange={handleAlignment}
-            // aria-label="text alignment"
-          >
-            <ToggleButton value="left" aria-label="left aligned">
-              List
-            </ToggleButton>
-            <ToggleButton value="center" aria-label="centered">
-              Table
-            </ToggleButton>
-          </ToggleButtonGroup> */}
         </>
       }
     >
