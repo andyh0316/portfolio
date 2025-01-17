@@ -9,7 +9,7 @@ import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
 
 const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
-const bgColor = "whitesmoke";
+const resumeBgColor = "#fcfcfc";
 
 // for MUI elements
 const resumeTheme = createTheme({
@@ -44,44 +44,45 @@ const ResumePage = () => {
   };
 
   const contextValue: ResumeContextType = {
-    bgColor: bgColor,
+    bgColor: resumeBgColor,
     isPdfMode,
   };
 
   return (
     <ResumeContext.Provider value={contextValue}>
       <ThemeProvider theme={resumeTheme}>
-        <Stack
-          id="resume-page"
-          sx={{
-            position: "relative",
-            fontFamily: resumeFontFamily,
-            backgroundColor: bgColor,
-            width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
-            minHeight: "100vh",
-            margin: "0 auto",
-            boxSizing: "border-box",
-            fontSize: "13px",
-            borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-            borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
-            <Header />
-          </Box>
-
-          <Stack spacing={5} p={5}>
-            <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
-              <Skills />
+        <Stack id="resume-page" sx={{ backgroundColor: "black" }}>
+          <Stack
+            sx={{
+              position: "relative",
+              fontFamily: resumeFontFamily,
+              backgroundColor: contextValue.bgColor,
+              width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
+              minHeight: "100vh",
+              margin: "0 auto",
+              boxSizing: "border-box",
+              fontSize: "13px",
+              borderLeft: isPdfMode ? "none" : "1px solid rgba(0, 0, 0, 0.1)",
+              borderRight: isPdfMode ? "none" : "1px solid rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
+              <Header />
             </Box>
 
-            <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
-              <Experience />
-            </Box>
+            <Stack spacing={5} p={5}>
+              <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
+                <Skills />
+              </Box>
 
-            <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
-              <Personal />
-            </Box>
+              <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
+                <Experience />
+              </Box>
+
+              <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
+                <Personal />
+              </Box>
+            </Stack>
           </Stack>
         </Stack>
       </ThemeProvider>
