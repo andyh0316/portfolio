@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@/components";
 import EmailIcon from "@mui/icons-material/Email";
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 export const Header = () => {
   function headerBar() {

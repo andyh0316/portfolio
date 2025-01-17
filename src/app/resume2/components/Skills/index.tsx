@@ -1,67 +1,91 @@
-import { Chip, Grid, Stack, Typography } from "@/components";
+import {
+  Chip,
+  Grid,
+  Stack,
+  Typography,
+  Tooltip,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@/components";
 import { Domain } from "../Domain";
 import { ChipProps } from "@mui/material";
-
-export type Skill = {
-  label: string;
-  color: ChipProps["color"];
-};
+import { GiRank3 } from "react-icons/gi";
+import { IconType } from "react-icons";
+import { ReactNode, useState } from "react";
+import { skills } from "./skills";
 
 export const Skills = () => {
-  const skills: Skill[] = [
-    { label: "C#", color: "primary" },
-    { label: ".NET", color: "primary" },
-    { label: "ReactJS", color: "primary" },
-    { label: "Typescript", color: "primary" },
-    { label: "SQL", color: "primary" },
-    { label: "Javascript", color: "primary" },
-    { label: "Node", color: "primary" },
-    { label: "HTML", color: "primary" },
-    { label: "CSS", color: "primary" },
-    { label: "Python3", color: "primary" },
-    { label: "Entity Framework", color: "primary" },
-    { label: "MS SQL Server", color: "primary" },
-    { label: "UI/UX Design", color: "primary" },
-    { label: "Azure", color: "primary" },
-    { label: "AWS", color: "primary" },
-    { label: "Data Structures", color: "primary" },
-    { label: "Algorithms", color: "primary" },
-  ];
+  const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
 
-  return (
-    <Domain title="Skills">
+  const simpleView = () => {
+    return (
       <Grid container spacing={0.8}>
         {skills.map((skill) => (
           <Grid item key={skill.label}>
-            <Chip label={skill.label} color={skill.color} size="small" variant="outlined" />
+            <Tooltip title={skill.description} placement="top">
+              <Chip
+                label={
+                  <Stack direction="row" alignItems="center" spacing={0.5}>
+                    <Typography variant="inherit">{skill.label}</Typography>
+                  </Stack>
+                }
+                onClick={() => {}}
+                color={skill.color}
+                size="small"
+                variant="outlined"
+              />
+            </Tooltip>
           </Grid>
         ))}
-
-        {/* <Stack direction="row" spacing={1}>
-          <Chip label="C#" size="small" color="primary" variant="outlined" />
-          <Chip label=".NET" size="small" color="primary" variant="outlined" />
-          <Chip label="ReactJS" size="small" color="primary" variant="outlined" />
-          <Chip label="Typescript" size="small" color="primary" variant="outlined" />
-          <Chip label="SQL" size="small" color="primary" variant="outlined" />
-          <Chip label="Javascript" size="small" color="primary" variant="outlined" />
-
-          <Chip label="Node" size="small" color="primary" variant="outlined" />
-          <Chip label="HTML" size="small" color="primary" variant="outlined" />
-          <Chip label="CSS" size="small" color="primary" variant="outlined" />
-          <Chip label="Python3" size="small" color="primary" variant="outlined" />
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          <Chip label=".NET" size="small" variant="outlined" />
-          <Chip label="Entity Framework" size="small" variant="outlined" />
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          <Chip label="MS SQL Server" size="small" variant="outlined" />
-          <Chip label="Azure" size="small" variant="outlined" />
-          <Chip label="AWS" size="small" variant="outlined" />
-          <Chip label="Data Structures" size="small" variant="outlined" />
-          <Chip label="Algorithms" size="small" variant="outlined" />
-        </Stack> */}
       </Grid>
+    );
+  };
+
+  const detailedView = () => {
+    return (
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Skill</TableCell>
+              <TableCell>Description</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {skills.map((skill) => (
+              <TableRow key={skill.label}>
+                <TableCell>{skill.label}</TableCell>
+                <TableCell>{skill.description}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  };
+
+  return (
+    <Domain
+      title={
+        <Stack direction="row">
+          <Typography variant="inherit">Skills</Typography>
+          <IconButton onClick={() => setViewMode("simple")} size="small">
+            1
+          </IconButton>
+          <IconButton onClick={() => setViewMode("detailed")} size="small">
+            2
+          </IconButton>
+        </Stack>
+      }
+    >
+      {viewMode === "simple" && simpleView()}
+      {viewMode === "detailed" && detailedView()}
     </Domain>
   );
 };

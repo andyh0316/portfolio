@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack, Typography } from "@/components";
+import { Box, Stack, Typography } from "@/components";
 // import { Box, Button, Chip, Stack, TextField } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import { Header } from "./components/Header";
@@ -8,6 +8,7 @@ import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
 import { Personal } from "./components/Personal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CSSProperties, useEffect, useState } from "react";
 // import { Typography } from "";
 
 const resumeTheme = createTheme({
@@ -21,6 +22,20 @@ const resumeTheme = createTheme({
 });
 
 const Resume2Page = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setVisible(true);
+  }, []);
+
+  const transitionStyle = (params: { delay: number; translateY: number }): CSSProperties => {
+    return {
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : `translateY(${params.translateY}px)`,
+      transition: `opacity 500ms ease-out ${params.delay}ms, transform 300ms ease-in-out ${params.delay}ms`,
+    };
+  };
+
   return (
     <ThemeProvider theme={resumeTheme}>
       <Stack
@@ -32,7 +47,7 @@ const Resume2Page = () => {
           backgroundColor: "whitesmoke",
           //fontWeight: 400,
           width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
-          height: "1294px", // fits PDF height: needs to be exact, may change based on margin
+          // height: "1294px", // fits PDF height: needs to be exact, may change based on margin
           margin: "0 auto",
           boxSizing: "border-box",
           fontSize: "13px",
@@ -42,14 +57,22 @@ const Resume2Page = () => {
           borderRight: "1px solid rgba(0, 0, 0, 0.1)",
         }}
       >
-        <Header />
+        <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
+          <Header />
+        </Box>
 
         <Stack spacing={5} p={5}>
-          <Skills />
+          <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
+            <Skills />
+          </Box>
 
-          <Experience />
+          <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
+            <Experience />
+          </Box>
 
-          <Personal />
+          <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
+            <Personal />
+          </Box>
         </Stack>
       </Stack>
     </ThemeProvider>

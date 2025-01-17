@@ -1,10 +1,11 @@
-import { Stack, Typography } from "@/components";
+import { Box, Stack, Typography } from "@/components";
+import { ReactNode } from "react";
 
-export const Domain = (props: { title: string; children: React.ReactNode }) => {
+export const Domain = (props: { title: ReactNode; children: React.ReactNode }) => {
   return (
     <Stack spacing={2}>
       <Stack>
-        <Typography
+        <Box
           fontSize="1.8em"
           fontWeight={(theme) => theme.typography.fontWeightBold}
           textTransform={"uppercase"}
@@ -12,7 +13,7 @@ export const Domain = (props: { title: string; children: React.ReactNode }) => {
           sx={{ opacity: 0.85 }}
         >
           {props.title}
-        </Typography>
+        </Box>
       </Stack>
 
       <Stack pl={5}>{props.children}</Stack>
