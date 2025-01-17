@@ -22,12 +22,14 @@ import { Domain } from "../Domain";
 import { ChipProps } from "@mui/material";
 import { GiRank3 } from "react-icons/gi";
 import { IconType } from "react-icons";
-import { ReactNode, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import { skills } from "./skills";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
 import { MdViewList as ListViewIcon } from "react-icons/md";
+import { ResumeContext } from "../../page";
 
 export const Skills = () => {
+  const resumeContext = useContext(ResumeContext);
   const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
 
   const simpleView = () => {
@@ -69,10 +71,10 @@ export const Skills = () => {
 
   const detailedView = () => {
     return (
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ bgcolor: resumeContext?.bgColor }} variant="outlined">
         <Table size="small">
           <TableHead>
-            <TableRow>
+            <TableRow sx={{ bgcolor: resumeContext?.bgColor }}>
               <TableCell width="160px">Skill</TableCell>
               <TableCell width="120px" align="right">
                 Years of Exp.
@@ -82,7 +84,7 @@ export const Skills = () => {
           </TableHead>
           <TableBody>
             {skills.map((skill) => (
-              <TableRow key={skill.label}>
+              <TableRow key={skill.label} sx={{ bgcolor: resumeContext?.bgColor }}>
                 <TableCell>{skill.label}</TableCell>
                 <TableCell align="right">{skill.experience}</TableCell>
                 <TableCell>{skill.description}</TableCell>

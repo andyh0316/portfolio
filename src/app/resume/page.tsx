@@ -8,7 +8,7 @@ import { Experience } from "./components/Experience";
 import { Skills } from "./components/Skills";
 import { Personal } from "./components/Personal";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { CSSProperties, useEffect, useState } from "react";
+import { createContext, CSSProperties, useEffect, useState } from "react";
 // import { Typography } from "";
 
 // const resumeFontFamily = 'Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -29,6 +29,12 @@ const resumeTheme = createTheme({
   },
 });
 
+interface ResumeContextType {
+  bgColor: string;
+}
+
+export const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
+
 const ResumePage = () => {
   const [visible, setVisible] = useState(false);
 
@@ -44,47 +50,53 @@ const ResumePage = () => {
     };
   };
 
+  const contextValue: ResumeContextType = {
+    bgColor: "whitesmoke",
+  };
+
   return (
-    <ThemeProvider theme={resumeTheme}>
-      <Stack
-        id="resume-page"
-        sx={{
-          position: "relative",
-          // fontFamily: "var(--font-jura), var(--font-montserrat), sans-serif",
-          // fontFamily: 'Arial, sans-serif',
-          fontFamily: resumeFontFamily,
-          backgroundColor: "whitesmoke",
-          //fontWeight: 400,
-          width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
-          // height: "1294px", // fits PDF height: needs to be exact, may change based on margin
-          margin: "0 auto",
-          boxSizing: "border-box",
-          fontSize: "13px",
-          //color: "rgb(60, 60, 60)",
-          //letterSpacing: "0px",
-          borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
-          borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
-          <Header />
-        </Box>
-
-        <Stack spacing={5} p={5}>
-          <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
-            <Skills />
+    <ResumeContext.Provider value={contextValue}>
+      <ThemeProvider theme={resumeTheme}>
+        <Stack
+          id="resume-page"
+          sx={{
+            position: "relative",
+            // fontFamily: "var(--font-jura), var(--font-montserrat), sans-serif",
+            // fontFamily: 'Arial, sans-serif',
+            fontFamily: resumeFontFamily,
+            backgroundColor: "whitesmoke",
+            //fontWeight: 400,
+            width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
+            // height: "1294px", // fits PDF height: needs to be exact, may change based on margin
+            margin: "0 auto",
+            boxSizing: "border-box",
+            fontSize: "13px",
+            //color: "rgb(60, 60, 60)",
+            //letterSpacing: "0px",
+            borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+            borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
+            <Header />
           </Box>
 
-          <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
-            <Experience />
-          </Box>
+          <Stack spacing={5} p={5}>
+            <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
+              <Skills />
+            </Box>
 
-          <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
-            <Personal />
-          </Box>
+            <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
+              <Experience />
+            </Box>
+
+            <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
+              <Personal />
+            </Box>
+          </Stack>
         </Stack>
-      </Stack>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ResumeContext.Provider>
   );
 };
 
