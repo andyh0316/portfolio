@@ -12,7 +12,7 @@ export const skills: Skill[] = [
     label: "C#",
     color: "primary",
     experience: 12,
-    description: "Primary backend language",
+    description: "Primary backend language.",
   },
   {
     label: ".NET",
@@ -50,7 +50,7 @@ export const skills: Skill[] = [
     label: "NodeJS",
     color: "primary",
     experience: 6,
-    description: "Secondary backend language. Much of its framework concepts is similar to C# .NET Entityframework.",
+    description: "Secondary backend language. Much of its framework concepts is similar to C# .NET Entity Framework.",
   },
   {
     label: "HTML/CSS",
@@ -70,11 +70,10 @@ export const skills: Skill[] = [
     label: "Data Structures and Algorithms",
     color: "primary",
     experience: 5,
-    description: "DFS, DFS, Backtracking, Graph.",
+    description: "DFS, DFS, Backtracking, Graphs.",
   },
   { label: "Python3", color: "primary", description: "For scripting and data analysis." },
-  { label: "MS SQL Server", color: "primary" },
-  { label: "UI/UX Design", color: "primary" },
-  { label: "Azure", color: "primary" },
-  { label: "AWS", color: "primary" },
+  { label: "UI/UX Design", color: "primary", description: "UI/UX design at Cobro using Figma." },
+  { label: "Azure", color: "primary", description: "For managing web servers, databases and CDNs" },
+  { label: "AWS", color: "primary", description: "For Lambdas." },
 ];

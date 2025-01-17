@@ -11,7 +11,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CSSProperties, useEffect, useState } from "react";
 // import { Typography } from "";
 
+// const resumeFontFamily = 'Roboto, "Helvetica Neue", Arial, sans-serif';
+const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
+
+// for MUI elements
 const resumeTheme = createTheme({
+  typography: {
+    // fontFamily: 'Arial, sans-serif',
+    fontFamily: resumeFontFamily,
+  },
   palette: {
     // primary: {
     //   main: "#2196f3",
@@ -42,8 +50,9 @@ const Resume2Page = () => {
         id="resume-page"
         sx={{
           position: "relative",
-          //fontFamily: "var(--font-jura), var(--font-montserrat), sans-serif",
-          fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
+          // fontFamily: "var(--font-jura), var(--font-montserrat), sans-serif",
+          // fontFamily: 'Arial, sans-serif',
+          fontFamily: resumeFontFamily,
           backgroundColor: "whitesmoke",
           //fontWeight: 400,
           width: "815px", // fits PDF width: approximate, PDF will shrink width to fit

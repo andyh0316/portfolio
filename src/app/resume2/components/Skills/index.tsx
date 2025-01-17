@@ -13,6 +13,8 @@ import {
   TableRow,
   Paper,
   Collapse,
+  ToggleButtonGroup,
+  ToggleButton,
 } from "@/components";
 import { Domain } from "../Domain";
 import { ChipProps } from "@mui/material";
@@ -20,6 +22,7 @@ import { GiRank3 } from "react-icons/gi";
 import { IconType } from "react-icons";
 import { ReactNode, useState } from "react";
 import { skills } from "./skills";
+import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
 
 export const Skills = () => {
   const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
@@ -91,19 +94,39 @@ export const Skills = () => {
   return (
     <Domain
       title={
-        <Stack direction="row">
+        <Stack direction="row" justifyContent={"space-between"} spacing={2}>
           <Typography variant="inherit">Skills</Typography>
-          <IconButton onClick={() => setViewMode("simple")} size="small">
-            1
-          </IconButton>
-          <IconButton onClick={() => setViewMode("detailed")} size="small">
-            2
-          </IconButton>
+
+          <ToggleButtonGroup
+            size="small"
+            // value={alignment}
+            // exclusive
+            // onChange={handleAlignment}
+            // aria-label="text alignment"
+          >
+            <ToggleButton value="left" aria-label="left aligned">
+              List
+            </ToggleButton>
+            <ToggleButton value="center" aria-label="centered">
+              Table
+            </ToggleButton>
+          </ToggleButtonGroup>
+
+          <Stack direction="row" spacing={1} alignItems="center">
+            <IconButton onClick={() => setViewMode("simple")} size="small">
+              1
+            </IconButton>
+            <IconButton onClick={() => setViewMode("detailed")} size="medium">
+              <ListViewIcon size={"1rem"} />
+            </IconButton>
+          </Stack>
         </Stack>
       }
     >
       <Collapse in={viewMode === "simple"}>{simpleView()}</Collapse>
-      <Collapse in={viewMode === "detailed"} timeout={300}>{detailedView()}</Collapse>
+      <Collapse in={viewMode === "detailed"} timeout={300}>
+        {detailedView()}
+      </Collapse>
     </Domain>
   );
 };

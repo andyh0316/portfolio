@@ -13,3 +13,5 @@ export * from "./TableHead";
 export * from "./TableRow";
 export * from "./Paper";
 export * from "./Collapse";
+export * from "./ToggleButton";
+export * from "./ToggleButtonGroup";
