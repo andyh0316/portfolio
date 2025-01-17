@@ -1,16 +1,29 @@
-import { Box, Stack, Typography } from "@/components";
+import { Box, IconButton, Stack, Typography } from "@/components";
 import EmailIcon from "@mui/icons-material/Email";
+import { useState } from "react";
+import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
+import { RxCross2 as CloseIcon } from "react-icons/rx";
+import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 
 export const Header = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   function headerBar() {
     const headerBarHeight = 40;
 
-    const buttonSx = {
+    const buttonBaseSx = {
       height: "13px",
       width: "13px",
-      backgroundColor: "#bbb",
       borderRadius: "50%",
-      display: "inline-block",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginRight: "8px",
+      transition: "all 0.2s",
+      cursor: "pointer",
+      "&:last-child": {
+        marginRight: 0,
+      },
     };
 
     return (
@@ -18,33 +31,54 @@ export const Header = () => {
         width="100%"
         direction="row"
         alignItems="center"
-        justifyContent={"space-between"}
+        justifyContent={"center"}
         height={headerBarHeight}
-        //bgcolor={"#f5f5f5"}
         bgcolor="#275070"
         color="white"
         px={2}
         borderBottom={(theme) => `1px solid rgba(0, 0, 0, 0.1)`}
       >
-        <Stack direction="row" spacing={1} flexShrink={0}>
-          <Box sx={{ ...buttonSx, backgroundColor: "#ff5f56", marginRight: "8px" }}></Box> {/* Red */}
-          <Box sx={{ ...buttonSx, backgroundColor: "#ffbd2e", marginRight: "8px" }}></Box> {/* Yellow */}
-          <Box sx={{ ...buttonSx, backgroundColor: "#27c93f" }}></Box> {/* Green */}
+        <Stack
+          direction="row"
+          position="absolute"
+          left={16}
+          spacing={1}
+          flexShrink={0}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Box
+            sx={{
+              ...buttonBaseSx,
+              backgroundColor: "#ff5f56",
+              "&:hover": { backgroundColor: "#ff4343" },
+            }}
+          >
+            {isHovered && <CloseIcon color="#730b00" />}
+          </Box>
+
+          <Box
+            sx={{
+              ...buttonBaseSx,
+              backgroundColor: "#ffbd2e",
+              "&:hover": { backgroundColor: "#ffb111" },
+            }}
+          >
+            {isHovered && <MinimizeIcon color="#734d00" />}
+          </Box>
+
+          <Box
+            sx={{
+              ...buttonBaseSx,
+              backgroundColor: "#27c93f",
+              "&:hover": { backgroundColor: "#1db634" },
+            }}
+          >
+            {isHovered && <ExpandIcon size={8} color="#006500" strokeWidth={3} />}
+          </Box>
         </Stack>
 
-        <Box
-          position="absolute"
-          left="50%"
-          textAlign="center"
-          fontSize="14px"
-          sx={{
-            transform: "translateX(-50%)",
-          }}
-        >
-          andy@web-portfolio: ~
-        </Box>
-
-        <Box></Box>
+        <Box fontSize="14px">andy@resume: ~</Box>
       </Stack>
     );
   }
