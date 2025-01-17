@@ -12,3 +12,4 @@ export * from "./TableContainer";
 export * from "./TableHead";
 export * from "./TableRow";
 export * from "./Paper";
+export * from "./Collapse";

@@ -12,6 +12,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Collapse,
 } from "@/components";
 import { Domain } from "../Domain";
 import { ChipProps } from "@mui/material";
@@ -26,23 +27,36 @@ export const Skills = () => {
   const simpleView = () => {
     return (
       <Grid container spacing={0.8}>
-        {skills.map((skill) => (
-          <Grid item key={skill.label}>
-            <Tooltip title={skill.description} placement="top">
-              <Chip
-                label={
-                  <Stack direction="row" alignItems="center" spacing={0.5}>
-                    <Typography variant="inherit">{skill.label}</Typography>
-                  </Stack>
-                }
-                onClick={() => {}}
-                color={skill.color}
-                size="small"
-                variant="outlined"
-              />
-            </Tooltip>
-          </Grid>
-        ))}
+        {skills.map((skill) => {
+          let toolTip: ReactNode = null;
+
+          if (skill.experience || skill.description) {
+            toolTip = (
+              <Stack>
+                {skill.experience && <Typography variant="inherit">Experience: {skill.experience} years</Typography>}
+                <Typography variant="inherit">{skill.description}</Typography>
+              </Stack>
+            );
+          }
+
+          return (
+            <Grid item key={skill.label}>
+              <Tooltip title={toolTip} placement="top">
+                <Chip
+                  label={
+                    <Stack direction="row" alignItems="center" spacing={0.5}>
+                      <Typography variant="inherit">{skill.label}</Typography>
+                    </Stack>
+                  }
+                  onClick={() => {}}
+                  color={skill.color}
+                  size="small"
+                  variant="outlined"
+                />
+              </Tooltip>
+            </Grid>
+          );
+        })}
       </Grid>
     );
   };
@@ -50,10 +64,13 @@ export const Skills = () => {
   const detailedView = () => {
     return (
       <TableContainer component={Paper}>
-        <Table>
+        <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Skill</TableCell>
+              <TableCell width="160px">Skill</TableCell>
+              <TableCell width="120px" align="right">
+                Years of Exp.
+              </TableCell>
               <TableCell>Description</TableCell>
             </TableRow>
           </TableHead>
@@ -61,6 +78,7 @@ export const Skills = () => {
             {skills.map((skill) => (
               <TableRow key={skill.label}>
                 <TableCell>{skill.label}</TableCell>
+                <TableCell align="right">{skill.experience}</TableCell>
                 <TableCell>{skill.description}</TableCell>
               </TableRow>
             ))}
@@ -84,8 +102,8 @@ export const Skills = () => {
         </Stack>
       }
     >
-      {viewMode === "simple" && simpleView()}
-      {viewMode === "detailed" && detailedView()}
+      <Collapse in={viewMode === "simple"}>{simpleView()}</Collapse>
+      <Collapse in={viewMode === "detailed"} timeout={300}>{detailedView()}</Collapse>
     </Domain>
   );
 };

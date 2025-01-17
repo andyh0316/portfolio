@@ -1,100 +1,80 @@
-import { Chip, Grid, Stack, Typography, Tooltip } from "@/components";
-import { ReactNode } from "react";
 import { ChipProps } from "@mui/material";
 
 export type Skill = {
   label: string;
   color: ChipProps["color"];
-  description?: ReactNode;
+  experience?: number;
+  description?: string;
 };
 
 export const skills: Skill[] = [
   {
     label: "C#",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 12 years</Typography>
-        <Typography variant="caption">Primary backend language</Typography>
-      </Stack>
-    ),
+    experience: 12,
+    description: "Primary backend language",
   },
   {
     label: ".NET",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 12 years</Typography>
-        <Typography variant="caption">Primary framework used to develop backend APIs.</Typography>
-      </Stack>
-    ),
+    experience: 12,
+    description: "Primary framework used to develop backend APIs.",
   },
   {
     label: "ReactJS",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 6 years</Typography>
-        <Typography variant="caption">
-          My favorite frontend library. React provides component-based architecture with high level of flexibility and
-          control.
-        </Typography>
-      </Stack>
-    ),
+    experience: 6,
+    description:
+      "My favorite frontend library. React provides component-based architecture with high level of flexibility and control.",
   },
   {
     label: "Typescript",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 6 years</Typography>
-        <Typography variant="caption">
-          An absolute night and day difference when compared to Javascript. Typescript provides type safety for the
-          entire application which saves me a lot of headaches during team development.
-        </Typography>
-      </Stack>
-    ),
-  },
-  {
-    label: "SQL",
-    color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 10 years</Typography>
-        <Typography variant="caption">I mainly use SQL to query data.</Typography>
-      </Stack>
-    ),
+    experience: 6,
+    description:
+      "An absolute night and day difference when compared to Javascript. Typescript provides type safety for the entire application which saves me a lot of headaches during team development.",
   },
   {
     label: "Javascript",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 10 years</Typography>
-        <Typography variant="caption">Needs typescript.</Typography>
-      </Stack>
-    ),
+    experience: 10,
+    description: "Needs typescript.",
   },
-  { label: "NodeJS", color: "primary" },
-  { label: "HTML", color: "primary" },
-  { label: "CSS", color: "primary" },
-  { label: "Python3", color: "primary" },
+  {
+    label: "SQL",
+    color: "primary",
+    experience: 10,
+    description: "Working knowledge for daily operating and querying database.",
+  },
+  {
+    label: "NodeJS",
+    color: "primary",
+    experience: 6,
+    description: "Secondary backend language. Much of its framework concepts is similar to C# .NET Entityframework.",
+  },
+  {
+    label: "HTML/CSS",
+    color: "primary",
+    experience: 10,
+    description: "I can write HTML/CSS in my sleep. Not fascinating or anything, just part of front-end development.",
+  },
+
   {
     label: "Entity Framework",
     color: "primary",
-    description: (
-      <Stack>
-        <Typography variant="caption">Experience: 12 years</Typography>
-        <Typography variant="caption">
-          Primary ORM to manage database to datamodel relationship. High familarity with LINQ and database migrations.
-        </Typography>
-      </Stack>
-    ),
+    experience: 12,
+    description:
+      "Primary ORM to manage database to datamodel relationship. High familarity with LINQ and database migrations.",
   },
+  {
+    label: "Data Structures and Algorithms",
+    color: "primary",
+    experience: 5,
+    description: "DFS, DFS, Backtracking, Graph.",
+  },
+  { label: "Python3", color: "primary", description: "For scripting and data analysis." },
   { label: "MS SQL Server", color: "primary" },
   { label: "UI/UX Design", color: "primary" },
-  { label: "Data Structures", color: "primary" },
-  { label: "Algorithms", color: "primary" },
   { label: "Azure", color: "primary" },
   { label: "AWS", color: "primary" },
 ];
