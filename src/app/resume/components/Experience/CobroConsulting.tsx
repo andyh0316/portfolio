@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@/components";
+import { Box, Stack, Typography } from "@/components";
 import { ExperienceItem } from "./ExperienceItem";
 
 export const CobroConsulting = () => {
@@ -8,7 +8,7 @@ export const CobroConsulting = () => {
       company="Cobro Consulting"
       startEndYear={["2016", "2021"]}
       content={
-        <Stack>
+        <Stack spacing={0.5}>
           <Typography variant="inherit">
             Led the design and development of the company's flagship SaaS application completely from zero. The
             application launched in one year of development and is now used by around 80 US high school districts to
@@ -16,12 +16,19 @@ export const CobroConsulting = () => {
           </Typography>
 
           <Stack pl={2}>
-            <Typography variant="inherit">
-              - Built the entire software stack: UI/UX, API, database, multi-tenancy.
-            </Typography>
-            <Typography variant="inherit">
-              - Features: OAuth2, Data Import, Data Export, CRUD pages, Reporting, Texting and much more.
-            </Typography>
+            <Stack direction="row" spacing={1}>
+              <Box>-</Box>
+              <Typography variant="inherit">
+                Built the entire software stack: UI/UX, API, database, multi-tenancy.
+              </Typography>
+            </Stack>
+
+            <Stack direction="row" spacing={1}>
+              <Box>-</Box>
+              <Typography variant="inherit">
+                Features: OAuth2, Data Import, Data Export, CRUD pages, Reporting, Texting and much more.
+              </Typography>
+            </Stack>
           </Stack>
         </Stack>
       }
