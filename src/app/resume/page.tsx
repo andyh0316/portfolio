@@ -62,8 +62,6 @@ const ResumePage = () => {
               margin: "0 auto",
               boxSizing: "border-box",
               fontSize: "13px",
-              borderLeft: isPdfMode ? "none" : "1px solid rgba(0, 0, 0, 0.1)",
-              borderRight: isPdfMode ? "none" : "1px solid rgba(0, 0, 0, 0.1)",
             }}
           >
             <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
