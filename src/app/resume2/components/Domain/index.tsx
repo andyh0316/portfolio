@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from "@/components";
 import { ReactNode } from "react";
 
-export const Domain = (props: { title: ReactNode; children: React.ReactNode }) => {
+export const Domain = (props: { title: ReactNode; afterTitle: ReactNode; children: React.ReactNode }) => {
   return (
     <Stack spacing={2}>
-      <Stack>
+      <Stack direction="row" alignItems="center" spacing={2}>
         <Box
           fontSize="1.8em"
           fontWeight={(theme) => theme.typography.fontWeightBold}
@@ -14,6 +14,8 @@ export const Domain = (props: { title: ReactNode; children: React.ReactNode }) =
         >
           {props.title}
         </Box>
+
+        <Stack direction="row" flexGrow={1}>{props.afterTitle}</Stack>
       </Stack>
 
       <Stack pl={5}>{props.children}</Stack>
