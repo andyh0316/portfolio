@@ -1,71 +1,91 @@
 import {
   Chip,
+  Collapse,
+  FormControlLabel,
   Grid,
+  Paper,
   Stack,
-  Typography,
-  Tooltip,
-  IconButton,
+  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  Collapse,
-  ToggleButtonGroup,
-  ToggleButton,
-  Switch,
-  FormControlLabel,
+  Tooltip,
+  Typography,
 } from "@/components";
-import { Domain } from "../Domain";
-import { ChipProps } from "@mui/material";
-import { GiRank3 } from "react-icons/gi";
-import { IconType } from "react-icons";
 import { ReactNode, useContext, useState } from "react";
+import { Domain } from "../Domain";
 import { skills } from "./skills";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
-import { MdViewList as ListViewIcon } from "react-icons/md";
 import { ResumeContext } from "../../page";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 export const Skills = () => {
   const resumeContext = useContext(ResumeContext);
   const [viewMode, setViewMode] = useState<"simple" | "detailed">("simple");
+  const [openTooltipFor, setOpenTooltipFor] = useState<string | null>(null);
 
   const simpleView = () => {
     return (
-      <Grid container spacing={0.8}>
-        {skills.map((skill) => {
-          let toolTip: ReactNode = null;
+      <ClickAwayListener
+        onClickAway={() => {
+          setOpenTooltipFor(null);
+        }}
+      >
+        <Grid container spacing={0.8}>
+          {skills.map((skill) => {
+            let toolTip: ReactNode = null;
 
-          if (skill.experience || skill.description) {
-            toolTip = (
-              <Stack>
-                {skill.experience && <Typography variant="inherit">Experience: {skill.experience} years</Typography>}
-                <Typography variant="inherit">{skill.description}</Typography>
-              </Stack>
+            if (skill.experience || skill.description) {
+              toolTip = (
+                <Stack spacing={2}>
+                  <Stack>
+                    {skill.experience && (
+                      <Typography variant="inherit">Experience: {skill.experience} years</Typography>
+                    )}
+                    <Typography variant="inherit">{skill.description}</Typography>
+                  </Stack>
+
+                  <Typography variant="inherit" sx={{ opacity: 0.75 }}>
+                    Click away to close this
+                  </Typography>
+                </Stack>
+              );
+            }
+
+            return (
+              <Grid item key={skill.label}>
+                <Tooltip
+                  title={toolTip}
+                  open={openTooltipFor === skill.label}
+                  // onClose={() => setOpenTooltipFor(null)} // close when hovered away
+                  placement="top"
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                >
+                  <Chip
+                    label={
+                      <Stack direction="row" alignItems="center" spacing={0.5}>
+                        <Typography variant="inherit">{skill.label}</Typography>
+                      </Stack>
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenTooltipFor(skill.label);
+                    }}
+                    color={skill.color}
+                    size="small"
+                    variant="outlined"
+                  />
+                </Tooltip>
+              </Grid>
             );
-          }
-
-          return (
-            <Grid item key={skill.label}>
-              <Tooltip title={toolTip} placement="top">
-                <Chip
-                  label={
-                    <Stack direction="row" alignItems="center" spacing={0.5}>
-                      <Typography variant="inherit">{skill.label}</Typography>
-                    </Stack>
-                  }
-                  onClick={() => {}}
-                  color={skill.color}
-                  size="small"
-                  variant="outlined"
-                />
-              </Tooltip>
-            </Grid>
-          );
-        })}
-      </Grid>
+          })}
+        </Grid>
+      </ClickAwayListener>
     );
   };
 
