@@ -1,41 +1,34 @@
 "use client";
 
-import { Box, Stack, Typography } from "@/components";
-// import { Box, Button, Chip, Stack, TextField } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import { Header } from "./components/Header";
-import { Experience } from "./components/Experience";
-import { Skills } from "./components/Skills";
-import { Personal } from "./components/Personal";
+import { Box, Stack } from "@/components";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createContext, CSSProperties, useEffect, useState } from "react";
-// import { Typography } from "";
+import { Experience } from "./components/Experience";
+import { Header } from "./components/Header";
+import { Personal } from "./components/Personal";
+import { Skills } from "./components/Skills";
 
-// const resumeFontFamily = 'Roboto, "Helvetica Neue", Arial, sans-serif';
 const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
+const bgColor = "whitesmoke";
 
 // for MUI elements
 const resumeTheme = createTheme({
   typography: {
-    // fontFamily: 'Arial, sans-serif',
     fontFamily: resumeFontFamily,
   },
-  palette: {
-    // primary: {
-    //   main: "#2196f3",
-    //   light: "#64b5f6",
-    //   dark: "#1976d2",
-    // },
-  },
+  palette: {},
 });
 
 interface ResumeContextType {
   bgColor: string;
+  isPdfMode: boolean;
 }
 
 export const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 const ResumePage = () => {
+  // manually set mode to be printable to PDF
+  const isPdfMode = true;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -51,7 +44,8 @@ const ResumePage = () => {
   };
 
   const contextValue: ResumeContextType = {
-    bgColor: "whitesmoke",
+    bgColor: bgColor,
+    isPdfMode,
   };
 
   return (
@@ -61,18 +55,13 @@ const ResumePage = () => {
           id="resume-page"
           sx={{
             position: "relative",
-            // fontFamily: "var(--font-jura), var(--font-montserrat), sans-serif",
-            // fontFamily: 'Arial, sans-serif',
             fontFamily: resumeFontFamily,
-            backgroundColor: "whitesmoke",
-            //fontWeight: 400,
+            backgroundColor: bgColor,
             width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
-            // height: "1294px", // fits PDF height: needs to be exact, may change based on margin
+            minHeight: "100vh",
             margin: "0 auto",
             boxSizing: "border-box",
             fontSize: "13px",
-            //color: "rgb(60, 60, 60)",
-            //letterSpacing: "0px",
             borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
             borderRight: "1px solid rgba(0, 0, 0, 0.1)",
           }}
