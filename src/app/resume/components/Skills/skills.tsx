@@ -70,7 +70,7 @@ export const skills: Skill[] = [
     label: "Data Structures and Algorithms",
     color: "primary",
     experience: 5,
-    description: "DFS, DFS, Backtracking, Graphs.",
+    description: "DFS, BFS, Backtracking, Graphs.",
   },
   { label: "Python3", color: "primary", description: "For scripting and data analysis." },
   { label: "UI/UX Design", color: "primary", description: "UI/UX design at Cobro using Figma." },

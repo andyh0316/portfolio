@@ -17,7 +17,11 @@ const resumeTheme = createTheme({
   typography: {
     fontFamily: resumeFontFamily,
   },
-  palette: {},
+  palette: {
+    primary: {
+      main: "#275070",
+    },
+  },
 });
 
 interface ResumeContextType {

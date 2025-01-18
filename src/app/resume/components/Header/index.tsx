@@ -1,11 +1,13 @@
 import { Box, IconButton, Stack, Typography } from "@/components";
 import EmailIcon from "@mui/icons-material/Email";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
+import { ResumeContext } from "../../page";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
+  const resumeContext = useContext(ResumeContext);
   const [isHovered, setIsHovered] = useState(false);
 
   function headerBar() {
@@ -33,7 +35,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         alignItems="center"
         justifyContent={"center"}
         height={headerBarHeight}
-        bgcolor="#275070"
+        bgcolor={(theme) => theme.palette.primary.main}
         color="white"
         px={2}
         borderBottom={(theme) => `1px solid rgba(0, 0, 0, 0.1)`}
@@ -87,35 +89,41 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Box>
         </Stack>
 
-        <Box fontSize="14px">andy@resume: ~</Box>
+        {resumeContext?.isPdfMode ? (
+          <Box fontSize="14px">GO: www.haitianhong.com</Box>
+        ) : (
+          <Box fontSize="14px">andy@resume: ~</Box>
+        )}
       </Stack>
     );
   }
 
   function headerContent() {
     return (
-      <Stack direction="row" px={5} pt={3} justifyContent={"space-between"} alignItems={"center"}>
-        <Stack>
-          <Typography
-            fontSize="2.5em"
-            fontWeight={(theme) => theme.typography.fontWeightRegular}
-            letterSpacing="0.07em"
-          >
-            ANDY HONG
-          </Typography>
-          <Typography
-            fontSize="1.11em"
-            lineHeight="100%"
-            fontWeight={(theme) => theme.typography.fontWeightRegular}
-            letterSpacing="0.14em"
-          >
-            FULL STACK DEVELOPER
-          </Typography>
-        </Stack>
+      <Stack px={5} pt={4.5} alignItems={"center"} justifyContent={"center"}>
+        <Stack width="100%" direction="row" justifyContent={"space-between"} alignItems={"center"}>
+          <Stack>
+            <Typography
+              fontSize="2.5em"
+              fontWeight={(theme) => theme.typography.fontWeightRegular}
+              letterSpacing="0.07em"
+            >
+              ANDY HONG
+            </Typography>
+            <Typography
+              fontSize="1.11em"
+              lineHeight="100%"
+              fontWeight={(theme) => theme.typography.fontWeightRegular}
+              letterSpacing="0.14em"
+            >
+              FULL STACK DEVELOPER
+            </Typography>
+          </Stack>
 
-        <Stack direction="row" spacing={1} alignItems="center">
-          <EmailIcon sx={{ color: "#43929c" }} />
-          <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <EmailIcon sx={{ color: "#43929c" }} />
+            <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+          </Stack>
         </Stack>
       </Stack>
     );
