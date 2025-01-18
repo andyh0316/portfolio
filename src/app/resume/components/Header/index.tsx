@@ -5,7 +5,7 @@ import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 
-export const Header = () => {
+export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   function headerBar() {
@@ -48,6 +48,9 @@ export const Header = () => {
           onMouseLeave={() => setIsHovered(false)}
         >
           <Box
+            onClick={() => {
+              props.onClose();
+            }}
             sx={{
               ...buttonBaseSx,
               backgroundColor: "#ff5f56",
@@ -58,6 +61,9 @@ export const Header = () => {
           </Box>
 
           <Box
+            onClick={() => {
+              props.onClose();
+            }}
             sx={{
               ...buttonBaseSx,
               backgroundColor: "#ffbd2e",
@@ -68,6 +74,9 @@ export const Header = () => {
           </Box>
 
           <Box
+            onClick={() => {
+              props.onExpand();
+            }}
             sx={{
               ...buttonBaseSx,
               backgroundColor: "#27c93f",

@@ -7,6 +7,7 @@ import { Experience } from "./components/Experience";
 import { Header } from "./components/Header";
 import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
+import { BackgroundContent } from "./components/BackgroundContent";
 
 const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
 const resumeBgColor = "#fcfcfc";
@@ -27,18 +28,19 @@ interface ResumeContextType {
 export const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 const ResumePage = () => {
-  // manually set mode to be printable to PDF
-  const isPdfMode = true;
-  const [visible, setVisible] = useState(false);
+  const isPdfMode = true; // manually set mode to be printable to PDF
+  const [isInitialResumeMount, setIsInitialResumeMount] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    setVisible(true);
+    setIsInitialResumeMount(true);
   }, []);
 
   const transitionStyle = (params: { delay: number; translateY: number }): CSSProperties => {
     return {
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : `translateY(${params.translateY}px)`,
+      opacity: isInitialResumeMount ? 1 : 0,
+      transform: isInitialResumeMount ? "translateY(0)" : `translateY(${params.translateY}px)`,
       transition: `opacity 500ms ease-out ${params.delay}ms, transform 300ms ease-in-out ${params.delay}ms`,
     };
   };
@@ -52,20 +54,24 @@ const ResumePage = () => {
     <ResumeContext.Provider value={contextValue}>
       <ThemeProvider theme={resumeTheme}>
         <Stack id="resume-page" sx={{ backgroundColor: "black" }}>
+          <BackgroundContent backToResume={() => setVisible(true)} />
+
           <Stack
             sx={{
               position: "relative",
               fontFamily: resumeFontFamily,
               backgroundColor: contextValue.bgColor,
-              width: "815px", // fits PDF width: approximate, PDF will shrink width to fit
+              maxWidth: expanded ? "100%" : "815px", // fits PDF width: approximate, PDF will shrink width to fit
+              visibility: visible ? "visible" : "hidden",
               minHeight: "100vh",
               margin: "0 auto",
               boxSizing: "border-box",
               fontSize: "13px",
+              transition: "max-width 150ms ease-in-out",
             }}
           >
             <Box sx={{ ...transitionStyle({ delay: 0, translateY: 0 }) }}>
-              <Header />
+              <Header onExpand={() => setExpanded(!expanded)} onClose={() => setVisible(false)} />
             </Box>
 
             <Stack spacing={5} p={5}>
