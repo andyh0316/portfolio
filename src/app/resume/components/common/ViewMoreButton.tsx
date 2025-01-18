@@ -8,6 +8,7 @@ export const ViewMoreButton = (props: { isMore: boolean; onClick: () => void }) 
     <Box>
       <Button onClick={props.onClick} size="small" sx={{ textTransform: "none" }}>
         <Stack direction="row" alignItems="center">
+          <Typography variant="inherit">{props.isMore ? "Less" : "More"}</Typography>
           <ChevronRightIcon
             sx={{
               mr: 0.5,
@@ -16,7 +17,6 @@ export const ViewMoreButton = (props: { isMore: boolean; onClick: () => void }) 
             }}
             fontSize="small"
           />
-          <Typography variant="inherit">{props.isMore ? "less" : "more"}</Typography>
         </Stack>
       </Button>
     </Box>
