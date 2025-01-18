@@ -5,9 +5,12 @@ import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 import { ResumeContext } from "../../page";
+import { FaHandPointRight } from "react-icons/fa";
+import { useTheme } from "@mui/material";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const resumeContext = useContext(ResumeContext);
+  const theme = useTheme();
   const [isHovered, setIsHovered] = useState(false);
 
   function headerBar() {
@@ -89,11 +92,11 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Box>
         </Stack>
 
-        {resumeContext?.isPdfMode ? (
-          <Box fontSize="14px">GO: www.haitianhong.com</Box>
+        {/* {resumeContext?.isPdfMode ? (
+          <Box fontSize="14px">Web Resume: https://andyh0316.github.io/resume</Box>
         ) : (
           <Box fontSize="14px">andy@resume: ~</Box>
-        )}
+        )} */}
       </Stack>
     );
   }
@@ -120,9 +123,31 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
             </Typography>
           </Stack>
 
-          <Stack direction="row" spacing={1} alignItems="center">
-            <EmailIcon sx={{ color: "#43929c" }} />
-            <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+          <Stack spacing={2}>
+            <Stack position="relative" direction="row">
+              <Box position="absolute" top={0} left={-40}>
+                <FaHandPointRight size={30} color={theme.palette.primary.main} />
+              </Box>
+
+              <Stack>
+                <Typography variant="caption" lineHeight={"100%"}>
+                  Web Resume:
+                </Typography>
+                <Typography fontSize="1em">https://andyh0316.github.io/resume</Typography>
+              </Stack>
+            </Stack>
+
+            <Stack>
+              <Typography variant="caption" lineHeight={"100%"}>
+                Email:
+              </Typography>
+              <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+            </Stack>
+
+            {/* <Stack direction="row" spacing={1} alignItems="center">
+              <EmailIcon sx={{ color: "#43929c" }} />
+              <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+            </Stack> */}
           </Stack>
         </Stack>
       </Stack>

@@ -121,7 +121,7 @@ export const Skills = () => {
       title={"Skills"}
       afterTitle={
         <>
-          <Stack direction="row" spacing={1} alignItems="center" width="100%" justifyContent={"flex-end"}>
+          <Stack direction="row" spacing={1} alignItems="center" width="100%" justifyContent={"flex-start"}>
             <FormControlLabel
               control={
                 <Switch
