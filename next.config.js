@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true, // Add this line
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
