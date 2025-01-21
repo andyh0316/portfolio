@@ -8,6 +8,7 @@ import { Header } from "./components/Header";
 import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
 import { BackgroundContent } from "./components/BackgroundContent";
+import { ResumeContext, ResumeContextType } from "./context";
 
 const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
 const resumeBgColor = "#fcfcfc";
@@ -23,13 +24,6 @@ const resumeTheme = createTheme({
     },
   },
 });
-
-interface ResumeContextType {
-  bgColor: string;
-  isPdfMode: boolean;
-}
-
-export const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 const ResumePage = () => {
   const isPdfMode = true; // manually set mode to be printable to PDF

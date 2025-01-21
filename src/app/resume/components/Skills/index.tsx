@@ -19,8 +19,8 @@ import { ReactNode, useContext, useState } from "react";
 import { Domain } from "../Domain";
 import { skills } from "./skills";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
-import { ResumeContext } from "../../page";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import { ResumeContext } from "../../context";
 
 export const Skills = () => {
   const resumeContext = useContext(ResumeContext);

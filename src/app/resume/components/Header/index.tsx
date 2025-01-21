@@ -4,9 +4,9 @@ import { useContext, useState } from "react";
 import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
-import { ResumeContext } from "../../page";
 import { FaHandPointRight } from "react-icons/fa";
 import { useTheme } from "@mui/material";
+import { ResumeContext } from "../../context";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const resumeContext = useContext(ResumeContext);
