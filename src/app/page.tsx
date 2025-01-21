@@ -43,7 +43,7 @@ export default function Home() {
             transform: "translateX(-50%)",
           }}
         >
-          andy@web-portfolio: ~
+          andy@web-portfolio: ~~
         </Box>
 
         <Box></Box>
