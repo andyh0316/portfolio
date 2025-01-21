@@ -6,7 +6,7 @@ export const CobroConsulting = () => {
     <ExperienceItem
       title="Principal Software Engineer"
       company="Cobro Consulting"
-      startEndYear={["2016", "2021"]}
+      startEndYear={["2016", "2022"]}
       content={
         <Stack spacing={0.5}>
           <Typography variant="inherit">
