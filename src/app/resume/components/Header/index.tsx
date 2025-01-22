@@ -134,7 +134,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     };
 
     return (
-      <Stack px={5} pt={3.5} alignItems={"center"} justifyContent={"center"}>
+      <Stack height="150px" px={5} alignItems={"center"} justifyContent={"center"}>
         <Stack width="100%" direction="row" justifyContent={"space-between"} alignItems={"center"}>
           <Stack>
             <Typography
@@ -215,11 +215,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
   }
 
   return (
-    <Stack
-      height="200px"
-      bgcolor="#cad8e3"
-      //sx={{ fontFamily: "var(--font-jura), sans-serif" }}
-    >
+    <Stack bgcolor="#cad8e3">
       {headerBar()}
 
       {headerContent()}

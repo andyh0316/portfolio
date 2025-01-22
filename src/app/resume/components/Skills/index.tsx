@@ -125,17 +125,19 @@ export const Skills = () => {
       title={"Skills"}
       afterTitle={
         <>
-          <Stack direction="row" spacing={1} alignItems="center" width="100%" justifyContent={"flex-start"}>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={viewMode === "detailed"}
-                  onChange={(e) => setViewMode(e.target.checked ? "detailed" : "simple")}
-                />
-              }
-              label={<Typography variant="caption">List View</Typography>}
-            />
-          </Stack>
+          {!resumeContext?.isPdfMode && (
+            <Stack direction="row" spacing={1} alignItems="center" width="100%" justifyContent={"flex-start"}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={viewMode === "detailed"}
+                    onChange={(e) => setViewMode(e.target.checked ? "detailed" : "simple")}
+                  />
+                }
+                label={<Typography variant="caption">List View</Typography>}
+              />
+            </Stack>
+          )}
         </>
       }
     >
