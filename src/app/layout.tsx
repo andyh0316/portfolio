@@ -9,7 +9,7 @@ import { ReduxProvider } from "@/store/providers/redux-provider";
 import { useAppDispatch } from "@/store/hooks";
 import { Environment, setEnvironment } from "@/store/features/appSlice";
 import { useEffect } from "react";
-import { AppStateInitializer } from "./appStateInitializer";
+import { AppStateInitializer } from "./AppStateInitializer";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
