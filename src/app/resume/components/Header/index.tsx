@@ -144,7 +144,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
             </Stack>
 
-            {/* <Stack direction="row" spacing={1} alignItems="center">
+            {/* <Stack ddirection="row" spacing={1} alignItems="center">
               <EmailIcon sx={{ color: "#43929c" }} />
               <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
             </Stack> */}
