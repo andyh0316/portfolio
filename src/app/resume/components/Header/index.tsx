@@ -133,7 +133,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
                 <Typography variant="caption" lineHeight={"100%"}>
                   Web Resume:
                 </Typography>
-                <Typography fontSize="1em">http://AndyHong.pro/resume</Typography>
+                <Typography fontSize="1em">www.AndyHong.pro/resume</Typography>
               </Stack>
             </Stack>
 
