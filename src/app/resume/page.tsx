@@ -2,13 +2,13 @@
 
 import { Box, Stack } from "@/components";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { createContext, CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
+import { BackgroundContent } from "./components/BackgroundContent";
 import { Experience } from "./components/Experience";
 import { Header } from "./components/Header";
 import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
-import { BackgroundContent } from "./components/BackgroundContent";
-import { ResumeContext, ResumeContextType } from "./context";
+import { ResumeProvider } from "./context";
 
 const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
 const resumeBgColor = "#fcfcfc";
@@ -26,7 +26,6 @@ const resumeTheme = createTheme({
 });
 
 const ResumePage = () => {
-  const isPdfMode = true; // manually set mode to be printable to PDF
   const [isInitialResumeMount, setIsInitialResumeMount] = useState(false);
   const [visible, setVisible] = useState(true);
   const [expanded, setExpanded] = useState(false);
@@ -43,13 +42,8 @@ const ResumePage = () => {
     };
   };
 
-  const contextValue: ResumeContextType = {
-    bgColor: resumeBgColor,
-    isPdfMode,
-  };
-
   return (
-    <ResumeContext.Provider value={contextValue}>
+    <ResumeProvider bgColor={resumeBgColor}>
       <ThemeProvider theme={resumeTheme}>
         <Stack id="resume-page" sx={{ backgroundColor: "black" }}>
           <BackgroundContent backToResume={() => setVisible(true)} />
@@ -58,7 +52,7 @@ const ResumePage = () => {
             sx={{
               position: "relative",
               fontFamily: resumeFontFamily,
-              backgroundColor: contextValue.bgColor,
+              backgroundColor: resumeBgColor,
               maxWidth: expanded ? "100%" : "815px", // fits PDF width: approximate, PDF will shrink width to fit
               visibility: visible ? "visible" : "hidden",
               minHeight: "100vh",
@@ -88,7 +82,7 @@ const ResumePage = () => {
           </Stack>
         </Stack>
       </ThemeProvider>
-    </ResumeContext.Provider>
+    </ResumeProvider>
   );
 };
 

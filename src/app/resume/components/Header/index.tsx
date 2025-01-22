@@ -1,15 +1,16 @@
-import { Box, IconButton, Stack, Typography, Link, Snackbar } from "@/components";
-import EmailIcon from "@mui/icons-material/Email";
+import { Box, Button, IconButton, Link, Stack, Tooltip, Typography } from "@/components";
+import { useAppSelector } from "@/store/hooks";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { useTheme } from "@mui/material";
 import { useContext, useState } from "react";
 import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
-import { RxCross2 as CloseIcon } from "react-icons/rx";
-import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 import { FaHandPointRight } from "react-icons/fa";
-import { Tooltip, useTheme } from "@mui/material";
+import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
+import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { ResumeContext } from "../../context";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
+  const environment = useAppSelector((state) => state.app.environment);
   const resumeContext = useContext(ResumeContext);
   const theme = useTheme();
   const [isHovered, setIsHovered] = useState(false);
@@ -38,7 +39,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         width="100%"
         direction="row"
         alignItems="center"
-        justifyContent={"center"}
+        justifyContent="space-between"
         height={headerBarHeight}
         bgcolor={(theme) => theme.palette.primary.main}
         color="white"
@@ -47,8 +48,6 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
       >
         <Stack
           direction="row"
-          position="absolute"
-          left={16}
           spacing={1}
           flexShrink={0}
           onMouseEnter={() => setIsHovered(true)}
@@ -94,11 +93,29 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Box>
         </Stack>
 
-        {/* {resumeContext?.isPdfMode ? (
-          <Box fontSize="14px">Web Resume: https://andyh0316.github.io/resume</Box>
-        ) : (
-          <Box fontSize="14px">andy@resume: ~</Box>
-        )} */}
+        <Box
+          position="absolute"
+          left="50%"
+          sx={{
+            transform: "translateX(-50%)",
+            fontSize: "14px",
+          }}
+        >
+          andy@resume: ~
+        </Box>
+
+        {environment === "local" && (
+          <Stack>
+            <Button
+              onClick={() => {
+                resumeContext?.setPdfMode(!resumeContext.isPdfMode);
+              }}
+              variant="contained"
+            >
+              {resumeContext?.isPdfMode ? "PDF Mode" : "Web Mode"}
+            </Button>
+          </Stack>
+        )}
       </Stack>
     );
   }
