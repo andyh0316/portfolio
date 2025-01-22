@@ -155,19 +155,21 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Stack>
 
           <Stack spacing={2}>
-            <Stack position="relative" direction="row">
-              <Box position="absolute" top={0} left={-40}>
-                <FaHandPointRight size={30} color={theme.palette.primary.main} />
-              </Box>
+            {!resumeContext?.isPdfMode && (
+              <Stack position="relative" direction="row">
+                <Box position="absolute" top={0} left={-40}>
+                  <FaHandPointRight size={30} color={theme.palette.primary.main} />
+                </Box>
 
-              <Stack>
-                <Typography variant="caption" lineHeight={"140%"}>
-                  Web Resume:
-                </Typography>
+                <Stack>
+                  <Typography variant="caption" lineHeight={"140%"}>
+                    Web Resume:
+                  </Typography>
 
-                <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
+                  <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
+                </Stack>
               </Stack>
-            </Stack>
+            )}
 
             <Stack>
               <Typography variant="caption" lineHeight={"80%"}>
@@ -177,26 +179,28 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               <Stack direction="row" spacing={1} alignItems={"center"}>
                 <Link href={`mailto:${email}`}>{email}</Link>
 
-                <Tooltip
-                  open={emailCopied}
-                  title={
-                    <Typography variant="caption" color={(theme) => theme.palette.success.main}>
-                      Email Copied!
-                    </Typography>
-                  }
-                  placement="top"
-                  componentsProps={{
-                    tooltip: {
-                      sx: {
-                        bgcolor: "white",
+                {!resumeContext?.isPdfMode && (
+                  <Tooltip
+                    open={emailCopied}
+                    title={
+                      <Typography variant="caption" color={(theme) => theme.palette.success.main}>
+                        Email Copied!
+                      </Typography>
+                    }
+                    placement="top"
+                    componentsProps={{
+                      tooltip: {
+                        sx: {
+                          bgcolor: "white",
+                        },
                       },
-                    },
-                  }}
-                >
-                  <IconButton onClick={copyEmail} size="small">
-                    <ContentCopyIcon color="primary" fontSize="small" />
-                  </IconButton>
-                </Tooltip>
+                    }}
+                  >
+                    <IconButton onClick={copyEmail} size="small">
+                      <ContentCopyIcon color="primary" fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                )}
               </Stack>
             </Stack>
 
