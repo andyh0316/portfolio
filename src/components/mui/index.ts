@@ -18,3 +18,5 @@ export * from "./ToggleButtonGroup";
 export * from "./Tooltip";
 export * from "./Typography";
 export * from "./FormControlLabel";
+export * from "./Link";
+export * from "./Snackbar";

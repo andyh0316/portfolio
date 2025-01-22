@@ -74,7 +74,11 @@ export const Skills = () => {
                     }
                     onClick={(e) => {
                       e.stopPropagation();
-                      setOpenTooltipFor(skill.label);
+                      if (openTooltipFor === skill.label) {
+                        setOpenTooltipFor(null);
+                      } else {
+                        setOpenTooltipFor(skill.label);
+                      }
                     }}
                     color={skill.color}
                     size="small"

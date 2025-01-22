@@ -1,17 +1,19 @@
-import { Box, IconButton, Stack, Typography } from "@/components";
+import { Box, IconButton, Stack, Typography, Link, Snackbar } from "@/components";
 import EmailIcon from "@mui/icons-material/Email";
 import { useContext, useState } from "react";
 import { CgArrowsExpandLeft as ExpandIcon } from "react-icons/cg";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 import { FaHandPointRight } from "react-icons/fa";
-import { useTheme } from "@mui/material";
+import { Tooltip, useTheme } from "@mui/material";
 import { ResumeContext } from "../../context";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const resumeContext = useContext(ResumeContext);
   const theme = useTheme();
   const [isHovered, setIsHovered] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   function headerBar() {
     const headerBarHeight = 40;
@@ -102,6 +104,18 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
   }
 
   function headerContent() {
+    const email = "NoSpamPlease2222@gmail.com";
+    const resumeUrl = "www.AndyHong.pro/resume";
+
+    const copyEmail = () => {
+      navigator.clipboard.writeText(email);
+
+      setEmailCopied(true);
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 2000);
+    };
+
     return (
       <Stack px={5} pt={4.5} alignItems={"center"} justifyContent={"center"}>
         <Stack width="100%" direction="row" justifyContent={"space-between"} alignItems={"center"}>
@@ -130,18 +144,43 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               </Box>
 
               <Stack>
-                <Typography variant="caption" lineHeight={"100%"}>
+                <Typography variant="caption" lineHeight={"140%"}>
                   Web Resume:
                 </Typography>
-                <Typography fontSize="1em">www.AndyHong.pro/resume</Typography>
+
+                <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
               </Stack>
             </Stack>
 
             <Stack>
-              <Typography variant="caption" lineHeight={"100%"}>
+              <Typography variant="caption" lineHeight={"80%"}>
                 Email:
               </Typography>
-              <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
+
+              <Stack direction="row" spacing={1} alignItems={"center"}>
+                <Link href={`mailto:${email}`}>{email}</Link>
+
+                <Tooltip
+                  open={emailCopied}
+                  title={
+                    <Typography variant="caption" color={(theme) => theme.palette.success.main}>
+                      Email Copied!
+                    </Typography>
+                  }
+                  placement="top"
+                  componentsProps={{
+                    tooltip: {
+                      sx: {
+                        bgcolor: "white",
+                      },
+                    },
+                  }}
+                >
+                  <IconButton onClick={copyEmail} size="small">
+                    <ContentCopyIcon color="primary" fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </Stack>
             </Stack>
 
             {/* <Stack ddirection="row" spacing={1} alignItems="center">
