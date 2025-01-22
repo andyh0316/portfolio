@@ -117,7 +117,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     };
 
     return (
-      <Stack px={5} pt={4.5} alignItems={"center"} justifyContent={"center"}>
+      <Stack px={5} pt={3.5} alignItems={"center"} justifyContent={"center"}>
         <Stack width="100%" direction="row" justifyContent={"space-between"} alignItems={"center"}>
           <Stack>
             <Typography
