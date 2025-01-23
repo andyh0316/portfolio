@@ -155,7 +155,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Stack>
 
           <Stack spacing={2}>
-            {!resumeContext?.isPdfMode && (
+            {resumeContext?.isPdfMode && (
               <Stack position="relative" direction="row">
                 <Box position="absolute" top={0} left={-40}>
                   <FaHandPointRight size={30} color={theme.palette.primary.main} />
