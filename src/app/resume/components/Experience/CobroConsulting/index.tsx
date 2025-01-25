@@ -1,8 +1,12 @@
 import { Box, Grid, Stack, Typography } from "@/components";
 import { ExperienceItem } from "../ExperienceItem";
 import { Features } from "./Features";
+import { useContext } from "react";
+import { ResumeContext } from "@/app/resume/context";
 
 export const CobroConsulting = () => {
+  const resumeContext = useContext(ResumeContext);
+
   const experienceBody = () => {
     return (
       <Stack spacing={0.5}>
@@ -33,19 +37,28 @@ export const CobroConsulting = () => {
               {`Management: led a team of 3 developers to maintain the application.`}
             </Typography>
           </Stack>
+
+          <Stack direction="row" spacing={1}>
+            <Box>-</Box>
+            <Typography variant="inherit">
+              {`Features: Authentication, Data Import, Reports, Texting and much more.`}
+            </Typography>
+          </Stack>
         </Stack>
 
-        <Box>
-          <Grid container spacing={0.8} display="flex">
-            <Grid item>
-              <Stack justifyContent="center" height="100%">
-                <Typography variant="inherit">Features (click to see):</Typography>
-              </Stack>
-            </Grid>
+        {!resumeContext?.isPdfMode && (
+          <Box>
+            <Grid container spacing={0.8} display="flex">
+              <Grid item>
+                <Stack justifyContent="center" height="100%">
+                  <Typography variant="inherit">Feature Demos (click to see):</Typography>
+                </Stack>
+              </Grid>
 
-            <Features />
-          </Grid>
-        </Box>
+              <Features />
+            </Grid>
+          </Box>
+        )}
       </Stack>
     );
   };

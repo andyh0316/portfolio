@@ -145,12 +145,12 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               ANDY HONG
             </Typography>
             <Typography
-              fontSize="1.11em"
+              fontSize="1em"
               lineHeight="100%"
               fontWeight={(theme) => theme.typography.fontWeightRegular}
-              letterSpacing="0.14em"
+              letterSpacing="0.04em"
             >
-              FULL STACK DEVELOPER
+              HARDCORE Full-Stack Developer
             </Typography>
           </Stack>
 

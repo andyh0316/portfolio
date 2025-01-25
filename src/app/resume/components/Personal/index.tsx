@@ -15,31 +15,31 @@ export const Personal = () => {
   };
 
   const renderQualities = () => {
-    let content = "#concise #patience #meticulous #fastlearner #problem-solver #creative #adaptable #self-motivated #team-player";
+    let content = "#hardcore #concise #self-motivated #meticulous #problem-solver";
 
     return <PersonalItem title={"Qualities"} content={content} />;
   };
 
   const aboutResume = () => {
-    let content = "This resume is coded using React, TypeScript and Material-UI from scratch. Time taken: 15 hours.";
+    let content = "Coded using React, TypeScript and Material-UI from scratch. Time taken: 20 hours.";
 
-    return <PersonalItem title={"Resume"} content={content} />;
+    return <PersonalItem title={"This Resume"} content={content} />;
   };
 
   return (
-    <Domain title="Personal">
+    <Domain title="Others">
       <Stack spacing={2}>
         <Stack>
+          {aboutResume()}
+
           {renderEducation()}
 
           {renderQualities()}
 
-          <Collapse in={viewMore}>
-            {aboutResume()}
-          </Collapse>
+          {/* <Collapse in={viewMore}>{aboutResume()}</Collapse> */}
         </Stack>
 
-        <ViewMoreButton isMore={viewMore} onClick={() => setViewMore(!viewMore)} />
+        {/* <ViewMoreButton isMore={viewMore} onClick={() => setViewMore(!viewMore)} /> */}
       </Stack>
     </Domain>
   );
