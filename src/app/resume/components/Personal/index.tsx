@@ -29,7 +29,7 @@ export const Personal = () => {
   return (
     <Domain title="Others">
       <Stack spacing={2}>
-        <Stack>
+        <Stack spacing={{ sm: 0, xs: 1 }}>
           {aboutResume()}
 
           {renderEducation()}

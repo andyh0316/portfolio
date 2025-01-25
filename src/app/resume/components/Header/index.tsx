@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Link, Stack, Tooltip, Typography } from "@/components";
+import { Box, Button, IconButton, Link, Stack, Tooltip, Typography, Grid } from "@/components";
 import { useAppSelector } from "@/store/hooks";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useTheme } from "@mui/material";
@@ -133,89 +133,88 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
       }, 2000);
     };
 
-    return (
-      <Stack height="150px" px={5} alignItems={"center"} justifyContent={"center"}>
-        <Stack width="100%" direction="row" justifyContent={"space-between"} alignItems={"center"}>
-          <Stack>
-            <Typography
-              fontSize="2.5em"
-              fontWeight={(theme) => theme.typography.fontWeightRegular}
-              letterSpacing="0.07em"
-            >
-              ANDY HONG
-            </Typography>
-            <Typography
-              fontSize="1em"
-              lineHeight="100%"
-              fontWeight={(theme) => theme.typography.fontWeightRegular}
-              letterSpacing="0.04em"
-            >
-              HARDCORE Full-Stack Developer
-            </Typography>
-          </Stack>
+    const nameArea = (
+      <Stack>
+        <Typography fontSize="2.5em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
+          ANDY HONG
+        </Typography>
+        <Typography
+          fontSize="1em"
+          lineHeight="100%"
+          fontWeight={(theme) => theme.typography.fontWeightRegular}
+          letterSpacing="0.04em"
+        >
+          HARDCORE Full-Stack Developer
+        </Typography>
+      </Stack>
+    );
 
-          <Stack spacing={2}>
-            {resumeContext?.isPdfMode && (
-              <Stack position="relative" direction="row">
-                <Box position="absolute" top={0} left={-40}>
-                  <FaHandPointRight size={30} color={theme.palette.primary.main} />
-                </Box>
-
-                <Stack>
-                  <Typography variant="caption" lineHeight={"140%"}>
-                    Web Resume:
-                  </Typography>
-
-                  <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
-                </Stack>
-              </Stack>
-            )}
+    const infoArea = (
+      <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "flex-start" }}>
+        {resumeContext?.isPdfMode && (
+          <Stack position="relative" direction="row">
+            <Box display={{ xs: "none", md: "block" }} position="absolute" top={0} left={-40}>
+              <FaHandPointRight size={30} color={theme.palette.primary.main} />
+            </Box>
 
             <Stack>
-              <Typography variant="caption" lineHeight={"80%"}>
-                Email:
+              <Typography variant="caption" lineHeight={"140%"} textAlign={{ sm: "right", xs: "left" }}>
+                Web Resume
               </Typography>
 
-              <Stack direction="row" spacing={1} alignItems={"center"}>
-                <Link href={`mailto:${email}`}>{email}</Link>
-
-                {!resumeContext?.isPdfMode && (
-                  <Tooltip
-                    open={emailCopied}
-                    title={
-                      <Typography variant="caption" color={(theme) => theme.palette.success.main}>
-                        Email Copied!
-                      </Typography>
-                    }
-                    placement="top"
-                    componentsProps={{
-                      tooltip: {
-                        sx: {
-                          bgcolor: "white",
-                        },
-                      },
-                    }}
-                  >
-                    <IconButton onClick={copyEmail} size="small">
-                      <ContentCopyIcon color="primary" fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </Stack>
+              <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
             </Stack>
-
-            {/* <Stack ddirection="row" spacing={1} alignItems="center">
-              <EmailIcon sx={{ color: "#43929c" }} />
-              <Typography fontSize="1em">NoSpamPlease2222@gmail.com</Typography>
-            </Stack> */}
           </Stack>
+        )}
+
+        <Stack>
+          {/* <Typography variant="caption" lineHeight={"80%"} textAlign="right">
+            Email
+          </Typography> */}
+
+          <Stack direction="row" spacing={1} alignItems={"center"}>
+            <Link href={`mailto:${email}`}>{email}</Link>
+
+            {!resumeContext?.isPdfMode && (
+              <Tooltip
+                open={emailCopied}
+                title={
+                  <Typography variant="caption" color={(theme) => theme.palette.success.main}>
+                    Email Copied!
+                  </Typography>
+                }
+                placement="top"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "white",
+                    },
+                  },
+                }}
+              >
+                <IconButton onClick={copyEmail} size="small">
+                  <ContentCopyIcon color="primary" fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+          </Stack>
+        </Stack>
+      </Stack>
+    );
+
+    return (
+      <Stack minHeight="150px" px={5} alignItems={"center"} justifyContent={"center"} pt={3}>
+        <Stack width="100%" direction={{ sm: "row", xs: "column" }} justifyContent={"space-between"} spacing={5}>
+          {nameArea}
+
+          {infoArea}
         </Stack>
       </Stack>
     );
   }
 
   return (
-    <Stack bgcolor="#cad8e3">
+    <Stack bgcolor="#cad8e3" pb={3}>
       {headerBar()}
 
       {headerContent()}
