@@ -10,14 +10,10 @@ import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
 import { ResumeProvider } from "./context";
 
-const resumeFontFamily = '"Helvetica Neue", Arial, sans-serif';
 const resumeBgColor = "#fcfcfc";
 
 // for MUI elements
 const resumeTheme = createTheme({
-  typography: {
-    fontFamily: resumeFontFamily,
-  },
   palette: {
     primary: {
       main: "#275070",
@@ -51,7 +47,6 @@ const ResumePage = () => {
           <Stack
             sx={{
               position: "relative",
-              fontFamily: resumeFontFamily,
               backgroundColor: resumeBgColor,
               maxWidth: expanded ? "100%" : "815px", // fits PDF width: approximate, PDF will shrink width to fit
               visibility: visible ? "visible" : "hidden",

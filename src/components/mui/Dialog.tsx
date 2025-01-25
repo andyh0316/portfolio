@@ -1,14 +1,11 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
 import { Stack } from "@/components";
-import { Breakpoint, styled } from "@mui/material/styles";
-import { Dialog as MuiDialog } from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
+import { Dialog as MuiDialog } from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import { Breakpoint, styled } from "@mui/material/styles";
 import { ReactNode } from "react";
 
 const BootstrapDialog = styled(MuiDialog)(({ theme }) => ({

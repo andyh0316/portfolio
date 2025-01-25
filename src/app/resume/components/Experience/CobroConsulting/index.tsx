@@ -8,8 +8,8 @@ export const CobroConsulting = () => {
       <Stack spacing={0.5}>
         <Typography variant="inherit">
           {`Led the design and development of the company's flagship SaaS application completely from zero. The
-        application launched in one year of development and is now used by around 80 US school districts to tracking
-        over total of 300,000 students and 20,000,000 services.`}
+          application launched in one year of development and is now used by around 80 US school districts to tracking
+          over total of 300,000 students and 20,000,000 services.`}
         </Typography>
 
         <Stack pl={2}>

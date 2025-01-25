@@ -7,10 +7,20 @@ interface FeatureItem {
   feature: Feature;
   content: ReactNode;
 }
-const features: Feature[] = ["Data Import", "Reports", "Texting"];
 
 export const Features = () => {
-  const featureItems: FeatureItem[] = [{ feature: "Data Import", content: <YoutubePlayer videoId="ggRSyhMAxuo" /> }];
+  const featureItems: FeatureItem[] = [
+    {
+      feature: "Data Import",
+      content: (
+        <Stack spacing={1}>
+          <YoutubePlayer videoId="ggRSyhMAxuo" />
+
+          <Stack>Tech used: ReactJS, MUI, .NET, Websocket SignalR, Async processes, Excel parsing, AI</Stack>
+        </Stack>
+      ),
+    },
+  ];
   const [openedFeatureItem, setOpenedFeatureItem] = useState<FeatureItem>();
 
   return (
