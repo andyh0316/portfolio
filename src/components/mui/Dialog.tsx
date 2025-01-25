@@ -38,7 +38,7 @@ export function Dialog(props: {
         },
       }}
     >
-      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+      <DialogTitle sx={{ m: 0, px: 2, py: 1 }} id="customized-dialog-title">
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Stack>{props.title}</Stack>
 

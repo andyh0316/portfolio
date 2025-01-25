@@ -5,7 +5,7 @@ export const YoutubePlayer = (props: { videoId: string }) => {
     <Box
       sx={{
         position: "relative",
-        paddingTop: "56.25%", // 16:9 Aspect Ratio
+        paddingTop: "63.00%", // 16:9 Aspect Ratio
         width: "100%",
         // ...sx,
       }}

@@ -15,10 +15,12 @@ const featureItems: FeatureItem[] = [
   {
     feature: "Data Import",
     title: "The simplest example of an Import process",
-    dialogMaxWidth: "lg",
+    dialogMaxWidth: "md",
     content: (
       <Stack spacing={3}>
-        <YoutubePlayer videoId="U6BL3kYPDAw" />
+        <Box width="100%">
+          <YoutubePlayer videoId="U6BL3kYPDAw" />
+        </Box>
 
         <Card variant="outlined" sx={{ p: 2 }}>
           <Stack spacing={0.5}>
