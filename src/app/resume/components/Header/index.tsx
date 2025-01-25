@@ -153,13 +153,13 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
       <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "flex-start" }}>
         {resumeContext?.isPdfMode && (
           <Stack position="relative" direction="row">
-            <Box display={{ xs: "none", md: "block" }} position="absolute" top={0} left={-40}>
+            <Box display={{ xs: "none", md: "block" }} position="absolute" top={5} left={-40}>
               <FaHandPointRight size={30} color={theme.palette.primary.main} />
             </Box>
 
             <Stack>
               <Typography variant="caption" lineHeight={"140%"} textAlign={{ sm: "right", xs: "left" }}>
-                Web Resume
+                Go to Web Resume
               </Typography>
 
               <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
@@ -168,9 +168,9 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         )}
 
         <Stack>
-          {/* <Typography variant="caption" lineHeight={"80%"} textAlign="right">
-            Email
-          </Typography> */}
+          <Typography variant="caption" lineHeight={"80%"} textAlign="right">
+            Email Andy
+          </Typography>
 
           <Stack direction="row" spacing={1} alignItems={"center"}>
             <Link href={`mailto:${email}`}>{email}</Link>
@@ -204,7 +204,13 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
 
     return (
       <Stack minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={3}>
-        <Stack width="100%" direction={{ sm: "row", xs: "column" }} justifyContent={"space-between"} spacing={5}>
+        <Stack
+          width="100%"
+          direction={{ sm: "row", xs: "column" }}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          spacing={5}
+        >
           {nameArea}
 
           {infoArea}

@@ -21,7 +21,7 @@ export const Domain = (props: { title: ReactNode; afterTitle?: ReactNode; childr
       </Stack>
 
       <Stack
-        pl={{ xs: 0, sm: 5 }} // no ident on small devices
+        pl={{ xs: 0, sm: 3 }} // no ident on small devices
       >
         {props.children}
       </Stack>
