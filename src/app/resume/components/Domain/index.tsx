@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export const Domain = (props: { title: ReactNode; afterTitle?: ReactNode; children: React.ReactNode }) => {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={1}>
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box
           fontSize="1.8em"

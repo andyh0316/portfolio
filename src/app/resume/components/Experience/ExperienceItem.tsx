@@ -38,8 +38,8 @@ export const ExperienceItem = (props: {
 
   return (
     <Stack spacing={1}>
-      <Box>
-        <Grid container spacing={0}>
+      <Box borderBottom={1} borderColor={"divider"}>
+        <Grid container>
           <Grid item sm={6} xs={12}>
             {title()}
           </Grid>
