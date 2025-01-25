@@ -20,3 +20,4 @@ export * from "./Typography";
 export * from "./FormControlLabel";
 export * from "./Link";
 export * from "./Snackbar";
+export * from "./Dialog";

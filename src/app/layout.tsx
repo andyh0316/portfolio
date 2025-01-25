@@ -1,15 +1,11 @@
 "use client";
 
-import type { Metadata } from "next";
-import { Inter, Jura, Montserrat } from "next/font/google";
-import "./globals.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import { ReduxProvider } from "@/store/providers/redux-provider";
-import { useAppDispatch } from "@/store/hooks";
-import { Environment, setEnvironment } from "@/store/features/appSlice";
-import { useEffect } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Jura, Montserrat } from "next/font/google";
 import { AppStateInitializer } from "./AppStateInitializer";
+import "./globals.css";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -68,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <ReduxProvider>
             <AppStateInitializer />
-            
+
             {children}
           </ReduxProvider>
         </ThemeProvider>
