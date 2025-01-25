@@ -1,4 +1,4 @@
-import { Button, Chip, Dialog, Grid, Stack, Typography, Box } from "@/components";
+import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card } from "@/components";
 import { ReactNode, useState } from "react";
 import { YoutubePlayer } from "../../common/YoutubePlayer";
 import { Breakpoint } from "@mui/material";
@@ -6,6 +6,7 @@ import { Breakpoint } from "@mui/material";
 type Feature = "Data Import" | "Reports" | "Texting";
 interface FeatureItem {
   feature: Feature;
+  title: string;
   content: ReactNode;
   dialogMaxWidth: Breakpoint;
 }
@@ -13,31 +14,53 @@ interface FeatureItem {
 const featureItems: FeatureItem[] = [
   {
     feature: "Data Import",
+    title: "The simplest example of an Import process",
     dialogMaxWidth: "lg",
     content: (
-      <Stack spacing={1}>
-        <YoutubePlayer videoId="JVDRc7ui_sU" />
+      <Stack spacing={3}>
+        <YoutubePlayer videoId="U6BL3kYPDAw" />
 
-        <Stack>Tech used: ReactJS, MUI, .NET, Websocket SignalR, Async processes, Excel parsing, AI</Stack>
+        <Card variant="outlined" sx={{ p: 2 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="inherit">
+              System for each client (school district) to import their own data.
+            </Typography>
+            <Typography variant="inherit">
+              Used by over 100 clients to process an average of 500 files daily,
+            </Typography>
+            <Typography variant="inherit">
+              Greatly increases the simplicity of data validation and speed of import. Can handle all variations of data
+              complexity.
+            </Typography>
+            <Typography variant="inherit">
+              Tech used: ReactJS, MUI, .NET, Websocket SignalR, Async processes, Excel parsing, AI.
+            </Typography>
+          </Stack>
+        </Card>
       </Stack>
     ),
   },
   {
     feature: "Texting",
+    title: "Texting",
     dialogMaxWidth: "md",
     content: (
-      <Stack spacing={2}>
+      <Stack spacing={3}>
         <Box border={1} borderColor="divider">
           <img src="/texting.png" alt="Texting" width="100%" style={{ display: "block" }} />
         </Box>
 
-        <Stack spacing={0.5}>
-          <Typography variant="inherit">Features for managing text messages to students.</Typography>
-          <Typography variant="inherit">Can automate mass sending, scheduled sending and automatic replies.</Typography>
-          <Typography variant="inherit">
-            Greatly increases the effciency of communication between staff and students.
-          </Typography>
-        </Stack>
+        <Card variant="outlined" sx={{ p: 2 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="inherit">Features for managing text messages to students.</Typography>
+            <Typography variant="inherit">
+              Can automate mass sending, scheduled sending and automatic replies.
+            </Typography>
+            <Typography variant="inherit">
+              Greatly increases the effciency of communication between staff and students.
+            </Typography>
+          </Stack>
+        </Card>
       </Stack>
     ),
   },
@@ -67,14 +90,14 @@ export const Features = () => {
           <Dialog
             open={true}
             width="90%"
-            title={openedFeatureItem.feature}
+            title={openedFeatureItem.title}
             content={openedFeatureItem.content}
             maxWidth={openedFeatureItem.dialogMaxWidth}
-            footer={
-              <Button variant="outlined" onClick={() => setOpenedFeatureItem(undefined)}>
-                Close
-              </Button>
-            }
+            // footer={
+            //   <Button variant="outlined" onClick={() => setOpenedFeatureItem(undefined)}>
+            //     Close
+            //   </Button>
+            // }
             onClose={() => setOpenedFeatureItem(undefined)}
           />
         )}
