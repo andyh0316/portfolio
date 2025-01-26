@@ -11,7 +11,7 @@ export const CobroConsulting = () => {
     return (
       <Stack spacing={0.5}>
         <Typography variant="inherit">
-          {`Led the design and development of the company's flagship SaaS application completely from zero. The
+          {`Built Compass entirely from the ground up. The SasS
           application launched in one year of development and is now used by around 80 US school districts to tracking
           over total of 300,000 students and 20,000,000 services.`}
         </Typography>
@@ -24,13 +24,6 @@ export const CobroConsulting = () => {
             </Typography>
           </Stack>
 
-          {/* <Stack direction="row" spacing={1}>
-          <Box>-</Box>
-          <Typography variant="inherit">
-            {`Features: Authentication, Data Import, Reports, Texting and much more.`}
-          </Typography>
-        </Stack> */}
-
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
@@ -41,7 +34,7 @@ export const CobroConsulting = () => {
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Features: Authentication, Data Import, Reports, Texting and much more.`}
+              {`Features: Authentication, Data Import, Exports, Reports, Texting, Surveys, File Manager and much much more.`}
             </Typography>
           </Stack>
         </Stack>

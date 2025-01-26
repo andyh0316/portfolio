@@ -10,15 +10,14 @@ export const AyloHealth = () => {
       content={
         <Stack spacing={0.5}>
           <Typography variant="inherit">
-            {`Full-stack developer managing multiple high-impact projects while collaborating with cross-functional teams.`}
+            {`Full-stack developer leading 2 high-impact projects while collaborating with cross-functional teams.`}
           </Typography>
 
           <Stack pl={2}>
             <Stack direction="row" spacing={1}>
               <Box>-</Box>
               <Typography variant="inherit">
-                {`Developed and launched an internal application enabling real-time data analytics and custom reporting
-                for Aylo's top executives.`}
+                {`Led development of an internal application enabling real-time data analytics for Aylo's top executives.`}
               </Typography>
             </Stack>
 
@@ -26,7 +25,7 @@ export const AyloHealth = () => {
               <Box>-</Box>
               <Typography variant="inherit">
                 {`Led frontend development of the admin-site, used by Aylo's engineering team to manage the flagship
-                product.`}
+                app.`}
               </Typography>
             </Stack>
           </Stack>
