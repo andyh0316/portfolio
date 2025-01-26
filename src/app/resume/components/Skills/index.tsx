@@ -96,31 +96,29 @@ export const Skills = () => {
 
   const detailedView = () => {
     return (
-      <Stack spacing={0}>
+      <Stack spacing={0} sx={{ border: "1px solid rgba(0,0,0,0.12)" }}>
         {skills.map((skill) => (
-          <Paper
+          <Box
             key={skill.label}
             sx={{
               bgcolor: resumeContext?.bgColor,
-              borderRadius: 0,
-              borderBottom: "1px solid rgba(0,0,0,0.12)",
-              "&:last-child": {
-                borderBottom: 0,
+              borderTop: "1px solid rgba(0,0,0,0.12)",
+              "&:first-of-type": {
+                borderTop: 0,
               },
             }}
+            p={1}
           >
-            <Box p={1}>
-              <Stack spacing={0}>
-                <Stack direction="row" justifyContent="space-between">
-                  <Typography variant="subtitle1">{skill.label}</Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {skill.experience} {skill.experience && "years"}
-                  </Typography>
-                </Stack>
-                <Typography variant="body2">{skill.description}</Typography>
+            <Stack spacing={0}>
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="subtitle1">{skill.label}</Typography>
+                <Typography variant="caption" color="text.secondary">
+                  {skill.experience} {skill.experience && "years"}
+                </Typography>
               </Stack>
-            </Box>
-          </Paper>
+              <Typography variant="body2">{skill.description}</Typography>
+            </Stack>
+          </Box>
         ))}
       </Stack>
     );
