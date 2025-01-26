@@ -8,6 +8,7 @@ import { FaHandPointRight } from "react-icons/fa";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { ResumeContext } from "../../context";
+import AnimatedBackground from "./AnimatedBackground";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const environment = useAppSelector((state) => state.app.environment);
@@ -203,7 +204,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     return (
-      <Stack minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={1}>
+      <Stack position="relative" minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={1}>
         <Stack
           width="100%"
           direction={{ sm: "row", xs: "column" }}
@@ -220,7 +221,11 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
   }
 
   return (
-    <Stack bgcolor="#cad8e3" pb={3}>
+    <Stack position="relative" bgcolor="#cad8e3" pb={3}>
+      {/* <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" sx={{ zIndex: -1 }}>
+        <AnimatedBackground />
+      </Box> */}
+
       {headerBar()}
 
       {headerContent()}
