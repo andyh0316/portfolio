@@ -1,4 +1,5 @@
 import {
+  Box,
   Chip,
   Collapse,
   FormControlLabel,
@@ -95,28 +96,33 @@ export const Skills = () => {
 
   const detailedView = () => {
     return (
-      <TableContainer component={Paper} sx={{ bgcolor: resumeContext?.bgColor }} variant="outlined">
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: resumeContext?.bgColor }}>
-              <TableCell width="160px">Skill</TableCell>
-              <TableCell width="120px" align="right">
-                Years of Exp.
-              </TableCell>
-              <TableCell>Description</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {skills.map((skill) => (
-              <TableRow key={skill.label} sx={{ bgcolor: resumeContext?.bgColor }}>
-                <TableCell>{skill.label}</TableCell>
-                <TableCell align="right">{skill.experience}</TableCell>
-                <TableCell>{skill.description}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Stack spacing={0}>
+        {skills.map((skill) => (
+          <Paper
+            key={skill.label}
+            sx={{
+              bgcolor: resumeContext?.bgColor,
+              borderRadius: 0,
+              borderBottom: "1px solid rgba(0,0,0,0.12)",
+              "&:last-child": {
+                borderBottom: 0,
+              },
+            }}
+          >
+            <Box p={1}>
+              <Stack spacing={0}>
+                <Stack direction="row" justifyContent="space-between">
+                  <Typography variant="subtitle1">{skill.label}</Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {skill.experience} {skill.experience && "years"}
+                  </Typography>
+                </Stack>
+                <Typography variant="body2">{skill.description}</Typography>
+              </Stack>
+            </Box>
+          </Paper>
+        ))}
+      </Stack>
     );
   };
 
