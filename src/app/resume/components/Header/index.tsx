@@ -203,7 +203,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     return (
-      <Stack minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={3}>
+      <Stack minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={1}>
         <Stack
           width="100%"
           direction={{ sm: "row", xs: "column" }}
