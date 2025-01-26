@@ -92,7 +92,7 @@ export const skills: Skill[] = [
     ),
   },
   {
-    label: "Data Structures and Algorithms",
+    label: "Data Structures & Algorithms",
     color: "primary",
     experience: 5,
     description: <>Good fundamental in DSA concepts such as Hashmaps, BigO, DFS/BFS, Backtracking, Graphs.</>,
