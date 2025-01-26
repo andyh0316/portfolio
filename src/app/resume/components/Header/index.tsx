@@ -8,7 +8,6 @@ import { FaHandPointRight } from "react-icons/fa";
 import { MdHorizontalRule as MinimizeIcon } from "react-icons/md";
 import { RxCross2 as CloseIcon } from "react-icons/rx";
 import { ResumeContext } from "../../context";
-import { DrifterStarsBackground } from "@/backgrounds/drifter-stars/DrifterStarsBackground";
 
 export const Header = (props: { onExpand: () => void; onClose: () => void }) => {
   const environment = useAppSelector((state) => state.app.environment);
