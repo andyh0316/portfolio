@@ -46,19 +46,7 @@ export const CobroConsulting = () => {
           </Stack>
         </Stack>
 
-        {!resumeContext?.isPdfMode && (
-          <Box>
-            <Grid container spacing={0.8} display="flex">
-              <Grid item>
-                <Stack justifyContent="center" height="100%">
-                  <Typography variant="inherit">Feature Demos (click to see):</Typography>
-                </Stack>
-              </Grid>
-
-              <Features />
-            </Grid>
-          </Box>
-        )}
+        {!resumeContext?.isPdfMode && <Features />}
       </Stack>
     );
   };

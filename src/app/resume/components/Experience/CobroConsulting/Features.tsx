@@ -73,19 +73,29 @@ export const Features = () => {
 
   return (
     <>
-      {featureItems.map((featureItem) => (
-        <Grid item key={featureItem.feature}>
-          <Chip
-            label={featureItem.feature}
-            onClick={() => {
-              setOpenedFeatureItem(featureItem);
-            }}
-            size="small"
-            variant="outlined"
-            color="primary"
-          />
+      <Box>
+        <Grid container spacing={0.8} display="flex">
+          <Grid item>
+            <Stack justifyContent="center" height="100%">
+              <Typography variant="inherit">Feature Demos (click to see):</Typography>
+            </Stack>
+          </Grid>
+
+          {featureItems.map((featureItem) => (
+            <Grid item key={featureItem.feature}>
+              <Chip
+                label={featureItem.feature}
+                onClick={() => {
+                  setOpenedFeatureItem(featureItem);
+                }}
+                size="small"
+                variant="outlined"
+                color="primary"
+              />
+            </Grid>
+          ))}
         </Grid>
-      ))}
+      </Box>
 
       <Stack>
         {openedFeatureItem && (
