@@ -3,15 +3,51 @@ import { ReactNode, useState } from "react";
 import { YoutubePlayer } from "../../common/YoutubePlayer";
 import { Breakpoint } from "@mui/material";
 
-type Feature = "Data Import" | "Reports" | "Texting";
 interface FeatureItem {
-  feature: Feature;
+  feature: string;
   title: string;
   content: ReactNode;
   dialogMaxWidth: Breakpoint;
 }
 
 const featureItems: FeatureItem[] = [
+  {
+    feature: "Student Page",
+    title: "Main page",
+    dialogMaxWidth: "lg",
+    content: (
+      <Stack spacing={3}>
+        <Typography variant="inherit">All data shown are from demo and not real. Scroll down for more.</Typography>
+
+        <Stack spacing={1}>
+          <Typography variant="h6">Student List: main page of the application.</Typography>
+          <Box border={1} borderColor="divider">
+            <img src="/cobro-demo/student-list.png" width="100%" style={{ display: "block" }} />
+          </Box>
+        </Stack>
+
+        <Stack spacing={1}>
+          <Typography variant="h6">Student Filters</Typography>
+          <Box border={1} borderColor="divider">
+            <img src="/cobro-demo/student-filter.png" width="100%" style={{ display: "block" }} />
+          </Box>
+        </Stack>
+
+        <Stack spacing={1}>
+          <Stack>
+            <Typography variant="h6">Student Page: customizable fields, comments, transcript and more</Typography>
+            <Typography variant="caption">
+              This page loads quickly (within 200ms) by combining lazy loading and proactive loading: main data are
+              loaded first while the rest are loaded in the background or loaded on demand.
+            </Typography>
+          </Stack>
+          <Box border={1} borderColor="divider">
+            <img src="/cobro-demo/student-page.png" width="100%" style={{ display: "block" }} />
+          </Box>
+        </Stack>
+      </Stack>
+    ),
+  },
   {
     feature: "Data Import",
     title: "The simplest example of an Import process",
@@ -49,7 +85,7 @@ const featureItems: FeatureItem[] = [
     content: (
       <Stack spacing={3}>
         <Box border={1} borderColor="divider">
-          <img src="/texting.png" alt="Texting" width="100%" style={{ display: "block" }} />
+          <img src="/cobro-demo/texting.png" alt="Texting" width="100%" style={{ display: "block" }} />
         </Box>
 
         <Card variant="outlined" sx={{ p: 2 }}>
@@ -77,7 +113,7 @@ export const Features = () => {
         <Grid container spacing={0.8} display="flex">
           <Grid item>
             <Stack justifyContent="center" height="100%">
-              <Typography variant="inherit">Feature Demos (click to see):</Typography>
+              <Typography variant="inherit">Demos (click to see):</Typography>
             </Stack>
           </Grid>
 
