@@ -125,7 +125,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
   function headerContent() {
     const email = "NoSpamPlease2222@gmail.com";
     const resumeUrl = "www.AndyHong.pro/resume";
-    const pdfResumeUrl = "www.AndyHong.pro/Andy-Hong-Resume.pdf";
+    const pdfResumeUrl = "www.AndyHong.pro/AndyHongResume.pdf";
 
     const copyEmail = () => {
       navigator.clipboard.writeText(email);
@@ -154,7 +154,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
 
     const infoArea = (
       <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "flex-start" }}>
-        {resumeContext?.isPdfMode ? (
+        {resumeContext?.isPdfMode && (
           <Stack position="relative" direction="row">
             <Box display={{ xs: "none", md: "block" }} position="absolute" top={5} left={-40}>
               <FaHandPointRight size={30} color={theme.palette.primary.main} />
@@ -166,20 +166,6 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               </Typography>
 
               <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
-            </Stack>
-          </Stack>
-        ) : (
-          <Stack position="relative" direction="row">
-            <Box display={{ xs: "none", md: "block" }} position="absolute" top={5} left={-40}>
-              <FaHandPointRight size={30} color={theme.palette.primary.main} />
-            </Box>
-
-            <Stack alignItems={{ sm: "flex-end", xs: "flex-start" }}>
-              <Typography variant="caption" lineHeight={"140%"} textAlign={{ sm: "right", xs: "left" }}>
-                Go to PDF Resume
-              </Typography>
-
-              <Link href={`http://${pdfResumeUrl}`}>resume.pdf</Link>
             </Stack>
           </Stack>
         )}
@@ -216,6 +202,18 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
             )}
           </Stack>
         </Stack>
+
+        {!resumeContext?.isPdfMode && (
+          <Stack position="relative" direction="row">
+            <Stack alignItems={{ sm: "flex-end", xs: "flex-start" }}>
+              <Typography variant="caption" lineHeight={"140%"} textAlign={{ sm: "right", xs: "left" }}>
+                Go to PDF Resume
+              </Typography>
+
+              <Link href={`http://${pdfResumeUrl}`}>resume.pdf</Link>
+            </Stack>
+          </Stack>
+        )}
       </Stack>
     );
 
