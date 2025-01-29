@@ -12,7 +12,7 @@ export const CobroConsulting = () => {
       <Stack spacing={0.5}>
         <Typography variant="inherit">
           {`Built Compass entirely from the ground up. The SasS
-          application launched in one year of development and is now used by around 80 US school districts to tracking
+          application launched in one year of development and is now used by around 120 clients (school districts) to tracking
           over total of 300,000 students and 20,000,000 services.`}
         </Typography>
 
