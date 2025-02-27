@@ -5,7 +5,7 @@ export const AyloHealth = () => {
   return (
     <ExperienceItem
       title="Senior Software Engineer"
-      company="Aylo Health"
+      company="Aylo Health - Ensomata"
       startEndYear={["2022", "Now"]}
       content={
         <Stack spacing={0.5}>
