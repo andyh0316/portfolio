@@ -1,5 +1,7 @@
 "use client";
 
+import ResumePage from "./resume/page";
+
 export default function Home() {
-  return (<div>Test</div>)
+  return <ResumePage />;
 }
