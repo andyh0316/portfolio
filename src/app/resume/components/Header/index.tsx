@@ -153,7 +153,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     const infoArea = (
-      <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "flex-start" }}>
+      <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "center" }}>
         {resumeContext?.isPdfMode && (
           <Stack position="relative" direction="row">
             <Box display={{ xs: "none", md: "block" }} position="absolute" top={5} left={-40}>
@@ -170,7 +170,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
           </Stack>
         )}
 
-        <Stack>
+        <Stack alignItems={{ sm: "flex-end", xs: "center" }}>
           <Typography variant="caption" lineHeight={"80%"} textAlign="right">
             Email Me:
           </Typography>
@@ -204,9 +204,9 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         </Stack>
 
         {!resumeContext?.isPdfMode && (
-          <Stack position="relative" direction="row">
-            <Stack alignItems={{ sm: "flex-end", xs: "flex-start" }}>
-              <Typography variant="caption" lineHeight={"140%"} textAlign={{ sm: "right", xs: "left" }}>
+          <Stack position="relative" direction="row" alignItems={{ sm: "flex-end", xs: "center" }}>
+            <Stack alignItems={{ sm: "flex-end", xs: "center" }}>
+              <Typography variant="caption" lineHeight={"140%"}>
                 Go to PDF Resume
               </Typography>
 
