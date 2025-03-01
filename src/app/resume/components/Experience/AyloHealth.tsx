@@ -4,7 +4,7 @@ import { ExperienceItem } from "./ExperienceItem";
 export const AyloHealth = () => {
   return (
     <ExperienceItem
-      title="Senior Software Engineer"
+      title="Senior Full-Stack Engineer"
       company="Aylo Health - Ensomata"
       startEndYear={["2022", "Now"]}
       content={
