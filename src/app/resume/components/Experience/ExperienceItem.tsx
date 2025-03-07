@@ -1,7 +1,8 @@
 import { Stack, Typography, Grid, Box } from "@/components";
+import { ReactNode } from "react";
 
 export const ExperienceItem = (props: {
-  title: string;
+  title: ReactNode;
   company: string;
   startEndYear: [string, string];
   content: React.ReactNode;
