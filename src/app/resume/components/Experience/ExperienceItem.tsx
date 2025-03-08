@@ -9,14 +9,9 @@ export const ExperienceItem = (props: {
 }) => {
   const title = () => {
     return (
-      <Typography
-        variant="inherit"
-        fontWeight={(theme) => theme.typography.fontWeightMedium}
-        fontSize="1.2em"
-        letterSpacing={"-0.01em"}
-      >
+      <Box fontWeight={(theme) => theme.typography.fontWeightMedium} fontSize="1.2em" letterSpacing={"-0.01em"}>
         {props.title}
-      </Typography>
+      </Box>
     );
   };
 

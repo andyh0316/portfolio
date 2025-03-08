@@ -24,8 +24,7 @@ export const AyloHealth = () => {
             <Stack direction="row" spacing={1}>
               <Box>-</Box>
               <Typography variant="inherit">
-                {`Led frontend development of the admin-site, used by Aylo's engineering team to manage the flagship
-                app.`}
+                {`Led frontend development of the admin-site, used by Aylo's engineering team to manage the clinical app.`}
               </Typography>
             </Stack>
           </Stack>
