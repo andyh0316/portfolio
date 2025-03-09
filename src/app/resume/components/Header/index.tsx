@@ -138,16 +138,16 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
 
     const nameArea = (
       <Stack>
-        <Typography fontSize="2.5em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
+        <Typography fontSize="2em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
           ANDY HONG
         </Typography>
         <Typography
-          fontSize="1.07em"
+          fontSize="1.25em"
           lineHeight="100%"
           fontWeight={(theme) => theme.typography.fontWeightRegular}
-          letterSpacing="0.04em"
+          letterSpacing="0.14em"
         >
-          HARDCORE Software Engineer
+          Software Engineer
         </Typography>
       </Stack>
     );
@@ -218,7 +218,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     return (
-      <Stack position="relative" minHeight="90px" px={5} alignItems={"center"} justifyContent={"center"} pt={0}>
+      <Stack position="relative" minHeight="80px" px={5} alignItems={"center"} justifyContent={"center"} pt={0}>
         <Stack
           width="100%"
           direction={{ sm: "row", xs: "column" }}
