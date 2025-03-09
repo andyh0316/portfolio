@@ -22,75 +22,46 @@ export const skills: Skill[] = [
     ),
   },
   {
-    label: "C#",
+    label: "C# + .NET",
     color: "primary",
-    experience: 12,
-    description: <>Primary backend language.</>,
+    experience: 10,
+    description: (
+      <>
+        Language and framework for building application backend. High expertise with datamodeling, migrations and LINQ
+      </>
+    ),
   },
   {
-    label: ".NET",
+    label: "NodeJS + Express.js",
     color: "primary",
-    experience: 12,
-    description: <>Primary framework used to develop backend APIs.</>,
+    experience: 3,
+    description: <>Much of its framework concepts is similar to C# .NET Entity Framework.</>,
   },
   {
     label: "ReactJS",
     color: "primary",
     experience: 6,
-    description: (
-      <>
-        My favorite frontend library. React provides component-based architecture with high level of flexibility and
-        control.
-      </>
-    ),
+    description: <>JavaScript library for building user interfaces with reusable components. High expertise.</>,
   },
   {
-    label: "Typescript",
+    label: "Typescript/Javascript",
     color: "primary",
-    experience: 6,
-    description: (
-      <>
-        An absolute night and day difference when compared to Javascript. Typescript provides type safety for the entire
-        application which saves me a lot of headaches during team development.
-      </>
-    ),
+    experience: 8,
+    description: <>Scripting languages that enable interactive web experiences. High expertise</>,
   },
   {
-    label: "Javascript",
+    label: "HTML/CSS",
     color: "primary",
-    experience: 10,
-    description: <>Needs typescript.</>,
+    experience: 8,
+    description: <>I can write in my sleep.</>,
   },
   {
     label: "SQL",
     color: "primary",
     experience: 10,
-    description: <>Working knowledge for daily operating and querying database.</>,
+    description: <>High familarity with writing long queries and stored procedures.</>,
   },
-  {
-    label: "NodeJS",
-    color: "primary",
-    experience: 6,
-    description: (
-      <>Secondary backend language. Much of its framework concepts is similar to C# .NET Entity Framework.</>
-    ),
-  },
-  {
-    label: "HTML/CSS",
-    color: "primary",
-    experience: 10,
-    description: (
-      <>I can write HTML/CSS in my sleep. Not fascinating or anything, just part of front-end development.</>
-    ),
-  },
-  {
-    label: "Entity Framework",
-    color: "primary",
-    experience: 12,
-    description: (
-      <>Primary ORM to manage database to datamodel relationship. High familarity with LINQ and database migrations.</>
-    ),
-  },
+
   {
     label: "Data Structures & Algorithms",
     color: "primary",
@@ -120,6 +91,6 @@ export const skills: Skill[] = [
   {
     label: "AI: Claude",
     color: "primary",
-    description: <>Just like everyone and their grandma.</>,
+    description: <>Just like everyone else.</>,
   },
 ];
