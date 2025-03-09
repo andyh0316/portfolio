@@ -6,13 +6,12 @@ export const SupraMed = () => {
     <ExperienceItem
       title="Full Stack Engineer"
       company="SupraMed (Now NexTech)"
-      startEndYear={["2014", "2015"]}
+      startEndYear={["2014", "2016"]}
       content={
         <Stack>
-          {`Joined a start up company and helped develop an enterprise-scale plastic surgeon EHR software system capable
-          of managing an entire facility's process. My role as the only full stack developer in the team includes
-          designing/developing frontend and developing backend, using AngularJS and .NET. The company was then quickly
-          acquired after only one year.`}
+          {`In this startup, I rapidly delivered new features for the company's EHR system,
+           while learning valuable skills during regular meetings with the software Architect. 
+           The startup was acquired within two years.`}
         </Stack>
       }
     />

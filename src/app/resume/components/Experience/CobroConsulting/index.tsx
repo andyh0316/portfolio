@@ -21,7 +21,7 @@ export const CobroConsulting = () => {
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Full-stack architecture and development: UI/UX design, frontend, backend and multi-tenant databases. 
+              {`Leading full-stack architecture and development: UI/UX design, frontend, backend and multi-tenant databases. 
               Utilized SOLID design principles and comprehensive integration tests to greatly improve the reliability of the system,
               increasing client retention rate to around 95%`}
             </Typography>
@@ -52,7 +52,7 @@ export const CobroConsulting = () => {
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Leadership: led a steady team of 2-3 engineers to maintain the application while growing our clients linearly.`}
+              {`Leadership: led a steady team of 2-3 engineers to maintain the application while growing our clients steadily.`}
             </Typography>
           </Stack>
         </Stack>
@@ -67,7 +67,7 @@ export const CobroConsulting = () => {
       title={
         <Stack direction="row" alignItems="center" spacing={0.5}>
           <Typography variant="inherit">Principal Software Engineer</Typography>
-          <Tooltip title="I was the most impactful at this company." placement="top">
+          <Tooltip title="My proudest accomplishments are in this company." placement="top">
             <StarIcon color="primary" fontSize="small" opacity={0.8} />
           </Tooltip>
         </Stack>

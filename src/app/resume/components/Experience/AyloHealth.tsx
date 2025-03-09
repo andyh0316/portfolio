@@ -10,21 +10,31 @@ export const AyloHealth = () => {
       content={
         <Stack spacing={0.5}>
           <Typography variant="inherit">
-            {`Full-stack developer leading 2 high-impact projects while collaborating with cross-functional teams.`}
+            {`Building Aylo's Electronic Health Record (EHR) system: Esomata, while collaborating within a highly skilled engineering team. `}
           </Typography>
 
           <Stack pl={2}>
             <Stack direction="row" spacing={1}>
               <Box>-</Box>
-              <Typography variant="inherit">
-                {`Led development of an internal application enabling real-time data analytics for Aylo's top executives.`}
-              </Typography>
+
+              <Typography variant="inherit">{`Contributed to the full stack development of Ensomata, currently used by around 20 Aylo hospitals and clinics.`}</Typography>
             </Stack>
+
+            {/* <Stack direction="row" spacing={1}>
+              <Box>-</Box>
+
+              <Typography variant="inherit">
+                {`Led the frontend development of an internal application enabling real-time data analytics for Aylo's top executives.`}
+              </Typography>
+            </Stack> */}
 
             <Stack direction="row" spacing={1}>
               <Box>-</Box>
+
               <Typography variant="inherit">
-                {`Led frontend development of the admin-site, used by Aylo's engineering team to manage the clinical app.`}
+                {`Implemened a two way synchronization processes between Aylo's core database and the clinical app Ensomata.
+                  The sync process decoupled Ensomata's data source from Aylo, enabling it to greatly improve performance, 
+                  reliability and development speed.`}
               </Typography>
             </Stack>
           </Stack>

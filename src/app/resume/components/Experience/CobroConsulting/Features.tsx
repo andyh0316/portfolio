@@ -2,9 +2,11 @@ import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card } from "@/comp
 import { ReactNode, useState } from "react";
 import { YoutubePlayer } from "../../common/YoutubePlayer";
 import { Breakpoint } from "@mui/material";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import ImageIcon from "@mui/icons-material/Image";
 
 interface FeatureItem {
-  feature: string;
+  feature: ReactNode;
   title: string;
   content: ReactNode;
   dialogMaxWidth: Breakpoint;
@@ -12,7 +14,47 @@ interface FeatureItem {
 
 const featureItems: FeatureItem[] = [
   {
-    feature: "Student Page",
+    feature: (
+      <Stack direction="row" spacing={0.5} alignItems="center">
+        <YouTubeIcon fontSize="small" />
+        <Typography variant="inherit">Data Import</Typography>
+      </Stack>
+    ),
+    title: "The simplest example of an Import process",
+    dialogMaxWidth: "md",
+    content: (
+      <Stack spacing={3}>
+        <Box width="100%">
+          <YoutubePlayer videoId="U6BL3kYPDAw" />
+        </Box>
+
+        <Card variant="outlined" sx={{ p: 2 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="inherit">
+              System for each client (school district) to import their own data.
+            </Typography>
+            <Typography variant="inherit">
+              Used by over 100 clients to process an average of 500 files daily,
+            </Typography>
+            <Typography variant="inherit">
+              Greatly increases the simplicity of data validation and speed of import. Can handle all variations of data
+              complexity.
+            </Typography>
+            <Typography variant="inherit">
+              Tech used: ReactJS, MUI, .NET, Websocket SignalR, Async processes, Excel parsing, AI.
+            </Typography>
+          </Stack>
+        </Card>
+      </Stack>
+    ),
+  },
+  {
+    feature: (
+      <Stack direction="row" spacing={0.5} alignItems="center">
+        <ImageIcon fontSize="small" />
+        <Typography variant="inherit">Student Page</Typography>
+      </Stack>
+    ),
     title: "Main page",
     dialogMaxWidth: "lg",
     content: (
@@ -49,37 +91,12 @@ const featureItems: FeatureItem[] = [
     ),
   },
   {
-    feature: "Data Import",
-    title: "The simplest example of an Import process",
-    dialogMaxWidth: "md",
-    content: (
-      <Stack spacing={3}>
-        <Box width="100%">
-          <YoutubePlayer videoId="U6BL3kYPDAw" />
-        </Box>
-
-        <Card variant="outlined" sx={{ p: 2 }}>
-          <Stack spacing={0.5}>
-            <Typography variant="inherit">
-              System for each client (school district) to import their own data.
-            </Typography>
-            <Typography variant="inherit">
-              Used by over 100 clients to process an average of 500 files daily,
-            </Typography>
-            <Typography variant="inherit">
-              Greatly increases the simplicity of data validation and speed of import. Can handle all variations of data
-              complexity.
-            </Typography>
-            <Typography variant="inherit">
-              Tech used: ReactJS, MUI, .NET, Websocket SignalR, Async processes, Excel parsing, AI.
-            </Typography>
-          </Stack>
-        </Card>
+    feature: (
+      <Stack direction="row" spacing={0.5} alignItems="center">
+        <ImageIcon fontSize="small" />
+        <Typography variant="inherit">Texting</Typography>
       </Stack>
     ),
-  },
-  {
-    feature: "Texting",
     title: "Texting",
     dialogMaxWidth: "md",
     content: (
@@ -117,8 +134,8 @@ export const Features = () => {
             </Stack>
           </Grid>
 
-          {featureItems.map((featureItem) => (
-            <Grid item key={featureItem.feature}>
+          {featureItems.map((featureItem, index) => (
+            <Grid item key={index}>
               <Chip
                 label={featureItem.feature}
                 onClick={() => {
