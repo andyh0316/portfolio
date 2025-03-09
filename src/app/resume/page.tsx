@@ -61,7 +61,7 @@ const ResumePage = () => {
               <Header onExpand={() => setExpanded(!expanded)} onClose={() => setVisible(false)} />
             </Box>
 
-            <Stack spacing={2} px={4} py={3}>
+            <Stack spacing={3} px={5} py={3}>
               <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
                 <Skills />
               </Box>
