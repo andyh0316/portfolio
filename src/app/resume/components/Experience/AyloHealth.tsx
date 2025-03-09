@@ -10,7 +10,7 @@ export const AyloHealth = () => {
       content={
         <Stack spacing={0.5}>
           <Typography variant="inherit">
-            {`Building Aylo's Electronic Health Record (EHR) system: Esomata, while collaborating within a highly skilled engineering team. `}
+            {`Building Aylo's Electronic Health Record (EHR) system: Ensomata, while collaborating within a highly skilled engineering team. `}
           </Typography>
 
           <Stack pl={2}>

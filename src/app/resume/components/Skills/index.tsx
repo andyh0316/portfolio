@@ -138,7 +138,7 @@ export const Skills = () => {
                     onChange={(e) => setViewMode(e.target.checked ? "detailed" : "simple")}
                   />
                 }
-                label={<Typography variant="caption">List View</Typography>}
+                label={<Typography variant="caption">Detailed View</Typography>}
               />
             </Stack>
           )}

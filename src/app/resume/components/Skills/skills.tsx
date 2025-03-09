@@ -32,7 +32,7 @@ export const skills: Skill[] = [
     ),
   },
   {
-    label: "NodeJS + Express.js",
+    label: "Node.js + Express.js",
     color: "primary",
     experience: 3,
     description: <>Much of its framework concepts is similar to C# .NET Entity Framework.</>,
@@ -76,17 +76,19 @@ export const skills: Skill[] = [
   {
     label: "UI/UX Design",
     color: "primary",
-    description: <>UI/UX design at Cobro using Figma.</>,
+    description: (
+      <>Speed learned UI/UX design at Cobro using Figma, to save the company some cost. Not an expert by any means.</>
+    ),
   },
   {
     label: "Azure",
     color: "primary",
-    description: <>For managing web servers, databases and CDNs</>,
+    description: <>For managing web-servers, databases, redis cache and Object storage.</>,
   },
   {
     label: "AWS",
     color: "primary",
-    description: <>For Lambdas.</>,
+    description: <>For managing Lambdas functions, SQS and SNS.</>,
   },
   {
     label: "AI: Claude",

@@ -52,7 +52,7 @@ export const CobroConsulting = () => {
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Leadership: led a steady team of 2-3 engineers to maintain the application while growing our clients steadily.`}
+              {`Leadership: led a team of 3 engineers while working with other core teams to maintain the application and grow our client base steadily.`}
             </Typography>
           </Stack>
         </Stack>
@@ -66,7 +66,7 @@ export const CobroConsulting = () => {
     <ExperienceItem
       title={
         <Stack direction="row" alignItems="center" spacing={0.5}>
-          <Typography variant="inherit">Principal Software Engineer</Typography>
+          <Typography variant="inherit">Lead Programmer</Typography>
           <Tooltip title="My proudest accomplishments are in this company." placement="top">
             <StarIcon color="primary" fontSize="small" opacity={0.8} />
           </Tooltip>
