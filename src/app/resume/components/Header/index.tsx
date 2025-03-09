@@ -114,7 +114,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
               }}
               variant="contained"
             >
-              {resumeContext?.isPdfMode ? "PDF Mode" : "Web Mode"}
+              {resumeContext?.isPdfMode ? "to Web Mode" : "to PDF Mode"}
             </Button>
           </Stack>
         )}
@@ -153,7 +153,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     const infoArea = (
-      <Stack spacing={2} alignItems={{ sm: "flex-end", xs: "center" }}>
+      <Stack spacing={0} alignItems={{ sm: "flex-end", xs: "center" }}>
         {resumeContext?.isPdfMode && (
           <Stack position="relative" direction="row">
             <Box display={{ xs: "none", md: "block" }} position="absolute" top={5} left={-40}>
@@ -171,13 +171,11 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         )}
 
         <Stack alignItems={{ sm: "flex-end", xs: "center" }}>
-          <Typography variant="caption" lineHeight={"80%"} textAlign="right">
+          {/* <Typography variant="caption" lineHeight={"80%"} textAlign="right">
             Email Me:
-          </Typography>
+          </Typography> */}
 
           <Stack direction="row" spacing={1} alignItems={"center"}>
-            <Link href={`mailto:${email}`}>{email}</Link>
-
             {!resumeContext?.isPdfMode && (
               <Tooltip
                 open={emailCopied}
@@ -200,15 +198,17 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
                 </IconButton>
               </Tooltip>
             )}
+
+            <Link href={`mailto:${email}`}>{email}</Link>
           </Stack>
         </Stack>
 
         {!resumeContext?.isPdfMode && (
           <Stack position="relative" direction="row" alignItems={{ sm: "flex-end", xs: "center" }}>
             <Stack alignItems={{ sm: "flex-end", xs: "center" }}>
-              <Typography variant="caption" lineHeight={"140%"}>
+              {/* <Typography variant="caption" lineHeight={"140%"}>
                 Go to PDF Resume
-              </Typography>
+              </Typography> */}
 
               <Link href={`http://${pdfResumeUrl}`}>resume.pdf</Link>
             </Stack>
@@ -218,7 +218,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     return (
-      <Stack position="relative" minHeight="110px" px={5} alignItems={"center"} justifyContent={"center"} pt={1}>
+      <Stack position="relative" minHeight="90px" px={5} alignItems={"center"} justifyContent={"center"} pt={0}>
         <Stack
           width="100%"
           direction={{ sm: "row", xs: "column" }}
@@ -238,7 +238,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     <Stack
       position="relative"
       bgcolor="#cad8e3"
-      pb={3}
+      pb={2}
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >
@@ -246,7 +246,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
         <AnimatedBackground />
       </Box> */}
 
-      {headerBar()}
+      {!resumeContext?.isPdfMode && headerBar()}
 
       {headerContent()}
     </Stack>

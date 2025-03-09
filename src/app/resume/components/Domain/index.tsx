@@ -3,10 +3,10 @@ import { ReactNode } from "react";
 
 export const Domain = (props: { title: ReactNode; afterTitle?: ReactNode; children: React.ReactNode }) => {
   return (
-    <Stack spacing={1}>
+    <Stack spacing={0.5}>
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box
-          fontSize="1.8em"
+          fontSize="1.5em"
           fontWeight={(theme) => theme.typography.fontWeightBold}
           textTransform={"uppercase"}
           letterSpacing={"0.15em"}
@@ -21,7 +21,7 @@ export const Domain = (props: { title: ReactNode; afterTitle?: ReactNode; childr
       </Stack>
 
       <Stack
-        pl={{ xs: 0, sm: 3 }} // no ident on small devices
+        pl={{ xs: 0, sm: 1.5 }} // no ident on small devices
       >
         {props.children}
       </Stack>

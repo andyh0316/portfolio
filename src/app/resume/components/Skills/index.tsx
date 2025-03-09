@@ -22,6 +22,7 @@ import { skillGroups } from "./skills";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { ResumeContext } from "../../context";
+import { SkillTag } from "./Skill";
 
 export const Skills = () => {
   const resumeContext = useContext(ResumeContext);
@@ -30,81 +31,35 @@ export const Skills = () => {
 
   const simpleView = () => {
     return (
-      <ClickAwayListener
-        onClickAway={() => {
-          setOpenTooltipFor(null);
-        }}
-      >
-        <Stack spacing={0.5}>
-          {skillGroups.map((group) => (
-            <Stack key={group.groupName} direction="row" spacing={1.2} alignItems={"center"}>
-              <Box width="110px">
-                <Typography fontWeight={(theme) => theme.typography.fontWeightRegular} fontSize={"1.10em"}>
-                  {group.groupName}:
-                </Typography>
-              </Box>
+      <Stack spacing={0.5}>
+        {skillGroups.map((group) => (
+          <Stack key={group.groupName} direction="row" spacing={1.2} alignItems={"center"}>
+            <Box width="110px">
+              <Typography fontWeight={(theme) => theme.typography.fontWeightRegular} fontSize={"1.10em"}>
+                {group.groupName}:
+              </Typography>
+            </Box>
 
-              <Box>
+            <Box>
+              <ClickAwayListener
+                onClickAway={() => {
+                  setOpenTooltipFor(null);
+                }}
+              >
                 <Grid container spacing={0.8}>
                   {group.skills.map((skill) => {
-                    let toolTip: ReactNode = null;
-
-                    if (skill.experience || skill.description) {
-                      toolTip = (
-                        <Stack spacing={2}>
-                          <Stack>
-                            {skill.experience && (
-                              <Typography variant="inherit">Experience: {skill.experience} years</Typography>
-                            )}
-                            <Typography variant="inherit">{skill.description}</Typography>
-                          </Stack>
-
-                          <Typography variant="inherit" sx={{ opacity: 0.75 }}>
-                            Click away to close this
-                          </Typography>
-                        </Stack>
-                      );
-                    }
-
                     return (
                       <Grid item key={skill.label}>
-                        <Tooltip
-                          title={toolTip}
-                          open={openTooltipFor === skill.label}
-                          // onClose={() => setOpenTooltipFor(null)} // close when hovered away
-                          placement="top"
-                          disableFocusListener
-                          disableHoverListener
-                          disableTouchListener
-                        >
-                          <Chip
-                            label={
-                              <Stack direction="row" alignItems="center" spacing={0.5}>
-                                <Typography variant="inherit">{skill.label}</Typography>
-                              </Stack>
-                            }
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (openTooltipFor === skill.label) {
-                                setOpenTooltipFor(null);
-                              } else {
-                                setOpenTooltipFor(skill.label);
-                              }
-                            }}
-                            color={skill.color}
-                            size="small"
-                            variant="outlined"
-                          />
-                        </Tooltip>
+                        <SkillTag skill={skill} />
                       </Grid>
                     );
                   })}
                 </Grid>
-              </Box>
-            </Stack>
-          ))}
-        </Stack>
-      </ClickAwayListener>
+              </ClickAwayListener>
+            </Box>
+          </Stack>
+        ))}
+      </Stack>
     );
   };
 
@@ -115,7 +70,7 @@ export const Skills = () => {
           const skills = skillGroup.skills;
 
           return (
-            <Stack spacing={1}>
+            <Stack key={skillGroup.groupName} spacing={1}>
               {/* <Typography>{skillGroup.groupName}</Typography> */}
               <Stack sx={{ border: "1px solid rgba(0,0,0,0.12)" }}>
                 {skills.map((skill) => (
