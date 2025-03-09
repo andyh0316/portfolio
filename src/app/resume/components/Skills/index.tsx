@@ -18,7 +18,7 @@ import {
 } from "@/components";
 import { ReactNode, useContext, useState } from "react";
 import { Domain } from "../Domain";
-import { skills } from "./skills";
+import { skillGroups } from "./skills";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { ResumeContext } from "../../context";
@@ -35,91 +35,118 @@ export const Skills = () => {
           setOpenTooltipFor(null);
         }}
       >
-        <Grid container spacing={0.8}>
-          {skills.map((skill) => {
-            let toolTip: ReactNode = null;
+        <Stack spacing={0.5}>
+          {skillGroups.map((group) => (
+            <Stack key={group.groupName} direction="row" spacing={1.2} alignItems={"center"}>
+              <Box width="110px">
+                <Typography fontWeight={(theme) => theme.typography.fontWeightRegular} fontSize={"1.10em"}>
+                  {group.groupName}:
+                </Typography>
+              </Box>
 
-            if (skill.experience || skill.description) {
-              toolTip = (
-                <Stack spacing={2}>
-                  <Stack>
-                    {skill.experience && (
-                      <Typography variant="inherit">Experience: {skill.experience} years</Typography>
-                    )}
-                    <Typography variant="inherit">{skill.description}</Typography>
-                  </Stack>
+              <Box>
+                <Grid container spacing={0.8}>
+                  {group.skills.map((skill) => {
+                    let toolTip: ReactNode = null;
 
-                  <Typography variant="inherit" sx={{ opacity: 0.75 }}>
-                    Click away to close this
-                  </Typography>
-                </Stack>
-              );
-            }
+                    if (skill.experience || skill.description) {
+                      toolTip = (
+                        <Stack spacing={2}>
+                          <Stack>
+                            {skill.experience && (
+                              <Typography variant="inherit">Experience: {skill.experience} years</Typography>
+                            )}
+                            <Typography variant="inherit">{skill.description}</Typography>
+                          </Stack>
 
-            return (
-              <Grid item key={skill.label}>
-                <Tooltip
-                  title={toolTip}
-                  open={openTooltipFor === skill.label}
-                  // onClose={() => setOpenTooltipFor(null)} // close when hovered away
-                  placement="top"
-                  disableFocusListener
-                  disableHoverListener
-                  disableTouchListener
-                >
-                  <Chip
-                    label={
-                      <Stack direction="row" alignItems="center" spacing={0.5}>
-                        <Typography variant="inherit">{skill.label}</Typography>
-                      </Stack>
+                          <Typography variant="inherit" sx={{ opacity: 0.75 }}>
+                            Click away to close this
+                          </Typography>
+                        </Stack>
+                      );
                     }
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (openTooltipFor === skill.label) {
-                        setOpenTooltipFor(null);
-                      } else {
-                        setOpenTooltipFor(skill.label);
-                      }
-                    }}
-                    color={skill.color}
-                    size="small"
-                    variant="outlined"
-                  />
-                </Tooltip>
-              </Grid>
-            );
-          })}
-        </Grid>
+
+                    return (
+                      <Grid item key={skill.label}>
+                        <Tooltip
+                          title={toolTip}
+                          open={openTooltipFor === skill.label}
+                          // onClose={() => setOpenTooltipFor(null)} // close when hovered away
+                          placement="top"
+                          disableFocusListener
+                          disableHoverListener
+                          disableTouchListener
+                        >
+                          <Chip
+                            label={
+                              <Stack direction="row" alignItems="center" spacing={0.5}>
+                                <Typography variant="inherit">{skill.label}</Typography>
+                              </Stack>
+                            }
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (openTooltipFor === skill.label) {
+                                setOpenTooltipFor(null);
+                              } else {
+                                setOpenTooltipFor(skill.label);
+                              }
+                            }}
+                            color={skill.color}
+                            size="small"
+                            variant="outlined"
+                          />
+                        </Tooltip>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </Box>
+            </Stack>
+          ))}
+        </Stack>
       </ClickAwayListener>
     );
   };
 
   const detailedView = () => {
     return (
-      <Stack spacing={0} sx={{ border: "1px solid rgba(0,0,0,0.12)" }}>
-        {skills.map((skill) => (
-          <Box
-            key={skill.label}
-            sx={{
-              bgcolor: resumeContext?.bgColor,
-              borderTop: "1px solid rgba(0,0,0,0.12)",
-              "&:first-of-type": {
-                borderTop: 0,
-              },
-            }}
-            p={1}
-          >
-            <Stack spacing={0}>
-              <Stack direction="row" justifyContent="space-between">
-                <Typography variant="subtitle1">{skill.label}</Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {skill.experience} {skill.experience && "years"}
-                </Typography>
+      <Stack spacing={2}>
+        {skillGroups.map((skillGroup) => {
+          const skills = skillGroup.skills;
+
+          return (
+            <Stack spacing={1}>
+              {/* <Typography>{skillGroup.groupName}</Typography> */}
+              <Stack sx={{ border: "1px solid rgba(0,0,0,0.12)" }}>
+                {skills.map((skill) => (
+                  <Box
+                    key={skill.label}
+                    sx={{
+                      bgcolor: resumeContext?.bgColor,
+                      borderTop: "1px solid rgba(0,0,0,0.12)",
+                      "&:first-of-type": {
+                        borderTop: 0,
+                      },
+                    }}
+                    p={1}
+                  >
+                    <Stack spacing={0.5}>
+                      <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="inherit" fontWeight={(theme) => theme.typography.fontWeightMedium}>
+                          {skill.label}:
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {skill.experience} {skill.experience && "years"}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="inherit">{skill.description}</Typography>
+                    </Stack>
+                  </Box>
+                ))}
               </Stack>
-              <Typography variant="body2">{skill.description}</Typography>
             </Stack>
-          </Box>
-        ))}
+          );
+        })}
       </Stack>
     );
   };
