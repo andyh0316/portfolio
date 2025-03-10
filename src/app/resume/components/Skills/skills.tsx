@@ -167,7 +167,7 @@ export const skillGroups: SkillGroup[] = [
       {
         label: "ChatGPT",
         color: "primary",
-        description: <>Just like everyone else.</>,
+        description: <>AI</>,
       },
     ],
   },
