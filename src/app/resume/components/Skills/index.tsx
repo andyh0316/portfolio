@@ -114,6 +114,7 @@ export const Skills = () => {
 
           {!resumeContext?.isPdfMode && (
             <FormControlLabel
+              labelPlacement="start"
               control={
                 <Switch
                   checked={viewMode === "detailed"}
@@ -129,23 +130,6 @@ export const Skills = () => {
           )}
         </Stack>
       }
-      // afterTitle={
-      //   <>
-      //     {!resumeContext?.isPdfMode && (
-      //       <Stack direction="row" spacing={1} alignItems="center" justifyContent={"space-between"}>
-      //         <FormControlLabel
-      //           control={
-      //             <Switch
-      //               checked={viewMode === "detailed"}
-      //               onChange={(e) => setViewMode(e.target.checked ? "detailed" : "simple")}
-      //             />
-      //           }
-      //           label={<Typography variant="caption">Detailed View</Typography>}
-      //         />
-      //       </Stack>
-      //     )}
-      //   </>
-      // }
     >
       <Collapse in={viewMode === "simple"}>{simpleView()}</Collapse>
       <Collapse in={viewMode === "detailed"} timeout={300}>
