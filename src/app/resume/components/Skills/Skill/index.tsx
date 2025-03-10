@@ -1,4 +1,4 @@
-import { Box, Chip, Popover, Stack, Typography } from "@/components";
+import { Box, Chip, Popover, Stack, Tooltip, Typography } from "@/components";
 import { ReactNode, useState } from "react";
 // import { TfiViewListAlt as ListViewIcon } from "react-icons/tfi";
 import { Skill } from "../skills";
@@ -7,11 +7,11 @@ export function SkillTag(props: { skill: Skill }) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const skill = props.skill;
-  let toolTip: ReactNode = null;
+  let content: ReactNode = null;
 
   if (skill.experience || skill.description) {
-    toolTip = (
-      <Stack spacing={2} p={2} maxWidth="500px" fontSize="1rem">
+    content = (
+      <Stack spacing={2} maxWidth="500px" fontSize="1rem">
         <Stack spacing={1}>
           {skill.experience && (
             <Typography variant="inherit" fontSize={"0.9em"}>
@@ -32,21 +32,23 @@ export function SkillTag(props: { skill: Skill }) {
 
   return (
     <Box>
-      <Chip
-        label={
-          <Stack direction="row" alignItems="center" spacing={0.5}>
-            <Typography variant="inherit">{skill.label}</Typography>
-          </Stack>
-        }
-        onClick={(e: any) => {
-          setAnchorEl(e.currentTarget);
-        }}
-        color={skill.color}
-        size="small"
-        variant="outlined"
-      />
+      <Tooltip title={content} placement="top">
+        <Chip
+          label={
+            <Stack direction="row" alignItems="center" spacing={0.5}>
+              <Typography variant="inherit">{skill.label}</Typography>
+            </Stack>
+          }
+          // onClick={(e: any) => {
+          //   setAnchorEl(e.currentTarget);
+          // }}
+          // color={skill.color}
+          size="small"
+          variant="filled"
+        />
+      </Tooltip>
 
-      <Popover
+      {/* <Popover
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
         onClose={() => {
@@ -66,8 +68,8 @@ export function SkillTag(props: { skill: Skill }) {
           },
         }}
       >
-        {toolTip}
-      </Popover>
+        {content}
+      </Popover> */}
     </Box>
   );
 }

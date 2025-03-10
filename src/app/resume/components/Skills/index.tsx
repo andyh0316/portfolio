@@ -46,7 +46,7 @@ export const Skills = () => {
                   setOpenTooltipFor(null);
                 }}
               >
-                <Grid container spacing={0.8}>
+                <Grid container spacing={0.5}>
                   {group.skills.map((skill) => {
                     return (
                       <Grid item key={skill.label}>
