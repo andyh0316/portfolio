@@ -15,30 +15,6 @@ export type Skill = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    groupName: "Architecture",
-    skills: [
-      {
-        label: "System Architecture",
-        color: "primary",
-        experience: 8,
-        description: (
-          <>
-            CoBro empowered me to become system architect: where I challenged myself to create a medium-sized SaaS
-            web-app from scratch. System design decisions and implemention made in all components of a web-system:
-            multi-tenant databases, backend presentation-layer, application-layer, service-layer, frontend architecture,
-            and deployment.
-          </>
-        ),
-      },
-      {
-        label: "Data Structures & Algorithms",
-        color: "primary",
-        experience: 5,
-        description: <>Good fundamental in DSA concepts such as Hashmaps, BigO, DFS/BFS, Backtracking, Graphs.</>,
-      },
-    ],
-  },
-  {
     groupName: "Backend",
     skills: [
       {
@@ -53,21 +29,33 @@ export const skillGroups: SkillGroup[] = [
         ),
       },
       {
-        label: "Node.js + Express.js",
-        color: "primary",
-        experience: 3,
-        description: <>Much of its framework concepts is similar to C# .NET Entity Framework.</>,
-      },
-      {
         label: "SQL",
         color: "primary",
         experience: 10,
-        description: <>High familarity with writing long queries and stored procedures.</>,
+        description: <>High expertise with writing queries, schema building and optimizing.</>,
+      },
+      {
+        label: "Node.js + Express.js",
+        color: "primary",
+        experience: 3,
+        description: <>Good familiarity building modern applications with this framework.</>,
+      },
+      {
+        label: "Java",
+        color: "primary",
+        description: <>University level and some professional experience</>,
       },
       {
         label: "Python3",
         color: "primary",
-        description: <>For scripting and data analysis.</>,
+        description: <>Casual familiarity: mostly used for quick scripting and analysis.</>,
+      },
+      {
+        label: "C",
+        color: "primary",
+        description: (
+          <>University level experience: pointers, memory allocations, building data structures, building compiler.</>
+        ),
       },
     ],
   },
@@ -75,16 +63,16 @@ export const skillGroups: SkillGroup[] = [
     groupName: "Frontend",
     skills: [
       {
-        label: "ReactJS",
-        color: "primary",
-        experience: 6,
-        description: <>JavaScript library for building user interfaces with reusable components. High expertise.</>,
-      },
-      {
         label: "Typescript/Javascript",
         color: "primary",
         experience: 8,
-        description: <>Scripting languages that enable interactive web experiences. High expertise</>,
+        description: <>High expertise</>,
+      },
+      {
+        label: "React",
+        color: "primary",
+        experience: 6,
+        description: <>High expertise.</>,
       },
       {
         label: "HTML/CSS",
@@ -104,7 +92,52 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    groupName: "Infrastructure",
+    groupName: "Fundamentals",
+    skills: [
+      {
+        label: "System Architecture",
+        color: "primary",
+        experience: 8,
+        description: (
+          <>
+            First hand experience in creating a SaaS application from conception to launch, making pivotal system design
+            decisions across frontend, backend and deployment. Utilized design principles such as SOLID, to maximize the
+            maintainability, reliability and performance of the application.
+          </>
+        ),
+      },
+      {
+        label: "Distributed Systems",
+        color: "primary",
+        experience: 5,
+        description: (
+          <>
+            Hands on experience with building web-servers load balancers, distributed databases, blob storage, redis,
+            lambda functions.
+          </>
+        ),
+      },
+      {
+        label: "Testing",
+        color: "primary",
+        experience: 10,
+        description: (
+          <>
+            Full experience in different levels of software testing: unit test, integration test, system test and
+            end-to-end testing. Using tools such as NUnit and Selenium.
+          </>
+        ),
+      },
+      {
+        label: "Data Structures & Algorithms",
+        color: "primary",
+        experience: 5,
+        description: <>Fundamental knowledge in DSA concepts such as Hashmaps, BigO, DFS/BFS, Backtracking, Graphs.</>,
+      },
+    ],
+  },
+  {
+    groupName: "Tools",
     skills: [
       {
         label: "Azure",
@@ -117,7 +150,22 @@ export const skillGroups: SkillGroup[] = [
         description: <>For managing Lambdas functions, SQS and SNS.</>,
       },
       {
-        label: "AI: Claude",
+        label: "Docker",
+        color: "primary",
+        description: <>For running containerized application locally.</>,
+      },
+      {
+        label: "NUnit",
+        color: "primary",
+        description: <>For running unit tests.</>,
+      },
+      {
+        label: "Selenium",
+        color: "primary",
+        description: <>For running end to end testing.</>,
+      },
+      {
+        label: "ChatGPT",
         color: "primary",
         description: <>Just like everyone else.</>,
       },
