@@ -5,7 +5,7 @@ export const SupraMed = () => {
   return (
     <ExperienceItem
       title="Full Stack Engineer"
-      company="SupraMed (Now NexTech)"
+      company="SupraMed"
       startEndYear={["2014", "2016"]}
       content={
         <Stack>

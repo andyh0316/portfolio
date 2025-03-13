@@ -165,7 +165,17 @@ export const skillGroups: SkillGroup[] = [
         description: <>For running end to end testing.</>,
       },
       {
-        label: "ChatGPT",
+        label: "LLM",
+        color: "primary",
+        description: <>AI</>,
+      },
+      {
+        label: "Copilot",
+        color: "primary",
+        description: <>AI</>,
+      },
+      {
+        label: "Cursor",
         color: "primary",
         description: <>AI</>,
       },

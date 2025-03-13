@@ -9,6 +9,7 @@ import { Header } from "./components/Header";
 import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
 import { ResumeProvider } from "./context";
+import { Intro } from "./components/Intro";
 
 const resumeBgColor = "#fcfcfc";
 
@@ -62,12 +63,16 @@ const ResumePage = () => {
             </Box>
 
             <Stack spacing={3} px={5} py={3}>
-              <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
-                <Skills />
+              <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
+                <Intro />
               </Box>
 
               <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
                 <Experience />
+              </Box>
+
+              <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
+                <Skills />
               </Box>
 
               <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>

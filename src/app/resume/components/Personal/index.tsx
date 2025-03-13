@@ -30,11 +30,11 @@ export const Personal = () => {
     <Domain title="Others">
       <Stack spacing={2}>
         <Stack spacing={{ sm: 0, xs: 1 }}>
-          {aboutResume()}
-
           {renderEducation()}
 
-          {renderQualities()}
+          {aboutResume()}
+
+          {/* {renderQualities()} */}
 
           {/* <Collapse in={viewMore}>{aboutResume()}</Collapse> */}
         </Stack>

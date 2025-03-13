@@ -32,7 +32,7 @@ export const AyloHealth = () => {
               <Box>-</Box>
 
               <Typography variant="inherit">
-                {`Implemened a two way synchronization processes between Aylo's core database and the clinical app Ensomata.
+                {`Implemened a two way synchronization processes between Aylo's core database and the Ensomata database.
                   The sync process decoupled Ensomata's data source from Aylo, enabling it to greatly improve performance, 
                   reliability and development speed.`}
               </Typography>
