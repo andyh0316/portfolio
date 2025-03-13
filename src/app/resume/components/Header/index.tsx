@@ -124,8 +124,8 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
 
   function headerContent() {
     const email = "NoSpamPlease2222@gmail.com";
-    const resumeUrl = "www.AndyHong.pro/resume";
-    const pdfResumeUrl = "www.AndyHong.pro/AndyHongResume.pdf";
+    const resumeUrl = "http://AndyHong.pro/resume";
+    const pdfResumeUrl = "http://AndyHong.pro/AndyHongResume.pdf";
 
     const copyEmail = () => {
       navigator.clipboard.writeText(email);
@@ -166,7 +166,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
                 Go to Web Resume
               </Typography>
 
-              <Link href={`http://${resumeUrl}`}>{resumeUrl}</Link>
+              <Link href={`${resumeUrl}`}>{resumeUrl}</Link>
             </Stack>
           </Stack>
         )}
@@ -211,7 +211,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
                 Go to PDF Resume
               </Typography> */}
 
-              <Link href={`http://${pdfResumeUrl}`}>resume.pdf</Link>
+              <Link href={`${pdfResumeUrl}`}>resume.pdf</Link>
             </Stack>
           </Stack>
         )}
