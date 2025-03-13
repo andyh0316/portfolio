@@ -39,6 +39,33 @@ const ResumePage = () => {
     };
   };
 
+  const resumeBody = () => {
+    const sections: React.ReactElement[] = [];
+
+    sections.push(<Intro />);
+    sections.push(<Experience />);
+    sections.push(<Skills />);
+    sections.push(<Personal />);
+
+    let delay = 300;
+    let translateY = 0;
+
+    return (
+      <Stack spacing={3} px={5} py={3}>
+        {sections.map((section, index) => {
+          delay += 200;
+          translateY += 50;
+
+          return (
+            <Box key={index} sx={{ ...transitionStyle({ delay: delay, translateY: translateY }) }}>
+              {section}
+            </Box>
+          );
+        })}
+      </Stack>
+    );
+  };
+
   return (
     <ResumeProvider bgColor={resumeBgColor}>
       <ThemeProvider theme={resumeTheme}>
@@ -62,23 +89,7 @@ const ResumePage = () => {
               <Header onExpand={() => setExpanded(!expanded)} onClose={() => setVisible(false)} />
             </Box>
 
-            <Stack spacing={3} px={5} py={3}>
-              <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
-                <Intro />
-              </Box>
-
-              <Box sx={{ ...transitionStyle({ delay: 700, translateY: 100 }) }}>
-                <Experience />
-              </Box>
-
-              <Box sx={{ ...transitionStyle({ delay: 500, translateY: 50 }) }}>
-                <Skills />
-              </Box>
-
-              <Box sx={{ ...transitionStyle({ delay: 800, translateY: 150 }) }}>
-                <Personal />
-              </Box>
-            </Stack>
+            {resumeBody()}
           </Stack>
         </Stack>
       </ThemeProvider>

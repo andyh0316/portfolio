@@ -12,40 +12,34 @@ export const CobroConsulting = () => {
     return (
       <Stack spacing={0.5}>
         <Typography variant="inherit">
-          {`Rebuilt the core web-system completely from the ground up, growing the company from 20 clients to 110. 
-          The system provides data analytics services to educational institutions, over a total of 
-          600,000 students and 40 million activities.`}
+          {`Rebuilt the core web-system completely from the ground up, growing the company from 20 clients to 110 (550%) in the first 3 years. 
+          The system provides data analytics services to educational institutions, serving over 600,000 students and tracking 40 million activities.`}
         </Typography>
 
         <Stack pl={2}>
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Leading full-stack architecture and development: UI/UX design, frontend, backend and multi-tenant databases. 
-              Utilized SOLID design principles and comprehensive integration tests to greatly improve the reliability of the system,
-              increasing client retention rate from 70% to around 95%`}
+              {`Leading full-stack architecture and development across UI/UX design, frontend, backend and multi-tenant databases. 
+                Delivered features: authentication, real-time reports, texting service, student surveys, file management and much more.
+                Increased client retention rate from 70% to 95% by improving system reliability through design principles and 
+                comprehensive testings`}
             </Typography>
           </Stack>
 
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Transformed infrastructure from single web-server to distributed system, greatly increasing reliability and performance, contributing to client retention rate.`}
+              {`Streamlined the data import (ETL) workflow with intuitive UI, automating schema mapping and optimizing validations, 
+              resulting in 90%+ in man hours reduction and 99.9%+ in data integrity.`}
             </Typography>
           </Stack>
 
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Streamlined the data import process, reducing operation hours by 80% and data accuracy to more than 99.9%.`}
-            </Typography>
-          </Stack>
-
-          <Stack direction="row" spacing={1}>
-            <Box>-</Box>
-            <Typography variant="inherit">
-              {`Continued rapid development of features: authentication, real-time reports, texting, surveys, file management and much more. 
-              All of which increased client growth of 550% during the first 4 years.`}
+              {`Architected cloud infrastructure solution using Azure, deploying multi web-servers with load balancing, object storage 
+               and elastic database clustering, greatly improving system uptime, scalability and disaster recovery capabilities.`}
             </Typography>
           </Stack>
 

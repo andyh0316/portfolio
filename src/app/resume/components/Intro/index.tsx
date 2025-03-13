@@ -1,12 +1,11 @@
 import { Domain } from "../Domain";
 
-
 export const Intro = () => {
   return (
-    <Domain title="Others">
-      Full-Stack Engineering Leader who owns products end-to-end. Built and scaled healthcare EHR and education
-      analytics platforms serving 300,000+ users, transforming system reliability and performance while driving
-      significant business growth.
+    <Domain title="Intro">
+      Lead software engineer with 10+ years of experience owning products end-to-end. Built and scaled SaaS applications
+      serving 600,000+ students, transforming system reliability and performance while driving significant business
+      growth.
     </Domain>
   );
 };
