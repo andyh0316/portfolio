@@ -9,7 +9,7 @@ export const Humana = () => {
       startEndYear={["2012", "2014"]}
       content={
         <Stack>
-          {`Began my journey in web backend and pushed myself to grow into a full stack role to deliver full features independently.`}
+          {`Began my journey in web backend and motivated myself to grow into a full stack role to deliver full features independently.`}
         </Stack>
       }
     />

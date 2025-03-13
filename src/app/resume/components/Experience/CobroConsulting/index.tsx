@@ -12,8 +12,8 @@ export const CobroConsulting = () => {
     return (
       <Stack spacing={0.5}>
         <Typography variant="inherit">
-          {`Rebuilt the core web-system completely from the ground up, growing the company from 20 clients to 110 (550%) in the first 3 years. 
-          The system provides data analytics services to educational institutions, serving over 600,000 students and tracking 40 million activities.`}
+          {`Rebuilt the core product completely from the ground up, growing the company from 20 clients to 110 in the first 3 years. 
+          The system provides analytics services to educational institutions, serving over 600,000 students and tracking 40 million activities.`}
         </Typography>
 
         <Stack pl={2}>
@@ -46,7 +46,7 @@ export const CobroConsulting = () => {
           <Stack direction="row" spacing={1}>
             <Box>-</Box>
             <Typography variant="inherit">
-              {`Leadership: led a team of 3 engineers while working with other core teams to maintain the application and grow our client base steadily.`}
+              {`Leadership: led a team of 3 engineers while working with other core teams to maintain and grow the app.`}
             </Typography>
           </Stack>
         </Stack>

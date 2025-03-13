@@ -137,18 +137,19 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     };
 
     const nameArea = (
-      <Stack>
-        <Typography fontSize="2em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
-          ANDY HONG
-        </Typography>
-        <Typography
-          fontSize="1.25em"
-          lineHeight="100%"
-          fontWeight={(theme) => theme.typography.fontWeightRegular}
-          letterSpacing="0.14em"
-        >
-          Software Engineer
-        </Typography>
+      <Stack justifyContent={"center"} alignItems={"center"}>
+        <Stack spacing={-1}>
+          <Typography fontSize="2em" fontWeight={(theme) => theme.typography.fontWeightRegular} letterSpacing="0.07em">
+            ANDY HONG
+          </Typography>
+          <Typography
+            fontSize="1.25em"
+            fontWeight={(theme) => theme.typography.fontWeightRegular}
+            letterSpacing="0.14em"
+          >
+            Software Engineer
+          </Typography>
+        </Stack>
       </Stack>
     );
 
@@ -218,7 +219,7 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     );
 
     return (
-      <Stack position="relative" minHeight="80px" px={5} alignItems={"center"} justifyContent={"center"} pt={0}>
+      <Stack position="relative" minHeight="0px" px={5} py={2} alignItems={"center"} justifyContent={"center"}>
         <Stack
           width="100%"
           direction={{ sm: "row", xs: "column" }}
@@ -238,7 +239,6 @@ export const Header = (props: { onExpand: () => void; onClose: () => void }) => 
     <Stack
       position="relative"
       bgcolor="#cad8e3"
-      pb={2}
       onMouseEnter={() => setOnHover(true)}
       onMouseLeave={() => setOnHover(false)}
     >

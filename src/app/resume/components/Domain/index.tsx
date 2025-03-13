@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export const Domain = (props: { title: ReactNode; children: React.ReactNode }) => {
   return (
-    <Stack spacing={1.5}>
+    <Stack spacing={0.75}>
       <Box
         fontSize="1.5em"
         fontWeight={(theme) => theme.typography.fontWeightBold}
