@@ -4,7 +4,7 @@ import { ExperienceItem } from "./ExperienceItem";
 export const SupraMed = () => {
   return (
     <ExperienceItem
-      title="Full Stack Engineer"
+      title="Full-Stack Engineer"
       company="SupraMed"
       startEndYear={["2014", "2016"]}
       content={
