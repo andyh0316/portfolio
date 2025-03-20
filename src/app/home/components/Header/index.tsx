@@ -41,6 +41,10 @@ export function Header() {
     <Box position="relative" ref={outerBoxRef} width="100%" minHeight="100vh" border={20}>
       <MyName moveTextToRef={moveMyNameToRef} firstName={firstName} lastName={lastName} />
 
+      {/* <Box position="absolute" left="50%" border={1} width={2} height="100%">
+        
+      </Box> */}
+
       <Stack>
         <Stack position="relative" direction="row">
           <Box>{`Hello, my name is\u00A0`}</Box>

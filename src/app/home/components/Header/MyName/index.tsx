@@ -1,7 +1,15 @@
 import { Box, Stack } from "@/components";
-import { ReactElement, RefObject, useEffect, useRef, useState } from "react";
+import { AnimationControls, motion, useAnimation } from "framer-motion";
+import { s } from "framer-motion/client";
+import { ReactElement, RefObject, useEffect, useMemo, useRef, useState } from "react";
 
-type Animation = "expand-initials" | "show-full-name" | "reposition";
+type NameObject = {
+  ref: RefObject<HTMLDivElement>;
+  name: string;
+  width: number;
+  animateControls: AnimationControls;
+  charAnimateControlsCollection: AnimationControls[];
+};
 
 export function MyName(props: {
   firstName: string;
@@ -9,57 +17,137 @@ export function MyName(props: {
   moveTextToRef: RefObject<HTMLDivElement>;
   onCompleteAnimation?: () => void;
 }) {
-  const [animations, setAnimations] = useState<Animation[]>([]);
   const [charBoxWidth, setCharBoxWidth] = useState<number>(); // in px: every charBox should be equal width
-
   const textRef = useRef<HTMLDivElement>(null);
+  const textAnimateControls = useAnimation();
 
-  // const [firstNameCharBoxes, setFirstNameCharBoxes] = useState<ReactElement[]
+  const [firstNameObj, setFirstNameObj] = useState<NameObject>({
+    ref: useRef<HTMLDivElement>(null),
+    name: props.firstName,
+    width: 0,
+    animateControls: useAnimation(),
+    charAnimateControlsCollection: Array(props.firstName.length)
+      .fill(null)
+      .map(() => useAnimation()),
+  });
 
-  // handle animations
+  const [lastNameObj, setLastNameObj] = useState<NameObject>({
+    ref: useRef<HTMLDivElement>(null),
+    name: props.lastName,
+    width: 0,
+    animateControls: useAnimation(),
+    charAnimateControlsCollection: Array(props.lastName.length)
+      .fill(null)
+      .map(() => useAnimation()),
+  });
+
+  const nameObjs = [firstNameObj, lastNameObj];
+  const spaceBetweenNames = 30;
+  const widthOfLetter = firstNameObj.width / firstNameObj.name.length;
+
+  // animations
   useEffect(() => {
-    startAnimation({ animation: "expand-initials", startTime: 500 });
-    startAnimation({ animation: "show-full-name", startTime: 1000 });
-    startAnimation({ animation: "reposition", startTime: 1500 });
-  }, []);
+    if (widthOfLetter) {
+      debugger;
+      sequence();
+    }
 
-  function startAnimation(options: { animation: Animation; startTime?: number }) {
-    setTimeout(() => {
-      setAnimations((prev) => [...prev, options.animation]);
-    }, options.startTime ?? 0);
-  }
+    async function sequence() {
+      const animationDuration = 0.5;
 
-  // handle reposition
-  useEffect(() => {
-    if (animations.includes("reposition")) {
+      //#region set initial states
+      firstNameObj.animateControls?.set({
+        left: widthOfLetter * (firstNameObj.name.length - 1) + spaceBetweenNames / 2,
+      });
+      lastNameObj.animateControls?.set({
+        left: -spaceBetweenNames / 2,
+      });
+
+      nameObjs.forEach((nameObj) => {
+        nameObj.charAnimateControlsCollection?.forEach((controls, index) => {
+          if (index >= 1) {
+            controls.set({
+              y: 100,
+              opacity: 0,
+            });
+          }
+        });
+      });
+      //#endregion
+
+      //#region animate
+      // fade-in
+      await textAnimateControls.start({
+        opacity: 1,
+        transition: { opacity: animationDuration },
+      });
+
+      // expand
+      await Promise.all(
+        nameObjs.map((nameObj) => {
+          return nameObj.animateControls?.start({
+            left: 0,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 15,
+            },
+          });
+        })
+      );
+
+      // show rest of characters
+      let totalCharIndex = 0;
+      const namesPromises = nameObjs.map((nameObj) => {
+        return nameObj.charAnimateControlsCollection?.map((controls) => {
+          const promiseReturn = controls.start({
+            y: 0,
+            opacity: 1,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 15,
+              delay: totalCharIndex * 0.05, // Stagger delay
+            },
+          });
+
+          totalCharIndex++;
+
+          return promiseReturn;
+        });
+      });
+
+      await Promise.all(namesPromises.flat());
+
+      //shrink and reposition text
       const moveTextToX = props.moveTextToRef.current!.getBoundingClientRect().x;
       const moveTextToY = props.moveTextToRef.current!.getBoundingClientRect().y;
-
       const textRefX = textRef.current!.getBoundingClientRect().x;
       const textRefY = textRef.current!.getBoundingClientRect().y;
-
-      textRef.current!.style.left = `${moveTextToX - textRefX}px`;
-      textRef.current!.style.top = `${moveTextToY - textRefY}px`;
-
-      setTimeout(() => {
-        props.onCompleteAnimation?.();
-      }, 2000);
     }
-  }, [animations]);
+  }, [widthOfLetter]);
 
-  function toCharBoxes(str: string) {
-    return Array.from(str).map((char, index) => {
+  // set width
+  useEffect(() => {
+    setFirstNameObj((prev) => ({
+      ...prev,
+      width: prev.ref.current!.offsetWidth,
+    }));
+
+    setLastNameObj((prev) => ({
+      ...prev,
+      width: prev.ref.current!.offsetWidth,
+    }));
+  }, []);
+
+  function toCharBoxes(nameObject: NameObject) {
+    return Array.from(nameObject.name).map((char, index) => {
       return (
         <Box
           key={index}
-          // border={1}
-          sx={{
-            transition: "opacity 500ms ease-in-out",
-            opacity: animations.includes("show-full-name") || index === 0 ? 1 : 0,
-            // width: "1em", // Makes each box the width of one character
-            // display: "inline-block",
-            // textAlign: "center",
-          }}
+          component={motion.div}
+          animate={nameObject.charAnimateControlsCollection?.[index]}
+          position="relative"
         >
           {char}
         </Box>
@@ -68,37 +156,46 @@ export function MyName(props: {
   }
 
   return (
-    <Box position="absolute" display="flex" width="100%" height="100%" alignItems="center" justifyContent={"center"}>
+    <Box
+      position="absolute"
+      display="flex"
+      width="100%"
+      height="100%"
+      alignItems="center"
+      justifyContent={"center"}
+      // bgcolor={"yellow"}
+    >
       <Stack
         ref={textRef}
+        component={motion.div}
+        animate={textAnimateControls}
         sx={{
           position: "relative",
-          // fontFamily: '"Courier New", Courier, monospace',
-          transition: "top 500ms ease-in-out, left 500ms ease-in-out",
-          top: 0,
-          left: 0,
-          //top: animations.includes("reposition") ? -100 : 0,
+          fontSize: 100,
+          opacity: 0,
         }}
       >
-        <Stack
-          direction="row"
-          spacing={0.5}
-          sx={{
-            transition: "transform 500ms ease-in-out, top 500ms ease-in-out",
-            transform: animations.includes("reposition") ? "scale(1)" : "scale(5)",
-          }}
-        >
+        <Stack direction="row" spacing={`${spaceBetweenNames}px`}>
           <Stack
+            ref={firstNameObj.ref}
+            component={motion.div}
+            animate={firstNameObj.animateControls}
             position="relative"
             direction="row"
-            sx={{
-              transition: "left 500ms ease-in-out",
-              left: animations.includes("expand-initials") ? 0 : 33,
-            }}
+            // left={widthOfLetter * (firstNameObj.name.length - 1) + spaceInName / 2}
           >
-            {toCharBoxes(props.firstName)}
+            {toCharBoxes(firstNameObj)}
           </Stack>
-          <Stack direction="row">{toCharBoxes(props.lastName)}</Stack>
+          <Stack
+            ref={lastNameObj.ref}
+            component={motion.div}
+            animate={lastNameObj.animateControls}
+            position="relative"
+            direction="row"
+            // left={-spaceInName / 2}
+          >
+            {toCharBoxes(lastNameObj)}
+          </Stack>
         </Stack>
       </Stack>
     </Box>
