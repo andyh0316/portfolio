@@ -1,13 +1,11 @@
 import { HomeContext } from "@/app/home/context";
 import { Box, Button, Stack } from "@/components";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
-import { s } from "framer-motion/client";
-import React, { ReactElement, RefObject, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { ReactElement, RefObject, useContext, useEffect, useRef, useState } from "react";
 
 type NameObject = {
   ref: RefObject<HTMLDivElement>;
   name: string;
-  width: number;
   animateControls: AnimationControls;
   charAnimateControlsCollection: AnimationControls[];
 };
@@ -15,66 +13,64 @@ type NameObject = {
 export function MyName(props: {
   firstName: string;
   lastName: string;
-  moveTextToRef: RefObject<HTMLDivElement>;
-  // onCompleteAnimation?: () => void;
-  onCompleted?: (textElement: ReactElement) => void;
+  onAnimationCompleted?: (textElement: ReactElement) => void;
 }) {
+  const [mounted, setMounted] = useState<boolean>(false);
+  const [animationsCompleted, setAnimationsCompleted] = useState<boolean>(false);
+
   const homeContext = useContext(HomeContext);
-  const [finalTextElement, setFinalTextElement] = useState<ReactElement>();
   const [charBoxWidth, setCharBoxWidth] = useState<number>(); // in px: every charBox should be equal width
   const textRef = useRef<HTMLDivElement>(null);
   const textAnimateControls = useAnimation();
-  const [moveName, setMoveName] = useState<boolean>(false);
 
-  const [firstNameObj, setFirstNameObj] = useState<NameObject>({
+  const firstNameObj: NameObject = {
     ref: useRef<HTMLDivElement>(null),
     name: props.firstName,
-    width: 0,
     animateControls: useAnimation(),
     charAnimateControlsCollection: Array(props.firstName.length)
       .fill(null)
       .map(() => useAnimation()),
-  });
+  };
 
-  const [lastNameObj, setLastNameObj] = useState<NameObject>({
+  const lastNameObj: NameObject = {
     ref: useRef<HTMLDivElement>(null),
     name: props.lastName,
-    width: 0,
     animateControls: useAnimation(),
     charAnimateControlsCollection: Array(props.lastName.length)
       .fill(null)
       .map(() => useAnimation()),
-  });
+  };
 
   const nameObjs = [firstNameObj, lastNameObj];
-  const spaceBetweenNames = 30;
-  const widthOfLetter = firstNameObj.width / firstNameObj.name.length;
+  const widthOfLetter = firstNameObj.ref.current
+    ? firstNameObj.ref.current.offsetWidth / firstNameObj.name.length
+    : undefined;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // animations
   useEffect(() => {
     if (widthOfLetter) {
-      startAnimations();
+      startAnimations(widthOfLetter);
     }
   }, [widthOfLetter]);
 
   // set width
-  useEffect(() => {
-    setFirstNameObj((prev) => ({
-      ...prev,
-      width: prev.ref.current!.offsetWidth,
-    }));
-
-    setLastNameObj((prev) => ({
-      ...prev,
-      width: prev.ref.current!.offsetWidth,
-    }));
-  }, []);
-
   // useEffect(() => {
-  //   if (finalTextElement) props.onCompleted?.(finalTextElement);
-  // }, [finalTextElement]);
+  //   setFirstNameObj((prev) => ({
+  //     ...prev,
+  //     width: firstNameObj.ref.current!.offsetWidth,
+  //   }));
 
-  async function startAnimations() {
+  //   setLastNameObj((prev) => ({
+  //     ...prev,
+  //     width: lastNameObj.ref.current!.offsetWidth,
+  //   }));
+  // }, [mounted]);
+
+  async function startAnimations(widthOfLetter: number) {
     const animationDuration = 0.5;
 
     //#region set initial states
@@ -147,8 +143,6 @@ export function MyName(props: {
     await Promise.all(namesPromises.flat());
 
     //shrink and reposition text
-    const textHtml = textRef.current?.outerHTML!;
-
     // textAnimateControls.start({
     //   scale: 1,
     //   transition: { scale: animationDuration },
@@ -159,10 +153,10 @@ export function MyName(props: {
     //   transition: { duration: animationDuration },
     // });
 
-    props.onCompleted?.(textElement());
+    props.onAnimationCompleted?.(textElement());
+    setAnimationsCompleted(true);
     // props.onCompleted?.(textHtml);
 
-    setFinalTextElement(textElement());
     // homeContext?.setNameMoved(true);
     // const moveTextToX = props.moveTextToRef.current!.getBoundingClientRect().x;
     // const moveTextToY = props.moveTextToRef.current!.getBoundingClientRect().y;
@@ -194,7 +188,7 @@ export function MyName(props: {
         animate={textAnimateControls}
         sx={{
           position: "relative",
-          transform: "scale(1)",
+          // transform: "scale(1)",
           // fontSize: 100,
           // opacity: 0,
         }}
@@ -233,38 +227,14 @@ export function MyName(props: {
       alignItems="center"
       justifyContent={"center"}
       fontSize={"6rem"}
-
-      // bgcolor={"yellow"}
     >
       <AnimatePresence>
-        {homeContext?.isNameMoved === false && (
+        {animationsCompleted === false && (
           <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
             {textElement()}
           </Box>
         )}
       </AnimatePresence>
-
-      <Button
-        onClick={() => {
-          homeContext?.setNameMoved(true);
-        }}
-      >
-        Move
-      </Button>
-
-      {/* {homeContext?.isNameMoved === false && (
-        <motion.div
-          layoutId="moving-element"
-          style={{
-            position: "relative",
-            left: 0,
-            top: 0,
-            width: 50,
-            height: 50,
-            background: "blue",
-          }}
-        />
-      )} */}
     </Box>
   );
 }
