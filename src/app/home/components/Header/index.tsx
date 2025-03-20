@@ -18,6 +18,7 @@ export function Header() {
   const moveMyNameToRef = useRef<HTMLDivElement>(null);
 
   const [fullNameElement, setFullNameElement] = useState<ReactElement>();
+  const [fullNameHtml, setFullNameHtml] = useState<string>();
 
   const myNameInitial = "AH";
   const myNameFinal = "Andy Hong";
@@ -64,17 +65,17 @@ export function Header() {
         
       </Box> */}
 
-      <Stack fontSize={"2em"}>
+      <Stack fontSize={"2rem"}>
         <Stack position="relative" direction="row">
           <Box>{`Hello, my name is\u00A0`}</Box>
 
-          <AnimatePresence>
-            {homeContext?.isNameMoved === true && (
+          {fullNameElement && (
+            <AnimatePresence>
               <Box layoutId={homeContext?.nameContainerLayoutId} ref={moveMyNameToRef} component={motion.div}>
-                Andy Hong
+                {fullNameElement}
               </Box>
-            )}
-          </AnimatePresence>
+            </AnimatePresence>
+          )}
 
           {/* {homeContext?.isNameMoved === true && (
             <motion.div
