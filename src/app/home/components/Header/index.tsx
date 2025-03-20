@@ -2,17 +2,22 @@
 
 import { Box, Stack, Typography, Button } from "@/components";
 import { BoxProps, SxProps, Theme } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { MyName } from "./MyName";
+import { AnimatePresence, motion } from "framer-motion";
+import { HomeContext } from "../../context";
 
 // transition
 // "AH" fades in centerered
 // "AH" expands into "Andy Hong"
 // "Andy Hong" zooms out and repositions into section of text
 export function Header() {
+  const homeContext = useContext(HomeContext);
   const outerBoxRef = useRef<HTMLDivElement>(null);
   const myNameRef = useRef<HTMLDivElement>(null);
   const moveMyNameToRef = useRef<HTMLDivElement>(null);
+
+  const [fullNameElement, setFullNameElement] = useState<ReactElement>();
 
   const myNameInitial = "AH";
   const myNameFinal = "Andy Hong";
@@ -38,19 +43,53 @@ export function Header() {
   }, []);
 
   return (
-    <Box position="relative" ref={outerBoxRef} width="100%" minHeight="100vh" border={20}>
-      <MyName moveTextToRef={moveMyNameToRef} firstName={firstName} lastName={lastName} />
+    <Box
+      position="relative"
+      ref={outerBoxRef}
+      width="100%"
+      // minHeight="100vh"
+      // border={20}
+      p={10}
+    >
+      <MyName
+        moveTextToRef={moveMyNameToRef}
+        firstName={firstName}
+        lastName={lastName}
+        onCompleted={(textElement) => {
+          setFullNameElement(textElement);
+        }}
+      />
 
       {/* <Box position="absolute" left="50%" border={1} width={2} height="100%">
         
       </Box> */}
 
-      <Stack>
+      <Stack fontSize={"2em"}>
         <Stack position="relative" direction="row">
           <Box>{`Hello, my name is\u00A0`}</Box>
-          <Box ref={moveMyNameToRef}>
-            {firstName} {lastName}
-          </Box>
+
+          <AnimatePresence>
+            {homeContext?.isNameMoved === true && (
+              <Box layoutId={homeContext?.nameContainerLayoutId} ref={moveMyNameToRef} component={motion.div}>
+                Andy Hong
+              </Box>
+            )}
+          </AnimatePresence>
+
+          {/* {homeContext?.isNameMoved === true && (
+            <motion.div
+              layoutId="moving-element"
+              style={{
+                position: "relative",
+                left: 0,
+                top: 0,
+                width: 50,
+                height: 50,
+                background: "blue",
+                transform: "scale(3)",
+              }}
+            />
+          )} */}
 
           {/* <Box
             ref={myNameRef}
