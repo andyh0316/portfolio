@@ -1,7 +1,16 @@
-import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@mui/material";
-import { skillData } from "./skillData";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  Container,
+  Grid,
+  Typography
+} from "@mui/material";
+import { projectData } from "./projectData";
 
-export function Skills() {
+export function Projects() {
   return (
     <Box sx={{ py: 10, position: "relative" }}>
       <Container maxWidth="lg">
@@ -9,13 +18,13 @@ export function Skills() {
           <Box component="span" sx={{ color: "secondary.main", mr: 1 }}>
             {"<"}
           </Box>
-          Skills
+          Projects
           <Box component="span" sx={{ color: "secondary.main", ml: 1 }}>
             {"/>"}
           </Box>
         </Typography>
         <Grid container spacing={4}>
-          {skillData.map((skill, index) => (
+          {projectData.map((project, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <Card
                 sx={{
@@ -38,8 +47,8 @@ export function Skills() {
                   <CardMedia
                     component="img"
                     height="180"
-                    image={skill.image}
-                    alt={skill.title}
+                    image={project.image}
+                    alt={project.title}
                     sx={{
                       transition: "transform 0.5s ease",
                     }}
@@ -48,13 +57,13 @@ export function Skills() {
                 </Box>
                 <CardContent sx={{ flexGrow: 1, p: 3 }}>
                   <Typography gutterBottom variant="h5" component="h3" sx={{ fontWeight: 400 }}>
-                    {skill.title}
+                    {project.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" paragraph>
-                    {skill.description}
+                    {project.description}
                   </Typography>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 3 }}>
-                    {skill.technologies.map((tech) => (
+                    {project.technologies.map((tech) => (
                       <Chip
                         key={tech}
                         label={tech}
