@@ -26,7 +26,8 @@ import { Header } from "./components/Header/Header";
 import { HomeProvider } from "./context";
 
 // Create a dark minimalist theme
-const fontFamily = '"Courier New", Courier, monospace'; // need fonts that have equal spacing for the animation
+// const fontFamily = '"Courier New", Courier, monospace'; // need fonts that have equal spacing for the animation
+const fontFamily = '"Helvetica Neue", Arial, sans-serif';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
