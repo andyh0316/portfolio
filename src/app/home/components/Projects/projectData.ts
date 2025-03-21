@@ -7,21 +7,21 @@ interface Project {
 
 export const projectData: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with user authentication, product management, and payment processing.",
-    image: "https://via.placeholder.com/300x180",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+    title: "Import System",
+    description: "Convenient system streamlining data import ETL process for any educational instutition.",
+    image: "/cobro-demo/student-list.png",
+    technologies: ["React", "Websocket", "C#"],
   },
   {
     title: "Task Management App",
     description: "Collaborative task management application with real-time updates and team workflow capabilities.",
-    image: "https://via.placeholder.com/300x180",
+    image: "/cobro-demo/student-page.png",
     technologies: ["React", "Firebase", "Material-UI"],
   },
   {
     title: "Portfolio Website",
     description: "Responsive portfolio website showcasing projects and skills with dynamic content loading.",
-    image: "https://via.placeholder.com/300x180",
+    image: "/cobro-demo/student-filter.png",
     technologies: ["Next.js", "Material-UI", "Framer Motion"],
   },
 ];

@@ -19,7 +19,7 @@ export function Header() {
   const outerBoxRef = useRef<HTMLDivElement>(null);
   const moveMyNameToRef = useRef<HTMLDivElement>(null);
 
-  const [fullNameElement, setFullNameElement] = useState<ReactElement>();
+  const [finalizedName, setFinalizedName] = useState<ReactElement>();
 
   const firstName = "Andy";
   const lastName = "Hong";
@@ -67,8 +67,8 @@ export function Header() {
             }}
             // border={1}
           >
-            {fullNameElement}
-            {!fullNameElement && "\u00A0"}
+            {finalizedName}
+            {!finalizedName && "\u00A0"}
           </Box>
         </AnimatePresence>
         <Typography
@@ -155,12 +155,12 @@ export function Header() {
         </Grid>
       </Container>
 
-      {!fullNameElement && (
+      {!finalizedName && (
         <MyName
           firstName={firstName}
           lastName={lastName}
           onAnimationCompleted={(textElement) => {
-            setFullNameElement(textElement);
+            setFinalizedName(textElement);
           }}
         />
       )}

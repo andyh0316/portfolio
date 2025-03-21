@@ -14,6 +14,7 @@ import {
   Avatar,
   Chip,
   useMediaQuery,
+  CssBaseline,
 } from "@mui/material";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import CodeIcon from "@mui/icons-material/Code";
@@ -25,6 +26,7 @@ import { Header } from "./components/Header/Header";
 import { HomeProvider } from "./context";
 
 // Create a dark minimalist theme
+const fontFamily = '"Courier New", Courier, monospace'; // need fonts that have equal spacing for the animation
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -44,7 +46,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: "inherit",
     h1: {
       fontWeight: 300,
     },
@@ -91,99 +93,14 @@ const HomeContent = () => {
     <ThemeProvider theme={darkTheme}>
       <Box
         sx={{
+          fontFamily: fontFamily,
           // font not applying
-          // fontFamily: '"Courier New", Courier, monospace', // need fonts that have equal spacing for the animation
           bgcolor: "background.default",
           color: "text.primary",
           minHeight: "100vh",
           pb: 6,
         }}
       >
-        {/* Hero Section */}
-        {/* <Box
-          sx={{
-            pt: 12,
-            pb: 10,
-            background: "linear-gradient(135deg, #121212 0%, #1E1E1E 100%)",
-            position: "relative",
-            overflow: "hidden",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: "-50%",
-              right: "-10%",
-              width: "60%",
-              height: "200%",
-              background: "radial-gradient(ellipse at center, rgba(187, 134, 252, 0.15) 0%, rgba(0, 0, 0, 0) 70%)",
-              zIndex: 0,
-              borderRadius: "50%",
-            },
-          }}
-        >
-          <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-            <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} md={7}>
-                <Typography
-                  component="h1"
-                  variant="h2"
-                  color="text.primary"
-                  gutterBottom
-                  sx={{
-                    fontWeight: 300,
-                    letterSpacing: 1.5,
-                  }}
-                >
-                  Developer Name
-                </Typography>
-                <Typography
-                  variant="h5"
-                  color="text.secondary"
-                  paragraph
-                  sx={{
-                    maxWidth: "600px",
-                    lineHeight: 1.6,
-                    mb: 4,
-                  }}
-                >
-                  Full Stack Developer specializing in modern web applications with a focus on React, Node.js, and cloud
-                  technologies.
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 3,
-                    mt: 4,
-                    "& svg": {
-                      fontSize: 28,
-                      transition: "all 0.2s",
-                      "&:hover": {
-                        color: "primary.main",
-                        transform: "translateY(-3px)",
-                      },
-                    },
-                  }}
-                >
-                  <GitHubIcon />
-                  <LinkedInIcon />
-                  <TwitterIcon />
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
-                <Avatar
-                  sx={{
-                    width: { xs: 200, md: 280 },
-                    height: { xs: 200, md: 280 },
-                    boxShadow: "0 0 30px rgba(187, 134, 252, 0.3)",
-                    border: "4px solid rgba(255, 255, 255, 0.1)",
-                  }}
-                  alt="Developer Name"
-                  src="/path-to-profile-image.jpg"
-                />
-              </Grid>
-            </Grid>
-          </Container>
-        </Box> */}
-
         <Header />
 
         <Projects />
