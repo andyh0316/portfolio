@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function CodeDisplay() {
   const [mounted, setMounted] = useState(false);
-  const chars = 5000;
+  const chars = 50;
 
   const containerAnimateControls = useAnimation();
 

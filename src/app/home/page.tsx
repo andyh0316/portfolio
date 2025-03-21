@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack } from "@/components";
+import { Box, Stack } from "@/components";
 import { HomeContext, HomeProvider } from "./context";
 import { useContext } from "react";
 import { Header } from "./components/Header/Header";
@@ -20,6 +20,7 @@ function HomeContent() {
       // spacing={20}
     >
       {/* <CodeDisplay /> */}
+      <Box position="absolute" left="50%" border={1} width={2} height="100%"></Box>
 
       <Header />
 

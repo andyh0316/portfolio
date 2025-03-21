@@ -30,7 +30,7 @@ export function Header() {
         width: offsetWidth,
         height: offsetHeight,
       });
-      console.log(`Box dimensions: ${offsetWidth}px × ${offsetHeight}px`);
+      // console.log(`Box dimensions: ${offsetWidth}px × ${offsetHeight}px`);
     }
   }, []);
 
@@ -50,10 +50,6 @@ export function Header() {
           setFullNameElement(textElement);
         }}
       />
-
-      {/* <Box position="absolute" left="50%" border={1} width={2} height="100%">
-        
-      </Box> */}
 
       <Stack fontSize={"2rem"}>
         <Stack position="relative" direction="row">

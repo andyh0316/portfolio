@@ -1,7 +1,8 @@
 import { HomeContext } from "@/app/home/context";
 import { Box, Button, Stack } from "@/components";
+import { sleep } from "@/utils";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
-import { ReactElement, RefObject, useContext, useEffect, useRef, useState } from "react";
+import { ReactElement, RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type NameObject = {
   ref: RefObject<HTMLDivElement>;
@@ -9,13 +10,16 @@ type NameObject = {
   animateControls: AnimationControls;
   charAnimateControlsCollection: AnimationControls[];
 };
-
+console.log("start");
+console.time("timer");
 export function MyName(props: {
   firstName: string;
   lastName: string;
   onAnimationCompleted?: (textElement: ReactElement) => void;
 }) {
   const [mounted, setMounted] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [_, setRerenderToggle] = useState<boolean>(false);
   const [animationsCompleted, setAnimationsCompleted] = useState<boolean>(false);
 
   const homeContext = useContext(HomeContext);
@@ -46,16 +50,38 @@ export function MyName(props: {
     ? firstNameObj.ref.current.offsetWidth / firstNameObj.name.length
     : undefined;
 
+  useLayoutEffect(() => {
+    // setAnimationInitials();
+
+    console.timeLog("timer", "useLayoutEffect");
+  }, []);
+
   useEffect(() => {
+    console.timeLog("timer", "useEffect");
+
     setMounted(true);
   }, []);
+
+  // animations: using mounted make sure they only run once in strict mode
+  useEffect(() => {
+    if (mounted) {
+      setAnimationInitials();
+      startAnimations();
+    }
+  }, [mounted]);
 
   // animations
   useEffect(() => {
     if (widthOfLetter) {
-      startAnimations(widthOfLetter);
+      console.timeLog("timer", "widthOfLetter calculated");
+
+      // startAnimations(widthOfLetter);
     }
   }, [widthOfLetter]);
+
+  function rerender() {
+    setRerenderToggle((prev) => !prev);
+  }
 
   // set width
   // useEffect(() => {
@@ -70,24 +96,38 @@ export function MyName(props: {
   //   }));
   // }, [mounted]);
 
-  async function startAnimations(widthOfLetter: number) {
-    const animationDuration = 0.5;
-
+  async function setAnimationInitials() {
     //#region set initial states
     textAnimateControls.set({
-      // opacity: 0,
+      opacity: 0,
       // scale: 5,
     });
 
-    firstNameObj.animateControls?.set({
-      left: widthOfLetter * (firstNameObj.name.length - 1) + widthOfLetter / 2,
-    });
-    lastNameObj.animateControls?.set({
-      left: -widthOfLetter / 2,
-    });
+    // firstNameObj.animateControls?.set({
+    //   left: widthOfLetter * (firstNameObj.name.length - 1) + widthOfLetter / 2,
+    // });
+    // lastNameObj.animateControls?.set({
+    //   left: -widthOfLetter / 2,
+    // });
+
+    {
+      const charFraction = 1 / firstNameObj.name.length;
+      const x = charFraction * (firstNameObj.name.length - 1) + charFraction / 4;
+      firstNameObj.animateControls?.set({
+        x: `${x * 100}%`,
+      });
+    }
+
+    {
+      const charFraction = 1 / lastNameObj.name.length;
+      const x = charFraction / 4;
+      lastNameObj.animateControls?.set({
+        x: `-${x * 100}%`,
+      });
+    }
 
     nameObjs.forEach((nameObj) => {
-      nameObj.charAnimateControlsCollection?.forEach((controls, index) => {
+      nameObj.charAnimateControlsCollection?.forEach(async (controls, index) => {
         if (index >= 1) {
           controls.set({
             y: 100,
@@ -96,10 +136,17 @@ export function MyName(props: {
         }
       });
     });
-    //#endregion
 
-    //#region animate
-    // fade-in
+    rerender();
+  }
+
+  async function startAnimations() {
+    const animationDuration = 0.5;
+
+    await sleep(2000);
+    // setLoading(false);
+
+    // fade in
     await textAnimateControls.start({
       opacity: 1,
       transition: { opacity: animationDuration },
@@ -109,7 +156,7 @@ export function MyName(props: {
     await Promise.all(
       nameObjs.map((nameObj) => {
         return nameObj.animateControls?.start({
-          left: 0,
+          x: 0,
           transition: {
             type: "spring",
             stiffness: 300,
@@ -173,6 +220,7 @@ export function MyName(props: {
           animate={nameObject.charAnimateControlsCollection?.[index]}
           position="relative"
           color={"blue"}
+          // border={1}
         >
           {char}
         </Box>
@@ -186,37 +234,27 @@ export function MyName(props: {
         ref={textRef}
         component={motion.div}
         animate={textAnimateControls}
-        sx={{
-          position: "relative",
-          // transform: "scale(1)",
-          // fontSize: 100,
-          // opacity: 0,
-        }}
+        direction="row"
+        sx={
+          {
+            // transform: "scale(1)",
+            // fontSize: 100,
+            // opacity: 0,
+          }
+        }
       >
-        <Stack direction="row">
-          <Stack
-            ref={firstNameObj.ref}
-            component={motion.div}
-            animate={firstNameObj.animateControls}
-            position="relative"
-            direction="row"
-          >
-            {toCharBoxes(firstNameObj)}
-          </Stack>
-          <Box>{"\u00A0"}</Box>
-          <Stack
-            ref={lastNameObj.ref}
-            component={motion.div}
-            animate={lastNameObj.animateControls}
-            position="relative"
-            direction="row"
-          >
-            {toCharBoxes(lastNameObj)}
-          </Stack>
+        <Stack ref={firstNameObj.ref} component={motion.div} animate={firstNameObj.animateControls} direction="row">
+          {toCharBoxes(firstNameObj)}
+        </Stack>
+        <Box>{"\u00A0"}</Box>
+        <Stack ref={lastNameObj.ref} component={motion.div} animate={lastNameObj.animateControls} direction="row">
+          {toCharBoxes(lastNameObj)}
         </Stack>
       </Stack>
     );
   }
+
+  // if (loading) return "Loading";
 
   return (
     <Box
@@ -227,6 +265,7 @@ export function MyName(props: {
       alignItems="center"
       justifyContent={"center"}
       fontSize={"6rem"}
+      // bgcolor="yellow"
     >
       <AnimatePresence>
         {animationsCompleted === false && (
