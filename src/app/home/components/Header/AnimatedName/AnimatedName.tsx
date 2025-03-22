@@ -11,11 +11,12 @@ type NameObject = {
   charAnimateControlsCollection: AnimationControls[];
 };
 
-export function NameAnimator(props: {
+export function AnimatedName(props: {
   firstName: string;
   lastName: string;
   handoverNameDuration: number;
   handoverNameToParent: (textElement: ReactElement) => void;
+  skipAnimation?: boolean;
 }) {
   const firstUseLayoutEffect = useRef<boolean>(true);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
@@ -43,6 +44,7 @@ export function NameAnimator(props: {
       .map(() => useAnimation()),
   };
   const nameObjs = [firstNameObj, lastNameObj];
+  const handoverNameDuration = props.skipAnimation ? 0 : props.handoverNameDuration;
 
   useLayoutEffect(() => {
     if (firstUseLayoutEffect.current) {
@@ -59,6 +61,8 @@ export function NameAnimator(props: {
   }, [startAnimationFlag, startAnimations]);
 
   async function setAnimationsInitialState() {
+    if (props.skipAnimation) return;
+
     {
       const charFraction = 1 / firstNameObj.name.length;
       const x = charFraction * (firstNameObj.name.length - 1) + charFraction / 4;
@@ -89,64 +93,65 @@ export function NameAnimator(props: {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   async function startAnimations() {
-    const animationDuration = 0.5;
+    if (!props.skipAnimation) {
+      const animationDuration = 0.5;
 
-    // fade in
-    await textAnimateControls.start({
-      opacity: 1,
-      transition: { opacity: animationDuration },
-    });
-
-    await sleep(500);
-
-    // expand
-    await Promise.all(
-      nameObjs.map((nameObj) => {
-        return nameObj.animateControls?.start({
-          x: 0,
-          transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 15,
-          },
-        });
-      })
-    );
-
-    // show rest of characters
-    let totalCharIndex = 0;
-    const namesPromises = nameObjs.map((nameObj) => {
-      return nameObj.charAnimateControlsCollection?.map((controls) => {
-        const promiseReturn = controls.start({
-          y: 0,
-          opacity: 1,
-          transition: {
-            type: "spring",
-            stiffness: 300,
-            damping: 15,
-            delay: totalCharIndex * 0.05, // Stagger delay
-          },
-        });
-
-        totalCharIndex++;
-
-        return promiseReturn;
+      // fade in
+      await textAnimateControls.start({
+        opacity: 1,
+        transition: { opacity: animationDuration },
       });
-    });
 
-    await Promise.all(namesPromises.flat());
+      await sleep(500);
+
+      // expand
+      await Promise.all(
+        nameObjs.map((nameObj) => {
+          return nameObj.animateControls?.start({
+            x: 0,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 15,
+            },
+          });
+        })
+      );
+
+      // show rest of characters
+      let totalCharIndex = 0;
+      const namesPromises = nameObjs.map((nameObj) => {
+        return nameObj.charAnimateControlsCollection?.map((controls) => {
+          const promiseReturn = controls.start({
+            y: 0,
+            opacity: 1,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 15,
+              delay: totalCharIndex * 0.05, // Stagger delay
+            },
+          });
+
+          totalCharIndex++;
+
+          return promiseReturn;
+        });
+      });
+
+      await Promise.all(namesPromises.flat());
+    }
 
     // fade this whole component
-    containerAnimateControls.start({
-      opacity: 0,
-      transition: {
-        duration: props.handoverNameDuration,
-      },
-    });
+    // containerAnimateControls.start({
+    //   opacity: 0,
+    //   transition: {
+    //     duration: handoverNameDuration,
+    //   },
+    // });
 
     // hand text back to parent component
     props.handoverNameToParent?.(textElement(1));
-
     setHandedOverName(true);
   }
 
@@ -202,31 +207,121 @@ export function NameAnimator(props: {
     );
   }
 
-  return (
-    <Box
-      component={motion.div}
-      animate={containerAnimateControls}
-      position="fixed"
-      display="flex"
-      width="100%"
-      height="100vh"
-      alignItems="center"
-      justifyContent={"center"}
-      fontSize={"6rem"}
-      bgcolor={(theme) => theme.palette.background.default}
-      zIndex={9999}
-      sx={{
-        top: 0,
-        // opacity: 0.5,
-      }}
-    >
+  // rename these?
+  const animationBackgroundElement = () => {
+    return (
+      <Box
+        component={motion.div}
+        position="fixed"
+        width="100%"
+        height="100vh"
+        bgcolor={(theme) => theme.palette.background.default}
+        zIndex={9999}
+        sx={{
+          top: 0,
+          left: 0,
+        }}
+        exit={{ opacity: 0 }}
+      ></Box>
+    );
+  };
+
+  const animationContainerElement = () => {
+    return (
       <AnimatePresence>
-        {!handedOverName && (
-          <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
-            {textElement(0)}
+        <Box
+          key="1"
+          component={motion.div}
+          animate={containerAnimateControls}
+          position="fixed"
+          width="100%"
+          height="100vh"
+          fontSize={"6rem"}
+          // bgcolor={(theme) => theme.palette.background.default}
+          zIndex={9999}
+          sx={{
+            top: 0,
+            left: 0,
+            // opacity: 0.5,
+          }}
+          // exit={{ opacity: 0 }}
+        >
+          <Box
+            component={motion.div}
+            position="absolute"
+            width="100%"
+            height="100%"
+            bgcolor={(theme) => theme.palette.background.default}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: handoverNameDuration,
+              ease: "easeInOut",
+            }}
+          ></Box>
+
+          <Box display="flex" alignItems="center" justifyContent={"center"} width="100%" height="100vh">
+            <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
+              {textElement(0)}
+            </Box>
           </Box>
-        )}
+        </Box>
       </AnimatePresence>
-    </Box>
+    );
+  };
+
+  const targetContainerElement = () => {
+    return (
+      <AnimatePresence>
+        <Box
+          key="2"
+          layoutId={homeContext?.nameContainerLayoutId}
+          component={motion.div}
+          transition={{
+            duration: handoverNameDuration,
+            ease: "easeInOut",
+          }}
+          sx={{
+            width: "fit-content",
+            fontSize: "4rem",
+          }}
+        >
+          {textElement(1)}
+        </Box>
+      </AnimatePresence>
+    );
+  };
+
+  return (
+    <>
+      <AnimatePresence>{!handedOverName ? animationContainerElement() : targetContainerElement()}</AnimatePresence>
+    </>
   );
+
+  // return (
+  //   <Box
+  //     component={motion.div}
+  //     animate={containerAnimateControls}
+  //     position="fixed"
+  //     display="flex"
+  //     width="100%"
+  //     height="100vh"
+  //     alignItems="center"
+  //     justifyContent={"center"}
+  //     fontSize={"6rem"}
+  //     bgcolor={(theme) => theme.palette.background.default}
+  //     zIndex={9999}
+  //     sx={{
+  //       top: 0,
+  //       // opacity: 0.5,
+  //     }}
+  //   >
+  //     <AnimatePresence>
+  //       {!handedOverName && (
+  //         <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
+  //           {textElement(0)}
+  //         </Box>
+  //       )}
+  //     </AnimatePresence>
+  //   </Box>
+  // );
 }

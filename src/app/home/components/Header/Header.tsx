@@ -8,8 +8,8 @@ import { Avatar, Container, Grid, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";
-import { NameAnimator } from "./NameAnimator/NameAnimator";
 import { alpha } from "@mui/material/styles";
+import { AnimatedName } from "./AnimatedName/AnimatedName";
 
 // transition
 // "AH" fades in centerered
@@ -44,7 +44,20 @@ export function Header() {
   const infoElement = () => {
     return (
       <Stack>
-        <AnimatePresence>
+        <AnimatedName
+          skipAnimation={false} // skip for development
+          firstName={firstName}
+          lastName={lastName}
+          handoverNameDuration={handOverNameAnimationDuration}
+          handoverNameToParent={(textElement) => {
+            // setFinalizedName(textElement);
+            // setTimeout(() => {
+            //   setNameAnimationCompleted(true);
+            // }, handOverNameAnimationDuration * 1000);
+          }}
+        />
+
+        {/* <AnimatePresence>
           <Box
             layoutId={homeContext?.nameContainerLayoutId}
             ref={moveMyNameToRef}
@@ -59,10 +72,9 @@ export function Header() {
             }}
           >
             {finalizedName}
-            {/* space for when there's no text */}
             {!finalizedName && "\u00A0"}
           </Box>
-        </AnimatePresence>
+        </AnimatePresence> */}
         <Typography
           variant="h5"
           color="text.primary"
@@ -146,20 +158,6 @@ export function Header() {
           </Grid>
         </Grid>
       </Container>
-
-      {!nameAnimationCompleted && (
-        <NameAnimator
-          firstName={firstName}
-          lastName={lastName}
-          handoverNameDuration={handOverNameAnimationDuration}
-          handoverNameToParent={(textElement) => {
-            setFinalizedName(textElement);
-            setTimeout(() => {
-              setNameAnimationCompleted(true);
-            }, handOverNameAnimationDuration * 1000);
-          }}
-        />
-      )}
     </Box>
   );
 }
