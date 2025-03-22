@@ -158,7 +158,6 @@ export function NameAnimator(props: {
           component={motion.div}
           animate={nameObject.charAnimateControlsCollection?.[index]}
           position="relative"
-          // color={"blue"}
         >
           {char}
         </Box>
@@ -176,6 +175,7 @@ export function NameAnimator(props: {
         direction="row"
         sx={{
           opacity: opacity,
+          color: (theme) => theme.palette.primary.main,
         }}
       >
         <Stack

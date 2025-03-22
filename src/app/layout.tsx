@@ -24,16 +24,36 @@ import "./globals.css";
 //   variable: "--font-montserrat",
 // });
 
+const globalFontFamily = 'Verdana, "Helvetica Neue", Arial, sans-serif';
 const theme = createTheme({
   typography: {
     fontFamily: "inherit",
     // Override all typography variants
   },
+  palette: {
+    primary: {
+      main: "#275070",
+    },
+    // secondary: {
+    //   light: "#ff7961",
+    //   main: "#f44336",
+    //   dark: "#ba000d",
+    //   contrastText: "#000",
+    // },
+  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          fontFamily: "inherit",
+          textTransform: "none",
+          borderRadius: 4,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
         },
       },
     },
@@ -52,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body
         style={{
-          fontFamily: '"Helvetica Neue", Arial, sans-serif',
+          fontFamily: globalFontFamily,
           margin: 0,
           padding: 0,
           boxSizing: "border-box",

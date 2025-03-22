@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";
 import { NameAnimator } from "./NameAnimator/NameAnimator";
+import { alpha } from "@mui/material/styles";
 
 // transition
 // "AH" fades in centerered
@@ -119,20 +120,9 @@ export function Header() {
       sx={{
         pt: 12,
         pb: 10,
-        background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 100%)`,
         position: "relative",
         overflow: "hidden",
-        "&::after": {
-          content: '""',
-          position: "absolute",
-          top: "-50%",
-          right: "-10%",
-          width: "60%",
-          height: "200%",
-          background: `radial-gradient(ellipse at center, ${theme.palette.primary.main}26 0%, ${theme.palette.background.default}00 70%)`,
-          zIndex: 0,
-          borderRadius: "50%",
-        },
+        bgcolor: (theme) => alpha(theme.palette.primary.light, 0.4),
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
