@@ -44,6 +44,7 @@ export function Header() {
   const infoElement = () => {
     return (
       <Stack>
+        <Box>This should be light</Box>
         <AnimatePresence>
           <Box
             layoutId={homeContext?.nameContainerLayoutId}
@@ -121,7 +122,7 @@ export function Header() {
         pb: 10,
         position: "relative",
         overflow: "hidden",
-        bgcolor: (theme) => "#f0f0f0",
+        // bgcolor: (theme) => "#f0f0f0",
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>

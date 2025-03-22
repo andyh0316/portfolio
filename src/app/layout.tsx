@@ -6,6 +6,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { Jura, Montserrat } from "next/font/google";
 import { AppStateInitializer } from "./AppStateInitializer";
 import "./globals.css";
+import { useState } from "react";
+import { Box, Button } from "@mui/material";
+import { darkTheme } from "./themes/darkTheme";
+import { lightTheme } from "./themes/lightTheme";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -25,42 +29,12 @@ import "./globals.css";
 // });
 
 const globalFontFamily = 'Verdana, "Helvetica Neue", Arial, sans-serif';
-const theme = createTheme({
-  typography: {
-    fontFamily: "inherit",
-    // Override all typography variants
-  },
-  palette: {
-    primary: {
-      main: "#275070",
-    },
-    // secondary: {
-    //   light: "#ff7961",
-    //   main: "#f44336",
-    //   dark: "#ba000d",
-    //   contrastText: "#000",
-    // },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          borderRadius: 4,
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
-        },
-      },
-    },
-  },
-});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(true);
+
+  const theme = isDarkTheme ? darkTheme : lightTheme;
+
   return (
     <html lang="en">
       <head>
@@ -83,6 +57,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <ReduxProvider>
             <AppStateInitializer />
+
+            <Box>This should be light</Box>
+            
+            <Button variant="contained" onClick={() => setIsDarkTheme(!isDarkTheme)}>
+              Theme
+            </Button>
 
             {children}
           </ReduxProvider>
