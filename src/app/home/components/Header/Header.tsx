@@ -38,7 +38,6 @@ export function Header() {
         width: offsetWidth,
         height: offsetHeight,
       });
-      // console.log(`Box dimensions: ${offsetWidth}px × ${offsetHeight}px`);
     }
   }, []);
 
@@ -106,7 +105,7 @@ export function Header() {
         sx={{
           width: { xs: 200, md: 280 },
           height: { xs: 200, md: 280 },
-          boxShadow: `0 0 30px ${theme.palette.primary.main}40`,
+          // boxShadow: `0 0 30px ${theme.palette.primary.main}40`,
           border: `4px solid ${theme.palette.divider}`,
         }}
         alt="Developer Name"
@@ -122,7 +121,7 @@ export function Header() {
         pb: 10,
         position: "relative",
         overflow: "hidden",
-        bgcolor: (theme) => alpha(theme.palette.primary.light, 0.4),
+        bgcolor: (theme) => "#f0f0f0",
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>

@@ -17,7 +17,7 @@ const resumeBgColor = "#fcfcfc";
 const resumeTheme = createTheme({
   palette: {
     primary: {
-      main: "#275070",
+      main: "#3f51b5",
     },
   },
 });
