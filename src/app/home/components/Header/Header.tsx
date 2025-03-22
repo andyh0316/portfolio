@@ -1,14 +1,14 @@
 "use client";
 
-import { Box, Typography, Stack } from "@/components";
+import { Box, Stack, Typography } from "@/components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Avatar, Container, Grid } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";
-import { MyName } from "./MyName/MyName";
-import { AnimatePresence, motion } from "framer-motion";
+import { NameAnimator } from "./NameAnimator/NameAnimator";
 
 // transition
 // "AH" fades in centerered
@@ -20,11 +20,13 @@ export function Header() {
   const moveMyNameToRef = useRef<HTMLDivElement>(null);
 
   const [finalizedName, setFinalizedName] = useState<ReactElement>();
+  const [nameAnimationCompleted, setNameAnimationCompleted] = useState<boolean>(false);
 
   const firstName = "Andy";
   const lastName = "Hong";
 
   const [boxDimensions, setBoxDimensions] = useState({ width: 0, height: 0 });
+  const handOverNameAnimationDuration = 0.5;
 
   // Function to measure dimensions
   useEffect(() => {
@@ -41,33 +43,22 @@ export function Header() {
   const infoElement = () => {
     return (
       <Stack>
-        {" "}
-        {/* <Typography
-          component="h1"
-          variant="h2"
-          color="text.primary"
-          gutterBottom
-          sx={{
-            fontWeight: 300,
-            letterSpacing: 1.5,
-          }}
-        >
-          Developer Name
-        </Typography> */}
         <AnimatePresence>
           <Box
             layoutId={homeContext?.nameContainerLayoutId}
             ref={moveMyNameToRef}
             component={motion.div}
+            transition={{
+              duration: handOverNameAnimationDuration,
+              ease: "easeInOut",
+            }}
             sx={{
               width: "fit-content",
               fontSize: "4rem",
-              // fontWeight: 300,
-              // letterSpacing: 1.5,
             }}
-            // border={1}
           >
             {finalizedName}
+            {/* space for when there's no text */}
             {!finalizedName && "\u00A0"}
           </Box>
         </AnimatePresence>
@@ -155,51 +146,19 @@ export function Header() {
         </Grid>
       </Container>
 
-      {!finalizedName && (
-        <MyName
+      {!nameAnimationCompleted && (
+        <NameAnimator
           firstName={firstName}
           lastName={lastName}
-          onAnimationCompleted={(textElement) => {
+          handoverNameDuration={handOverNameAnimationDuration}
+          handoverNameToParent={(textElement) => {
             setFinalizedName(textElement);
+            setTimeout(() => {
+              setNameAnimationCompleted(true);
+            }, handOverNameAnimationDuration * 1000);
           }}
         />
       )}
     </Box>
   );
-
-  // return (
-  //   <Box
-  //     position="relative"
-  //     ref={outerBoxRef}
-  //     width="100%"
-  //   >
-  //     <MyName
-  //       firstName={firstName}
-  //       lastName={lastName}
-  //       onAnimationCompleted={(textElement) => {
-  //         setFullNameElement(textElement);
-  //       }}
-  //     />
-
-  //     <Stack fontSize={"2rem"}>
-  //       <Stack position="relative" direction="row">
-  //         <Box>{`Hello, my name is\u00A0`}</Box>
-
-  //         {fullNameElement && (
-  //           <AnimatePresence>
-  //             <Box layoutId={homeContext?.nameContainerLayoutId} ref={moveMyNameToRef} component={motion.div}>
-  //               {fullNameElement}
-  //             </Box>
-  //           </AnimatePresence>
-  //         )}
-  //       </Stack>
-  //       <Box>I am a Software Engineer</Box>
-  //     </Stack>
-
-  //     <Stack>
-  //       <Typography>width: {boxDimensions.width}</Typography>
-  //       <Typography>height: {boxDimensions.height}</Typography>
-  //     </Stack>
-  //   </Box>
-  // );
 }

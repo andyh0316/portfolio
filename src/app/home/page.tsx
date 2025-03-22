@@ -27,7 +27,7 @@ import { HomeProvider } from "./context";
 
 // Create a dark minimalist theme
 // const fontFamily = '"Courier New", Courier, monospace'; // need fonts that have equal spacing for the animation
-const fontFamily = '"Helvetica Neue", Arial, sans-serif';
+const fontFamily = 'Verdana, "Helvetica Neue", Arial, sans-serif';
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -48,15 +48,6 @@ const darkTheme = createTheme({
   },
   typography: {
     fontFamily: "inherit",
-    h1: {
-      fontWeight: 300,
-    },
-    h2: {
-      fontWeight: 300,
-    },
-    h5: {
-      fontWeight: 300,
-    },
   },
   shape: {
     borderRadius: 8,

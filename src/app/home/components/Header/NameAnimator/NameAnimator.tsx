@@ -1,9 +1,8 @@
 import { HomeContext } from "@/app/home/context";
-import { Box, Button, Stack } from "@/components";
+import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
 import { ReactElement, RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { flushSync } from "react-dom";
 
 type NameObject = {
   ref: RefObject<HTMLDivElement>;
@@ -12,15 +11,17 @@ type NameObject = {
   charAnimateControlsCollection: AnimationControls[];
 };
 
-export function MyName(props: {
+export function NameAnimator(props: {
   firstName: string;
   lastName: string;
-  onAnimationCompleted?: (textElement: ReactElement) => void;
+  handoverNameDuration: number;
+  handoverNameToParent: (textElement: ReactElement) => void;
 }) {
   const firstUseLayoutEffect = useRef<boolean>(true);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
-  const [animationsCompleted, setAnimationsCompleted] = useState<boolean>(false);
+  const [handedOverName, setHandedOverName] = useState<boolean>(false);
   const homeContext = useContext(HomeContext);
+  const containerAnimateControls = useAnimation();
   const textRef = useRef<HTMLDivElement>(null);
   const textAnimateControls = useAnimation();
   const firstNameObj: NameObject = {
@@ -55,7 +56,7 @@ export function MyName(props: {
     if (startAnimationFlag) {
       startAnimations();
     }
-  }, [startAnimationFlag]);
+  }, [startAnimationFlag, startAnimations]);
 
   async function setAnimationsInitialState() {
     {
@@ -86,6 +87,7 @@ export function MyName(props: {
     });
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function startAnimations() {
     const animationDuration = 0.5;
 
@@ -134,8 +136,18 @@ export function MyName(props: {
 
     await Promise.all(namesPromises.flat());
 
-    props.onAnimationCompleted?.(textElement(1));
-    setAnimationsCompleted(true);
+    // fade this whole component
+    containerAnimateControls.start({
+      opacity: 0,
+      transition: {
+        duration: props.handoverNameDuration,
+      },
+    });
+
+    // hand text back to parent component
+    props.handoverNameToParent?.(textElement(1));
+
+    setHandedOverName(true);
   }
 
   function toCharBoxes(nameObject: NameObject) {
@@ -191,6 +203,8 @@ export function MyName(props: {
 
   return (
     <Box
+      component={motion.div}
+      animate={containerAnimateControls}
       position="fixed"
       display="flex"
       width="100%"
@@ -198,15 +212,15 @@ export function MyName(props: {
       alignItems="center"
       justifyContent={"center"}
       fontSize={"6rem"}
-      zIndex={1000}
-      //bgcolor="yellow"
+      bgcolor="black"
+      zIndex={9999}
       sx={{
         top: 0,
         // opacity: 0.5,
       }}
     >
       <AnimatePresence>
-        {animationsCompleted === false && (
+        {!handedOverName && (
           <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
             {textElement(0)}
           </Box>
