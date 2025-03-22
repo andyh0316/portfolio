@@ -176,6 +176,7 @@ export function NameAnimator(props: {
         sx={{
           opacity: opacity,
           color: (theme) => theme.palette.primary.main,
+          fontWeight: (theme) => theme.typography.fontWeightBold,
         }}
       >
         <Stack

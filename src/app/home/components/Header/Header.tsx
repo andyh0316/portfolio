@@ -44,7 +44,6 @@ export function Header() {
   const infoElement = () => {
     return (
       <Stack>
-        <Box>This should be light</Box>
         <AnimatePresence>
           <Box
             layoutId={homeContext?.nameContainerLayoutId}
@@ -64,6 +63,17 @@ export function Header() {
             {!finalizedName && "\u00A0"}
           </Box>
         </AnimatePresence>
+        <Typography
+          variant="h5"
+          color="text.primary"
+          paragraph
+          sx={{
+            maxWidth: "600px",
+            lineHeight: 1.6,
+          }}
+        >
+          Software Engineer.
+        </Typography>
         <Typography
           variant="h5"
           color="text.secondary"
