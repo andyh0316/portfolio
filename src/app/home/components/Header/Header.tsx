@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from "@/components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Avatar, Container, Grid } from "@mui/material";
+import { Avatar, Container, Grid, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";
@@ -15,6 +15,7 @@ import { NameAnimator } from "./NameAnimator/NameAnimator";
 // "AH" expands into "Andy Hong"
 // "Andy Hong" zooms out and repositions into section of text
 export function Header() {
+  const theme = useTheme();
   const homeContext = useContext(HomeContext);
   const outerBoxRef = useRef<HTMLDivElement>(null);
   const moveMyNameToRef = useRef<HTMLDivElement>(null);
@@ -104,8 +105,8 @@ export function Header() {
         sx={{
           width: { xs: 200, md: 280 },
           height: { xs: 200, md: 280 },
-          boxShadow: "0 0 30px rgba(187, 134, 252, 0.3)",
-          border: "4px solid rgba(255, 255, 255, 0.1)",
+          boxShadow: `0 0 30px ${theme.palette.primary.main}40`,
+          border: `4px solid ${theme.palette.divider}`,
         }}
         alt="Developer Name"
         src="/path-to-profile-image.jpg"
@@ -118,7 +119,7 @@ export function Header() {
       sx={{
         pt: 12,
         pb: 10,
-        background: "linear-gradient(135deg, #121212 0%, #1E1E1E 100%)",
+        background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 100%)`,
         position: "relative",
         overflow: "hidden",
         "&::after": {
@@ -128,7 +129,7 @@ export function Header() {
           right: "-10%",
           width: "60%",
           height: "200%",
-          background: "radial-gradient(ellipse at center, rgba(187, 134, 252, 0.15) 0%, rgba(0, 0, 0, 0) 70%)",
+          background: `radial-gradient(ellipse at center, ${theme.palette.primary.main}26 0%, ${theme.palette.background.default}00 70%)`,
           zIndex: 0,
           borderRadius: "50%",
         },

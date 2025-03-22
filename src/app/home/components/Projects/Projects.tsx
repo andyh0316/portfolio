@@ -1,16 +1,9 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Chip,
-  Container,
-  Grid,
-  Typography
-} from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography, useTheme, alpha } from "@mui/material";
 import { projectData } from "./projectData";
 
 export function Projects() {
+  const theme = useTheme();
+
   return (
     <Box sx={{ py: 10, position: "relative" }}>
       <Container maxWidth="lg">
@@ -31,17 +24,16 @@ export function Projects() {
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  background: "rgba(30, 30, 30, 0.5)",
+                  background: alpha(theme.palette.background.paper, 0.5),
                   transition: "all 0.3s ease",
                   "&:hover": {
                     transform: "translateY(-8px)",
-                    boxShadow: "0 15px 30px rgba(0,0,0,0.3)",
+                    boxShadow: `0 15px 30px ${alpha(theme.palette.common.black, 0.3)}`,
                     "& .MuiCardMedia-root": {
                       transform: "scale(1.05)",
                     },
                   },
                 }}
-                elevation={0}
               >
                 <Box sx={{ overflow: "hidden" }}>
                   <CardMedia
@@ -69,10 +61,10 @@ export function Projects() {
                         label={tech}
                         size="small"
                         sx={{
-                          bgcolor: "rgba(187, 134, 252, 0.15)",
+                          bgcolor: alpha(theme.palette.primary.main, 0.15),
                           color: "primary.light",
                           "&:hover": {
-                            bgcolor: "rgba(187, 134, 252, 0.25)",
+                            bgcolor: alpha(theme.palette.primary.main, 0.25),
                           },
                         }}
                       />

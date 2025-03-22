@@ -212,7 +212,7 @@ export function NameAnimator(props: {
       alignItems="center"
       justifyContent={"center"}
       fontSize={"6rem"}
-      bgcolor="black"
+      bgcolor={(theme) => theme.palette.background.default}
       zIndex={9999}
       sx={{
         top: 0,
