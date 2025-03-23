@@ -51,9 +51,10 @@ export function Projects() {
                   <Typography gutterBottom variant="h5" component="h3" sx={{ fontWeight: 400 }}>
                     {project.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" paragraph>
+                  {/* <Typography variant="body2" color="text.secondary" paragraph>
                     {project.description}
-                  </Typography>
+                  </Typography> */}
+                  <Typography variant="inherit">{project.description}</Typography>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 3 }}>
                     {project.technologies.map((tech) => (
                       <Chip

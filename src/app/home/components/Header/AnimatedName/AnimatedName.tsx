@@ -1,4 +1,5 @@
 import { HomeContext } from "@/app/home/context";
+import { orbitron } from "@/app/layout";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
@@ -162,6 +163,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
       <Stack
         ref={textRef}
         component={motion.div}
+        fontFamily={`${orbitron.style.fontFamily}`}
         animate={textAnimateControls}
         initial={false}
         direction="row"
