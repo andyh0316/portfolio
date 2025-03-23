@@ -1,21 +1,26 @@
 "use client";
 
-import { Box, Stack, Typography } from "@/components";
+import { Box, Stack, Typography, Button, Grid } from "@/components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Avatar, Container, Grid, useTheme } from "@mui/material";
+import { Avatar, Container, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";
 import { alpha } from "@mui/material/styles";
 import { AnimatedName } from "./AnimatedName/AnimatedName";
+import { useDispatch } from "react-redux";
+import { setThemeType } from "@/store/features/appSlice";
+import { useAppSelector } from "@/store/hooks";
 
 // transition
 // "AH" fades in centerered
 // "AH" expands into "Andy Hong"
 // "Andy Hong" zooms out and repositions into section of text
 export function Header() {
+  const themeType = useAppSelector((state) => state.app.themeType);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const homeContext = useContext(HomeContext);
   const outerBoxRef = useRef<HTMLDivElement>(null);
@@ -23,9 +28,6 @@ export function Header() {
 
   const [finalizedName, setFinalizedName] = useState<ReactElement>();
   const [nameAnimationCompleted, setNameAnimationCompleted] = useState<boolean>(false);
-
-  const firstName = "Andy";
-  const lastName = "Hong";
 
   const [boxDimensions, setBoxDimensions] = useState({ width: 0, height: 0 });
   const handOverNameAnimationDuration = 0.5;
@@ -45,36 +47,9 @@ export function Header() {
     return (
       <Stack>
         <AnimatedName
-          skipAnimation={false} // skip for development
-          firstName={firstName}
-          lastName={lastName}
-          handoverNameDuration={handOverNameAnimationDuration}
-          handoverNameToParent={(textElement) => {
-            // setFinalizedName(textElement);
-            // setTimeout(() => {
-            //   setNameAnimationCompleted(true);
-            // }, handOverNameAnimationDuration * 1000);
-          }}
+          skipAnimation={true} // skip for development
         />
 
-        {/* <AnimatePresence>
-          <Box
-            layoutId={homeContext?.nameContainerLayoutId}
-            ref={moveMyNameToRef}
-            component={motion.div}
-            transition={{
-              duration: handOverNameAnimationDuration,
-              ease: "easeInOut",
-            }}
-            sx={{
-              width: "fit-content",
-              fontSize: "4rem",
-            }}
-          >
-            {finalizedName}
-            {!finalizedName && "\u00A0"}
-          </Box>
-        </AnimatePresence> */}
         <Typography
           variant="h5"
           color="text.primary"
@@ -86,6 +61,7 @@ export function Header() {
         >
           Software Engineer.
         </Typography>
+
         <Typography
           variant="h5"
           color="text.secondary"
@@ -118,6 +94,17 @@ export function Header() {
           <LinkedInIcon />
           <TwitterIcon />
         </Box>
+
+        <Stack direction="row">
+          <Button
+            onClick={() => {
+              dispatch(setThemeType(themeType === "dark" ? "light" : "dark"));
+            }}
+            variant="outlined"
+          >
+            {themeType === "dark" ? "Light Up" : "Dark Mode"}
+          </Button>
+        </Stack>
       </Stack>
     );
   };

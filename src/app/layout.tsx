@@ -1,15 +1,9 @@
 "use client";
 
 import { ReduxProvider } from "@/store/providers/redux-provider";
-import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Jura, Montserrat, Tektur, Audiowide, Orbitron } from "next/font/google";
-import { AppStateInitializer } from "./AppStateInitializer";
+import { Jura, Orbitron, Tektur } from "next/font/google";
 import "./globals.css";
-import { useState } from "react";
-import { Box, Button } from "@mui/material";
-import { darkTheme } from "./themes/darkTheme";
-import { lightTheme } from "./themes/lightTheme";
+import { App } from "./app";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -39,10 +33,6 @@ const orbitron = Orbitron({
 const globalFontFamily = `${orbitron.style.fontFamily}, Verdana, "Helvetica Neue", Arial, sans-serif`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(true);
-
-  const theme = isDarkTheme ? darkTheme : lightTheme;
-
   return (
     <html lang="en">
       <head>
@@ -60,19 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           boxSizing: "border-box",
         }}
       >
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-
-          <ReduxProvider>
-            <AppStateInitializer />
-
-            <Button variant="contained" onClick={() => setIsDarkTheme(!isDarkTheme)}>
-              Theme
-            </Button>
-
-            {children}
-          </ReduxProvider>
-        </ThemeProvider>
+        <App>{children}</App>
       </body>
     </html>
   );

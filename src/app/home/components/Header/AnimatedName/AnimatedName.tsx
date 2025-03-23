@@ -2,7 +2,7 @@ import { HomeContext } from "@/app/home/context";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
-import { ReactElement, RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type NameObject = {
   ref: RefObject<HTMLDivElement>;
@@ -11,13 +11,10 @@ type NameObject = {
   charAnimateControlsCollection: AnimationControls[];
 };
 
-export function AnimatedName(props: {
-  firstName: string;
-  lastName: string;
-  handoverNameDuration: number;
-  handoverNameToParent: (textElement: ReactElement) => void;
-  skipAnimation?: boolean;
-}) {
+export function AnimatedName(props: { skipAnimation?: boolean }) {
+  const firstName = "Andy";
+  const lastName = "Hong";
+
   const firstUseLayoutEffect = useRef<boolean>(true);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
   const [handedOverName, setHandedOverName] = useState<boolean>(false);
@@ -27,24 +24,24 @@ export function AnimatedName(props: {
   const textAnimateControls = useAnimation();
   const firstNameObj: NameObject = {
     ref: useRef<HTMLDivElement>(null),
-    name: props.firstName,
+    name: firstName,
     animateControls: useAnimation(),
-    charAnimateControlsCollection: Array(props.firstName.length)
+    charAnimateControlsCollection: Array(firstName.length)
       .fill(null)
       // eslint-disable-next-line react-hooks/rules-of-hooks
       .map(() => useAnimation()),
   };
   const lastNameObj: NameObject = {
     ref: useRef<HTMLDivElement>(null),
-    name: props.lastName,
+    name: lastName,
     animateControls: useAnimation(),
-    charAnimateControlsCollection: Array(props.lastName.length)
+    charAnimateControlsCollection: Array(lastName.length)
       .fill(null)
       // eslint-disable-next-line react-hooks/rules-of-hooks
       .map(() => useAnimation()),
   };
   const nameObjs = [firstNameObj, lastNameObj];
-  const handoverNameDuration = props.skipAnimation ? 0 : props.handoverNameDuration;
+  const handoverNameDuration = props.skipAnimation ? 0 : 0.5;
 
   useLayoutEffect(() => {
     if (firstUseLayoutEffect.current) {
@@ -142,16 +139,6 @@ export function AnimatedName(props: {
       await Promise.all(namesPromises.flat());
     }
 
-    // fade this whole component
-    // containerAnimateControls.start({
-    //   opacity: 0,
-    //   transition: {
-    //     duration: handoverNameDuration,
-    //   },
-    // });
-
-    // hand text back to parent component
-    props.handoverNameToParent?.(textElement(1));
     setHandedOverName(true);
   }
 
@@ -207,87 +194,62 @@ export function AnimatedName(props: {
     );
   }
 
-  // rename these?
-  const animationBackgroundElement = () => {
+  const animationContainerElement = () => {
     return (
       <Box
+        key="animationContainerElement" // needed for handover animation
         component={motion.div}
+        animate={containerAnimateControls}
         position="fixed"
         width="100%"
         height="100vh"
-        bgcolor={(theme) => theme.palette.background.default}
+        fontSize={"6rem"}
         zIndex={9999}
         sx={{
           top: 0,
           left: 0,
         }}
-        exit={{ opacity: 0 }}
-      ></Box>
-    );
-  };
-
-  const animationContainerElement = () => {
-    return (
-      <AnimatePresence>
+      >
+        {/* background */}
         <Box
-          key="1"
           component={motion.div}
-          animate={containerAnimateControls}
-          position="fixed"
+          position="absolute"
           width="100%"
-          height="100vh"
-          fontSize={"6rem"}
-          // bgcolor={(theme) => theme.palette.background.default}
-          zIndex={9999}
-          sx={{
-            top: 0,
-            left: 0,
-            // opacity: 0.5,
+          height="100%"
+          bgcolor={(theme) => theme.palette.background.default}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: handoverNameDuration,
+            ease: "easeInOut",
           }}
-          // exit={{ opacity: 0 }}
-        >
-          <Box
-            component={motion.div}
-            position="absolute"
-            width="100%"
-            height="100%"
-            bgcolor={(theme) => theme.palette.background.default}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: handoverNameDuration,
-              ease: "easeInOut",
-            }}
-          ></Box>
+        ></Box>
 
-          <Box display="flex" alignItems="center" justifyContent={"center"} width="100%" height="100vh">
-            <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
-              {textElement(0)}
-            </Box>
+        <Box display="flex" alignItems="center" justifyContent={"center"} width="100%" height="100vh">
+          <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
+            {textElement(0)}
           </Box>
         </Box>
-      </AnimatePresence>
+      </Box>
     );
   };
 
   const targetContainerElement = () => {
     return (
-      <AnimatePresence>
-        <Box
-          key="2"
-          layoutId={homeContext?.nameContainerLayoutId}
-          component={motion.div}
-          transition={{
-            duration: handoverNameDuration,
-            ease: "easeInOut",
-          }}
-          sx={{
-            width: "fit-content",
-            fontSize: "4rem",
-          }}
-        >
-          {textElement(1)}
-        </Box>
-      </AnimatePresence>
+      <Box
+        key="targetContainerElement" // needed for handover animation
+        layoutId={homeContext?.nameContainerLayoutId}
+        component={motion.div}
+        transition={{
+          duration: handoverNameDuration,
+          ease: "easeInOut",
+        }}
+        sx={{
+          width: "fit-content",
+          fontSize: "4rem",
+        }}
+      >
+        {textElement(1)}
+      </Box>
     );
   };
 
@@ -296,32 +258,4 @@ export function AnimatedName(props: {
       <AnimatePresence>{!handedOverName ? animationContainerElement() : targetContainerElement()}</AnimatePresence>
     </>
   );
-
-  // return (
-  //   <Box
-  //     component={motion.div}
-  //     animate={containerAnimateControls}
-  //     position="fixed"
-  //     display="flex"
-  //     width="100%"
-  //     height="100vh"
-  //     alignItems="center"
-  //     justifyContent={"center"}
-  //     fontSize={"6rem"}
-  //     bgcolor={(theme) => theme.palette.background.default}
-  //     zIndex={9999}
-  //     sx={{
-  //       top: 0,
-  //       // opacity: 0.5,
-  //     }}
-  //   >
-  //     <AnimatePresence>
-  //       {!handedOverName && (
-  //         <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
-  //           {textElement(0)}
-  //         </Box>
-  //       )}
-  //     </AnimatePresence>
-  //   </Box>
-  // );
 }
