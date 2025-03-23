@@ -1,9 +1,13 @@
+import { ReactElement } from "react";
+import { CompassProject } from "./components/CompassProject";
+
 interface Project {
   id: number;
   title: string;
   description: string;
   image: string;
   technologies: string[];
+  content?: ReactElement;
 }
 
 let projectId = 1;
@@ -14,6 +18,7 @@ export const projectData: Project[] = [
     description: "Convenient system streamlining data import ETL process for any educational instutition.",
     image: "/cobro-demo/student-list.png",
     technologies: ["React", "Websocket", "C#"],
+    content: <CompassProject />,
   },
   {
     id: projectId++,

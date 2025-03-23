@@ -1,7 +1,8 @@
 import { useTheme, alpha } from "@mui/material";
 import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@/components";
-import { projectData } from "./projectData";
 import { usePathname, useRouter } from "next/navigation";
+import { projectPageRoute } from "../../projects/[projectId]/page";
+import { projectData } from "../../projects/project-data/project-data";
 
 export function Projects() {
   const router = useRouter();
@@ -9,16 +10,9 @@ export function Projects() {
   const pathname = usePathname();
 
   function routeToProject(projectId: number) {
-    router.push(`${pathname}/projects/${projectId}`);
+    router.push(`${pathname}/${projectPageRoute(projectId)}`);
   }
 
-  // <Button
-  //   onClick={() => {
-  //     router.push(`/dashboard/projects/project-123`);
-  //   }}
-  // >
-  //   Click
-  // </Button>
   return (
     <Box sx={{ py: 10, position: "relative" }}>
       <Container maxWidth="lg">
