@@ -1,27 +1,16 @@
 "use client";
 
-import { Box, Stack, Typography, Button, Grid } from "@/components";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
-
-import { Avatar, Container } from "@/components";
-import { useTheme } from "@mui/material";
-import { AnimatePresence, motion } from "framer-motion";
-import { ReactElement, useContext, useEffect, useRef, useState } from "react";
-import { HomeContext } from "../../context";
-import { alpha } from "@mui/material/styles";
-import { AnimatedName } from "./AnimatedName/AnimatedName";
-import { useDispatch } from "react-redux";
+import { Avatar, Box, Button, Container, Grid, Stack, Typography } from "@/components";
 import { setThemeType } from "@/store/features/appSlice";
 import { useAppSelector } from "@/store/hooks";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { useTheme } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { AnimatedName } from "./AnimatedName/AnimatedName";
 
-// transition
-// "AH" fades in centerered
-// "AH" expands into "Andy Hong"
-// "Andy Hong" zooms out and repositions into section of text
 export function Header() {
   const themeType = useAppSelector((state) => state.app.themeType);
   const dispatch = useDispatch();
@@ -31,7 +20,7 @@ export function Header() {
     return (
       <Stack>
         <AnimatedName
-          skipAnimation={true} // skip for development
+        // skipAnimation={true} // skip for development
         />
 
         <Typography
@@ -65,7 +54,13 @@ export function Header() {
           <TwitterIcon /> */}
         </Box>
 
-        <Stack direction="row">{lightButton()}</Stack>
+        <Stack direction="row" spacing={1}>
+          {/* {resumeButton()} */}
+
+          {githubButton()}
+
+          {lightButton()}
+        </Stack>
       </Stack>
     );
   }
@@ -82,6 +77,26 @@ export function Header() {
         alt="Developer Name"
         src="/path-to-profile-image.jpg"
       />
+    );
+  }
+
+  function githubButton() {
+    const handleClick = () => {
+      const confirmed = window.confirm("You're about to open a tab to an external URL. Continue?");
+
+      if (confirmed) {
+        window.open("https://github.com/andyh0316/portfolio", "_blank", "noopener,noreferrer");
+      }
+    };
+
+    return (
+      <Button onClick={handleClick} variant="outlined">
+        <Stack direction="row" alignItems="center" spacing={0.5}>
+          <Typography variant="inherit">Github</Typography>
+
+          <GitHubIcon fontSize="small" />
+        </Stack>
+      </Button>
     );
   }
 
@@ -106,6 +121,18 @@ export function Header() {
     );
   }
 
+  function resumeButton() {
+    return (
+      <Button onClick={() => {}} variant="outlined">
+        <Stack direction="row" alignItems="center" spacing={0.5}>
+          <Typography variant="inherit">Resume (?)</Typography>
+
+          <PictureAsPdfIcon fontSize="small" />
+        </Stack>
+      </Button>
+    );
+  }
+
   return (
     <Box
       sx={{
@@ -113,7 +140,6 @@ export function Header() {
         pb: 10,
         position: "relative",
         overflow: "hidden",
-        // bgcolor: (theme) => "#f0f0f0",
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
@@ -122,9 +148,9 @@ export function Header() {
             {infoElement()}
           </Grid>
 
-          <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
+          {/* <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
             {avatarElement()}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Box>

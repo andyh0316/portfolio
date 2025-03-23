@@ -1,18 +1,18 @@
 import { createContext, ReactNode, useState } from "react";
 
-export interface HomeContextType {
+export interface DashboardContextType {
   nameContainerLayoutId: string;
   // isNameMoved: boolean;
   // setNameMoved: (value: boolean) => void;
 }
 
-export const HomeContext = createContext<HomeContextType | undefined>(undefined);
+export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
 
-export const HomeProvider = (props: { children: ReactNode }) => {
+export const DashboardProvider = (props: { children: ReactNode }) => {
   // const [isNameMoved, setIsNameMoved] = useState(false);
 
   return (
-    <HomeContext.Provider
+    <DashboardContext.Provider
       value={{
         nameContainerLayoutId: "nameContainerLayoutId",
         // isNameMoved,
@@ -20,6 +20,6 @@ export const HomeProvider = (props: { children: ReactNode }) => {
       }}
     >
       {props.children}
-    </HomeContext.Provider>
+    </DashboardContext.Provider>
   );
 };

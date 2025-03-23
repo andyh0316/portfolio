@@ -1,9 +1,14 @@
-import { HomeContext } from "@/app/dashboard/context";
+import { DashboardContext } from "@/app/dashboard/context";
 import { orbitron } from "@/app/layout";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
 import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// transition
+// "AH" fades in centerered
+// "AH" expands into "Andy Hong"
+// "Andy Hong" zooms out and repositions into section of text
 
 type NameObject = {
   ref: RefObject<HTMLDivElement>;
@@ -19,7 +24,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
   const firstUseLayoutEffect = useRef<boolean>(true);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
   const [handedOverName, setHandedOverName] = useState<boolean>(props.skipAnimation ? true : false);
-  const homeContext = useContext(HomeContext);
+  const dashboardContext = useContext(DashboardContext);
   const containerAnimateControls = useAnimation();
   const textRef = useRef<HTMLDivElement>(null);
   const textAnimateControls = useAnimation();
@@ -227,7 +232,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
         ></Box>
 
         <Box display="flex" alignItems="center" justifyContent={"center"} width="100%" height="100vh">
-          <Box layoutId={homeContext?.nameContainerLayoutId} component={motion.div}>
+          <Box layoutId={dashboardContext?.nameContainerLayoutId} component={motion.div}>
             {textElement(0)}
           </Box>
         </Box>
@@ -239,7 +244,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
     return (
       <Box
         key="targetContainerElement" // needed for handover animation
-        layoutId={homeContext?.nameContainerLayoutId}
+        layoutId={dashboardContext?.nameContainerLayoutId}
         component={motion.div}
         transition={{
           duration: handoverNameDuration,
