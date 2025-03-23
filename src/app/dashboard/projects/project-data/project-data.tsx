@@ -16,8 +16,8 @@ export const projectData: Project[] = [
     id: projectId++,
     title: "Import System",
     description: "Convenient system streamlining data import ETL process for any educational instutition.",
-    image: "/cobro-demo/student-list.png",
-    technologies: ["React", "Websocket", "C#"],
+    image: "/cobro-demo/import-thumbnail.png",
+    technologies: ["C#", "Websocket", "React", "Next.js"],
     ladyLoadContent: dynamic(() => import("./components/ImportProject"), {
       loading: () => null,
       ssr: false,
@@ -27,8 +27,8 @@ export const projectData: Project[] = [
     id: projectId++,
     title: "Compass",
     description: "SaaS application providing tracking and analytics for students.",
-    image: "/cobro-demo/student-page.png",
-    technologies: ["React", "Firebase", "Material-UI"],
+    image: "/cobro-demo/student-list.png",
+    technologies: ["C#", "Entity Framework", "SQL Server", "React", "Material-UI", "Framer Motion"],
     ladyLoadContent: dynamic(() => import("./components/CompassProject"), {
       loading: () => null,
       ssr: false,
@@ -37,9 +37,9 @@ export const projectData: Project[] = [
   {
     id: projectId++,
     title: "Texting",
-    description: "UI for managing and scheduling texts between staff and students.",
+    description: "Feature for managing and scheduling texts between staff and students.",
     image: "/cobro-demo/texting.png",
-    technologies: ["Next.js", "Material-UI", "Framer Motion"],
+    technologies: ["C#", "Angular.js"],
     ladyLoadContent: dynamic(() => import("./components/TextingProject"), {
       loading: () => null,
       ssr: false,
