@@ -1,11 +1,6 @@
-import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card } from "@/components";
-import { ReactNode, useState } from "react";
-// import { YoutubePlayer } from "../../common/YoutubePlayer";
-import { Breakpoint } from "@mui/material";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import ImageIcon from "@mui/icons-material/Image";
+import { Box, Stack, Typography } from "@/components";
 
-export function CompassProject() {
+export default function CompassProject() {
   return (
     <Stack spacing={3}>
       <Typography variant="inherit">All data shown are from demo and not real. Scroll down for more.</Typography>

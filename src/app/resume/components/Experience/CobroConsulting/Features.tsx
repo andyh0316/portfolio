@@ -1,6 +1,5 @@
-import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card } from "@/components";
+import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card, YoutubePlayer } from "@/components";
 import { ReactNode, useState } from "react";
-import { YoutubePlayer } from "../../common/YoutubePlayer";
 import { Breakpoint } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import ImageIcon from "@mui/icons-material/Image";

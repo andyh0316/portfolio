@@ -9,7 +9,6 @@ export const YoutubePlayer = (props: { videoId: string }) => {
         width: "100%",
         // ...sx,
       }}
-      {...props}
     >
       <Box
         component="iframe"
