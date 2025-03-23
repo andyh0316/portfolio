@@ -1,4 +1,5 @@
-import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography, useTheme, alpha } from "@mui/material";
+import { useTheme, alpha } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@/components";
 import { projectData } from "./projectData";
 
 export function Projects() {

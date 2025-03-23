@@ -23,3 +23,8 @@ export * from "./Snackbar";
 export * from "./Dialog";
 export * from "./Card";
 export * from "./Popover";
+export * from "./Container";
+export * from "./CardContent";
+export * from "./CardMedia";
+export * from "./Avatar";
+export * from "./TextField";

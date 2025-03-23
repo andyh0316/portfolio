@@ -2,20 +2,8 @@
 
 import React from "react";
 import { Projects } from "./components/Projects/Projects";
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Avatar,
-  Chip,
-  useMediaQuery,
-  CssBaseline,
-} from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import { Box, Container, Grid, Typography, Card, CardContent, CardMedia, Button, Avatar, Chip } from "@/components";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import CodeIcon from "@mui/icons-material/Code";
 import GitHubIcon from "@mui/icons-material/GitHub";

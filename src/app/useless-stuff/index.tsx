@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Link, Stack, TextField } from "@mui/material";
+import { Box, Link, Stack, TextField } from "@/components";
 
 export function Useless() {
   const headerBarHeight = 40;

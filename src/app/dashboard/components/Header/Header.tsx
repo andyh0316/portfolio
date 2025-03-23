@@ -7,7 +7,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 
-import { Avatar, Container, useTheme } from "@mui/material";
+import { Avatar, Container } from "@/components";
+import { useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
 import { HomeContext } from "../../context";

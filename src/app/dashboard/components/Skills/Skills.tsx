@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@/components";
 import { skillData } from "./skillData";
 
 export function Skills() {
