@@ -1,4 +1,4 @@
-import { HomeContext } from "@/app/home/context";
+import { HomeContext } from "@/app/dashboard/context";
 import { orbitron } from "@/app/layout";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
