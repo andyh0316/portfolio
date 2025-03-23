@@ -63,7 +63,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
 
     {
       const charFraction = 1 / firstNameObj.name.length;
-      const x = charFraction * (firstNameObj.name.length - 1) + charFraction / 4;
+      const x = charFraction * (firstNameObj.name.length - 1) - charFraction / 4;
       firstNameObj.animateControls?.set({
         x: `${x * 100}%`,
       });

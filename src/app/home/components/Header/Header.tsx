@@ -22,32 +22,12 @@ export function Header() {
   const themeType = useAppSelector((state) => state.app.themeType);
   const dispatch = useDispatch();
   const theme = useTheme();
-  const homeContext = useContext(HomeContext);
-  const outerBoxRef = useRef<HTMLDivElement>(null);
-  const moveMyNameToRef = useRef<HTMLDivElement>(null);
-
-  const [finalizedName, setFinalizedName] = useState<ReactElement>();
-  const [nameAnimationCompleted, setNameAnimationCompleted] = useState<boolean>(false);
-
-  const [boxDimensions, setBoxDimensions] = useState({ width: 0, height: 0 });
-  const handOverNameAnimationDuration = 0.5;
-
-  // Function to measure dimensions
-  useEffect(() => {
-    if (outerBoxRef.current) {
-      const { offsetWidth, offsetHeight } = outerBoxRef.current;
-      setBoxDimensions({
-        width: offsetWidth,
-        height: offsetHeight,
-      });
-    }
-  }, []);
 
   const infoElement = () => {
     return (
       <Stack>
         <AnimatedName
-          skipAnimation={true} // skip for development
+        // skipAnimation={true} // skip for development
         />
 
         <Typography
@@ -102,7 +82,7 @@ export function Header() {
             }}
             variant="outlined"
           >
-            {themeType === "dark" ? "Light Up" : "Dark Mode"}
+            {themeType === "dark" ? "Lights On" : "Lights Off"}
           </Button>
         </Stack>
       </Stack>
