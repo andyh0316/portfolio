@@ -1,10 +1,24 @@
 import { useTheme, alpha } from "@mui/material";
 import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@/components";
 import { projectData } from "./projectData";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Projects() {
+  const router = useRouter();
   const theme = useTheme();
+  const pathname = usePathname();
 
+  function routeToProject(projectId: number) {
+    router.push(`${pathname}/projects/${projectId}`);
+  }
+
+  // <Button
+  //   onClick={() => {
+  //     router.push(`/dashboard/projects/project-123`);
+  //   }}
+  // >
+  //   Click
+  // </Button>
   return (
     <Box sx={{ py: 10, position: "relative" }}>
       <Container maxWidth="lg">
@@ -21,6 +35,7 @@ export function Projects() {
           {projectData.map((project, index) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
               <Card
+                onClick={() => routeToProject(project.id)}
                 sx={{
                   height: "100%",
                   display: "flex",

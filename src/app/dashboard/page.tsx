@@ -24,7 +24,6 @@ const HomePage = () => {
 
 const HomeContent = () => {
   const theme = useTheme();
-  const router = useRouter();
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
@@ -35,14 +34,6 @@ const HomeContent = () => {
         pb: 6,
       }}
     >
-      <Button
-        onClick={() => {
-          router.push(`/dashboard/projects/project-123`);
-        }}
-      >
-        Click
-      </Button>
-
       <Header />
 
       <Projects />
