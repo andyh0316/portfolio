@@ -4,6 +4,9 @@ import { Box, Stack, Typography, Button, Grid } from "@/components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+
 import { Avatar, Container, useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactElement, useContext, useEffect, useRef, useState } from "react";
@@ -23,38 +26,24 @@ export function Header() {
   const dispatch = useDispatch();
   const theme = useTheme();
 
-  const infoElement = () => {
+  function infoElement() {
     return (
       <Stack>
         <AnimatedName
-        // skipAnimation={true} // skip for development
+          skipAnimation={true} // skip for development
         />
 
         <Typography
           variant="h5"
-          color="text.primary"
-          paragraph
-          sx={{
-            maxWidth: "600px",
-            lineHeight: 1.6,
-          }}
-        >
-          Software Engineer.
-        </Typography>
-
-        <Typography
-          variant="h5"
-          color="text.secondary"
-          paragraph
           sx={{
             maxWidth: "600px",
             lineHeight: 1.6,
             mb: 4,
           }}
         >
-          Full Stack Developer specializing in modern web applications with a focus on React, Node.js, and cloud
-          technologies.
+          Software Engineer in full-stack web applications.
         </Typography>
+
         <Box
           sx={{
             display: "flex",
@@ -70,26 +59,17 @@ export function Header() {
             },
           }}
         >
-          <GitHubIcon />
+          {/* <GitHubIcon />
           <LinkedInIcon />
-          <TwitterIcon />
+          <TwitterIcon /> */}
         </Box>
 
-        <Stack direction="row">
-          <Button
-            onClick={() => {
-              dispatch(setThemeType(themeType === "dark" ? "light" : "dark"));
-            }}
-            variant="outlined"
-          >
-            {themeType === "dark" ? "Lights On" : "Lights Off"}
-          </Button>
-        </Stack>
+        <Stack direction="row">{lightButton()}</Stack>
       </Stack>
     );
-  };
+  }
 
-  const avatarElement = () => {
+  function avatarElement() {
     return (
       <Avatar
         sx={{
@@ -102,7 +82,28 @@ export function Header() {
         src="/path-to-profile-image.jpg"
       />
     );
-  };
+  }
+
+  function lightButton() {
+    const isDark = themeType === "dark";
+    const text = isDark ? "Lights On" : "Lights Off";
+    const icon = isDark ? <LightbulbIcon fontSize="small" /> : <LightbulbOutlinedIcon fontSize="small" />;
+
+    return (
+      <Button
+        onClick={() => {
+          dispatch(setThemeType(themeType === "dark" ? "light" : "dark"));
+        }}
+        variant="outlined"
+      >
+        <Stack direction="row" alignItems="center" spacing={0.5}>
+          <Typography variant="inherit">{text}</Typography>
+
+          {icon}
+        </Stack>
+      </Button>
+    );
+  }
 
   return (
     <Box
