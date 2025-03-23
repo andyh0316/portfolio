@@ -1,7 +1,7 @@
-"use client"; // Mark as a client component
+"use client";
 
 import { useRouter, useParams } from "next/navigation";
-import { Button, Chip, Dialog, Grid, Stack, Typography, Box, Card } from "@/components";
+import { Button, Chip, Grid, Stack, Typography, Box, Card } from "@/components";
 import { projectData } from "../project-data/project-data";
 import { Suspense } from "react";
 

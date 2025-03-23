@@ -1,3 +1,5 @@
+"use client";
+
 import { Stack } from "@/components";
 import CloseIcon from "@mui/icons-material/Close";
 import { Dialog as MuiDialog } from "@mui/material";
