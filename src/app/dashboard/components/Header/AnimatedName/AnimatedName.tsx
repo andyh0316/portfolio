@@ -18,7 +18,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
 
   const firstUseLayoutEffect = useRef<boolean>(true);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
-  const [handedOverName, setHandedOverName] = useState<boolean>(false);
+  const [handedOverName, setHandedOverName] = useState<boolean>(props.skipAnimation ? true : false);
   const homeContext = useContext(HomeContext);
   const containerAnimateControls = useAnimation();
   const textRef = useRef<HTMLDivElement>(null);

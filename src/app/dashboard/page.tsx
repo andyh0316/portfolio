@@ -12,13 +12,19 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { Skills } from "./components/Skills/Skills";
 import { Header } from "./components/Header/Header";
 import { HomeProvider } from "./context";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
-  return <HomeProvider>{HomeContent()}</HomeProvider>;
+  return (
+    <HomeProvider>
+      <HomeContent />
+    </HomeProvider>
+  );
 };
 
 const HomeContent = () => {
   const theme = useTheme();
+  const router = useRouter();
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
@@ -29,6 +35,14 @@ const HomeContent = () => {
         pb: 6,
       }}
     >
+      <Button
+        onClick={() => {
+          router.push(`/dashboard/projects/project-123`);
+        }}
+      >
+        Click
+      </Button>
+
       <Header />
 
       <Projects />
