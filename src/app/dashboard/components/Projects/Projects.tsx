@@ -31,7 +31,7 @@ export function Projects() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: alpha(theme.palette.background.paper, 0.5),
+          // background: alpha(theme.palette.background.paper, 0.5),
           transition: "all 0.3s ease",
           "&:hover": {
             transform: "translateY(-8px)",

@@ -38,12 +38,14 @@ export function Dialog(props: {
       maxWidth={props.maxWidth ? props.maxWidth : false}
       sx={{
         "& .MuiDialog-paper": {
-          bgcolor: (theme) => theme.palette.background.paper,
           width: props.width ? props.width : "auto",
         },
       }}
     >
-      <DialogTitle sx={{ m: 0, px: 2, py: 1 }} id="customized-dialog-title">
+      <DialogTitle
+        sx={{ m: 0, px: 2, py: 1, bgcolor: (theme) => theme.palette.background.default }}
+        id="customized-dialog-title"
+      >
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Stack>{props.title}</Stack>
 
@@ -59,7 +61,16 @@ export function Dialog(props: {
         </Stack>
       </DialogTitle>
 
-      <DialogContent dividers>{props.content}</DialogContent>
+      <DialogContent
+        dividers
+        sx={
+          {
+            // bgcolor: (theme) => theme.palette.background.default
+          }
+        }
+      >
+        {props.content}
+      </DialogContent>
       {props.footer && <DialogActions>{props.footer}</DialogActions>}
     </BootstrapDialog>
   );
