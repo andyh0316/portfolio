@@ -1,9 +1,9 @@
 import { useTheme, alpha } from "@mui/material";
 import { Box, Card, CardContent, CardMedia, Chip, Container, Grid, Typography } from "@/components";
 import { usePathname, useRouter } from "next/navigation";
-import { projectPageRoute } from "../../projects/[projectId]/page";
 import { projectData } from "../../projects/project-data/project-data";
 import { orbitron } from "@/app/layout";
+import { projectPageRoute } from "../../projects/[projectId]/page";
 
 export function Projects() {
   const router = useRouter();

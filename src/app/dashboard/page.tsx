@@ -6,23 +6,7 @@ import { Header } from "./components/Header/Header";
 import { Projects } from "./components/Projects/Projects";
 import { DashboardProvider } from "./context";
 
-const DashboardPage = () => {
-  return (
-    <DashboardProvider>
-      <Stack
-        sx={{
-          minHeight: "100vh",
-          pb: 6,
-        }}
-      >
-        <Header />
-
-        <Projects />
-
-        <Footer />
-      </Stack>
-    </DashboardProvider>
-  );
-};
-
-export default DashboardPage;
+// placeholder, content in layout.tsx
+export default function DashboardPage() {
+  return null;
+}

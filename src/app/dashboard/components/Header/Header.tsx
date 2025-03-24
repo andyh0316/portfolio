@@ -20,7 +20,7 @@ export function Header() {
     return (
       <Stack>
         <AnimatedName
-        // skipAnimation={true} // skip for development
+          skipAnimation={true} // skip for development
         />
 
         <Typography
