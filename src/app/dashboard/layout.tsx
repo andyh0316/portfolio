@@ -1,5 +1,5 @@
 "use client";
-import { Box, Stack } from "@/components";
+import { Box, Dialog, Stack } from "@/components";
 // app/dashboard/layout.tsx
 
 import { useState } from "react";
@@ -8,8 +8,15 @@ import { Header } from "./components/Header/Header";
 import { Projects } from "./components/Projects/Projects";
 import { DashboardProvider } from "./context";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({
+  children,
+  nestedChildren,
+}: {
+  children: React.ReactNode;
+  nestedChildren: React.ReactNode;
+}) {
   const [dashboardFlag, setDashboardFlag] = useState<boolean>(false);
+  debugger;
 
   // return (
   //   <Box>
@@ -36,7 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <Footer />
 
         {/* This is where nested route content will appear */}
-        <Box>{children}</Box>
+        {children}
       </Stack>
     </DashboardProvider>
   );

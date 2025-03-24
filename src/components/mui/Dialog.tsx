@@ -48,7 +48,7 @@ export function Dialog(props: {
             aria-label="close"
             onClick={props.onClose}
             sx={(theme) => ({
-              color: theme.palette.grey[500],
+              // color: theme.palette.grey[500],
             })}
           >
             <CloseIcon />
@@ -57,7 +57,7 @@ export function Dialog(props: {
       </DialogTitle>
 
       <DialogContent dividers>{props.content}</DialogContent>
-      <DialogActions>{props.footer}</DialogActions>
+      {props.footer && <DialogActions>{props.footer}</DialogActions>}
     </BootstrapDialog>
   );
 }
