@@ -2,6 +2,7 @@ import { DashboardContext } from "@/app/dashboard/context";
 import { orbitron } from "@/app/layout";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
+import { SxProps, Theme } from "@mui/material";
 import { AnimatePresence, AnimationControls, motion, useAnimation } from "framer-motion";
 import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 
@@ -164,6 +165,29 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
   }
 
   function textElement(opacity: number = 1) {
+    const neonLightSx: SxProps<Theme> = {
+      textShadow: (theme) => `
+      0 0 2px ${theme.palette.primary.main},
+      0 0 4px ${theme.palette.primary.main},
+      0 0 8px ${theme.palette.primary.main}
+    `,
+      animation: "subtlePulsate 3s infinite alternate",
+      "@keyframes subtlePulsate": {
+        "0%": {
+          textShadow: (theme) => `
+          0 0 1px ${theme.palette.primary.main},
+          0 0 3px ${theme.palette.primary.main}
+        `,
+        },
+        "100%": {
+          textShadow: (theme) => `
+          0 0 2px ${theme.palette.primary.main},
+          0 0 4px ${theme.palette.primary.main},
+          0 0 8px ${theme.palette.primary.main}
+        `,
+        },
+      },
+    };
     return (
       <Stack
         ref={textRef}
@@ -176,6 +200,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
           opacity: opacity,
           color: (theme) => theme.palette.primary.main,
           fontWeight: (theme) => theme.typography.fontWeightBold,
+          ...neonLightSx,
         }}
       >
         <Stack

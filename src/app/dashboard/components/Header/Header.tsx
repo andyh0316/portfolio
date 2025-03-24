@@ -20,7 +20,7 @@ export function Header() {
     return (
       <Stack>
         <AnimatedName
-          skipAnimation={true} // skip for development
+        // skipAnimation={true} // skip for development
         />
 
         <Typography
@@ -31,7 +31,7 @@ export function Header() {
             mb: 4,
           }}
         >
-          Software Engineer in full-stack web applications.
+          Software Engineer
         </Typography>
 
         <Box

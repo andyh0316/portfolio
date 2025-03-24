@@ -8,26 +8,7 @@ import { Header } from "./components/Header/Header";
 import { Projects } from "./components/Projects/Projects";
 import { DashboardProvider } from "./context";
 
-export default function DashboardLayout({
-  children,
-  nestedChildren,
-}: {
-  children: React.ReactNode;
-  nestedChildren: React.ReactNode;
-}) {
-  const [dashboardFlag, setDashboardFlag] = useState<boolean>(false);
-  debugger;
-
-  // return (
-  //   <Box>
-  //     <Button onClick={() => setDashboardFlag(!dashboardFlag)} variant="outlined">
-  //       Flag {dashboardFlag ? "true" : "false"}
-  //     </Button>
-
-  //     <Box>{children}</Box>
-  //   </Box>
-  // );
-
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <DashboardProvider>
       <Stack
