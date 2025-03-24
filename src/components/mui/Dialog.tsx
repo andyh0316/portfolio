@@ -27,15 +27,18 @@ export function Dialog(props: {
   footer?: ReactNode;
   width?: string;
   maxWidth?: false | Breakpoint | undefined;
+  fullScreen?: boolean;
 }) {
   return (
     <BootstrapDialog
+      fullScreen={props.fullScreen}
       open={props.open}
       onClose={props.onClose}
       aria-labelledby="customized-dialog-title"
       maxWidth={props.maxWidth ? props.maxWidth : false}
       sx={{
         "& .MuiDialog-paper": {
+          bgcolor: (theme) => theme.palette.background.paper,
           width: props.width ? props.width : "auto",
         },
       }}

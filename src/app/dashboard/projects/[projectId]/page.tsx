@@ -47,7 +47,7 @@ export default function ProjectPage() {
   return (
     <Dialog
       open={true}
-      width="90%"
+      // width="90%"
       // title={openedFeatureItem.title}
       content={contentBody()}
       // maxWidth={openedFeatureItem.dialogMaxWidth}
