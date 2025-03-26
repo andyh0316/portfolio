@@ -43,7 +43,7 @@ export default function ProjectPage(props: { projectId: number }) {
       //     Close
       //   </Button>
       // }
-      onClose={handleGoBack}
+      // onClose={handleGoBack} // disable for now, causes reanimation: fix later
     />
   );
 }

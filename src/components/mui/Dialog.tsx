@@ -21,7 +21,7 @@ const BootstrapDialog = styled(MuiDialog)(({ theme }) => ({
 
 export function Dialog(props: {
   open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   title?: ReactNode;
   content?: ReactNode;
   footer?: ReactNode;
@@ -49,15 +49,17 @@ export function Dialog(props: {
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Stack>{props.title}</Stack>
 
-          <IconButton
-            aria-label="close"
-            onClick={props.onClose}
-            sx={(theme) => ({
-              // color: theme.palette.grey[500],
-            })}
-          >
-            <CloseIcon />
-          </IconButton>
+          {props.onClose && (
+            <IconButton
+              aria-label="close"
+              onClick={props.onClose}
+              sx={(theme) => ({
+                // color: theme.palette.grey[500],
+              })}
+            >
+              <CloseIcon />
+            </IconButton>
+          )}
         </Stack>
       </DialogTitle>
 
