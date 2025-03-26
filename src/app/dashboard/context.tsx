@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 export interface DashboardContextType {
-  firstTimeMount: boolean;
+  entranceAnimationStart: boolean;
   nameContainerLayoutId: string;
   // isNameMoved: boolean;
   // setNameMoved: (value: boolean) => void;
@@ -9,18 +9,11 @@ export interface DashboardContextType {
 
 export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
 
-export const DashboardProvider = (props: { children: ReactNode }) => {
-  // const [isNameMoved, setIsNameMoved] = useState(false);
-  const [firstTimeMount, setFirstTimeMount] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (firstTimeMount) setFirstTimeMount(false);
-  }, [firstTimeMount]);
-
+export const DashboardProvider = (props: { entranceAnimationStart: boolean; children: ReactNode }) => {
   return (
     <DashboardContext.Provider
       value={{
-        firstTimeMount: firstTimeMount,
+        entranceAnimationStart: props.entranceAnimationStart,
         nameContainerLayoutId: "nameContainerLayoutId",
         // isNameMoved,
         // setNameMoved: setIsNameMoved,

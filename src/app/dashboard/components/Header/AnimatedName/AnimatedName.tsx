@@ -23,9 +23,12 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
   const lastName = "Hong";
 
   const firstUseLayoutEffect = useRef<boolean>(true);
-  const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
-  const [handedOverName, setHandedOverName] = useState<boolean>(props.skipAnimation ? true : false);
+
   const dashboardContext = useContext(DashboardContext);
+  const shouldAnimate = !(props.skipAnimation || dashboardContext?.entranceAnimationStart);
+  const [handedOverName, setHandedOverName] = useState<boolean>(!shouldAnimate);
+  const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
+
   const containerAnimateControls = useAnimation();
   const textRef = useRef<HTMLDivElement>(null);
   const textAnimateControls = useAnimation();
@@ -51,18 +54,22 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
   const handoverNameDuration = props.skipAnimation ? 0 : 0.5;
 
   useLayoutEffect(() => {
-    if (firstUseLayoutEffect.current) {
-      firstUseLayoutEffect.current = false;
-      setAnimationsInitialState();
-      setStartAnimationFlag(true);
+    if (shouldAnimate) {
+      if (firstUseLayoutEffect.current) {
+        firstUseLayoutEffect.current = false;
+        setAnimationsInitialState();
+        setStartAnimationFlag(true);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (startAnimationFlag) {
-      startAnimations();
+    if (shouldAnimate) {
+      if (startAnimationFlag) {
+        startAnimations();
+      }
     }
-  }, [startAnimationFlag, startAnimations]);
+  }, [shouldAnimate, startAnimationFlag, startAnimations]);
 
   async function setAnimationsInitialState() {
     if (props.skipAnimation) return;
