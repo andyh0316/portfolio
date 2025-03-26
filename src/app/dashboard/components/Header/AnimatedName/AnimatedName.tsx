@@ -26,7 +26,7 @@ export function AnimatedName(props: { skipAnimation?: boolean }) {
 
   const dashboardContext = useContext(DashboardContext);
   const [shouldAnimate] = useState<boolean>(
-    !props.skipAnimation || dashboardContext?.isLayoutFirstMount.current === true
+    !props.skipAnimation && dashboardContext?.isLayoutFirstMount.current === true
   );
   const [handedOverName, setHandedOverName] = useState<boolean>(!shouldAnimate);
   const [startAnimationFlag, setStartAnimationFlag] = useState<boolean>(false);
