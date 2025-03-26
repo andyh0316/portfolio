@@ -32,6 +32,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          #./out folder or ./.next folder depending on next.config.js -> output: "export"
           path: ./.next
 
   deploy:
