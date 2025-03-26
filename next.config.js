@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/portfolio", // UNCOMMENT and replace with your actual repo name
-  assetPrefix: "/portfolio/", // ADD THIS
-  trailingSlash: true, // ADD THIS
+  // basePath: "/portfolio", // UNCOMMENT and replace with your actual repo name
+  // assetPrefix: "/portfolio/", // ADD THIS
+  // trailingSlash: true, // ADD THIS
   images: {
     unoptimized: true,
   },
