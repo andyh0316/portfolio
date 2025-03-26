@@ -1,22 +1,22 @@
 "use client";
 import { Stack } from "@/components";
+import { useEffect, useRef } from "react";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 import { Projects } from "./components/Projects/Projects";
 import { DashboardProvider } from "./context";
-import { useEffect, useState } from "react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [entranceAnimationStart, setEntranceAnimationStart] = useState<boolean>(false);
+  const isFirstMount = useRef(true);
 
   useEffect(() => {
-    if (!entranceAnimationStart) {
-      setEntranceAnimationStart(true);
+    if (isFirstMount) {
+      isFirstMount.current = false;
     }
-  }, [entranceAnimationStart]);
+  }, []);
 
   return (
-    <DashboardProvider entranceAnimationStart={entranceAnimationStart}>
+    <DashboardProvider isLayoutFirstMount={isFirstMount}>
       <Stack
         sx={{
           minHeight: "100vh",
