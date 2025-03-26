@@ -1,7 +1,7 @@
 "use client";
 
-import ResumePage from "./resume/page";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <ResumePage />;
+  redirect("/dashboard");
 }

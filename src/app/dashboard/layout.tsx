@@ -1,8 +1,7 @@
 "use client";
-import { Box, Dialog, Stack } from "@/components";
+import { Stack } from "@/components";
 // app/dashboard/layout.tsx
 
-import { useState } from "react";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 import { Projects } from "./components/Projects/Projects";
