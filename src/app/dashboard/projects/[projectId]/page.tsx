@@ -1,12 +1,10 @@
 "use client";
 
-import { useRouter, useParams } from "next/navigation";
-import { Button, Chip, Grid, Stack, Typography, Box, Card, Dialog } from "@/components";
-import { projectData } from "../project-data/project-data";
+import { Box, Dialog, Stack } from "@/components";
+import { useParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
-import { Backdrop } from "@mui/material";
+import { projectData } from "../project-data/project-data";
 
-export const projectPageRoute = (projectId: number) => `projects/${projectId}`;
 export default function ProjectPage() {
   const router = useRouter();
   const params = useParams();

@@ -1,5 +1,5 @@
+import { orbitron } from "@/app/app-fonts";
 import { DashboardContext } from "@/app/dashboard/context";
-import { orbitron } from "@/app/layout";
 import { Box, Stack } from "@/components";
 import { sleep } from "@/utils";
 import { SxProps, Theme } from "@mui/material";
